@@ -18,7 +18,7 @@ export type Target =
   | { kind: 'route'; section: string; sub: string | null; params?: Record<string, string> }
   | { kind: 'dnsclient'; domain: string }
   | { kind: 'logs'; domain: string | null; clientIp: string | null }
-  | { kind: 'modal'; id: 'password' | 'twofa' | 'token' | 'theme' }
+  | { kind: 'modal'; id: 'password' | 'twofa' | 'token' | 'theme' | 'timezone' }
   | { kind: 'theme'; choice: 'light' | 'dark' | 'system' | 'dark-grey' | 'amber' | 'glassmorphism' }
   | { kind: 'logout' }
 
@@ -103,6 +103,7 @@ export function accountItems(opts: { canChangePassword: boolean; canConfigure2fa
   if (opts.canConfigure2fa) out.push({ id: 'account:2fa', group: 'Account', label: 'Configure 2FA', icon: 'lock', target: { kind: 'modal', id: 'twofa' } })
   out.push(
     { id: 'account:token', group: 'Account', label: 'Create API Token', icon: 'key', target: { kind: 'modal', id: 'token' } },
+    { id: 'account:timezone', group: 'Account', label: 'Display Timezone', icon: 'clock', keywords: 'timezone time clock ist utc', target: { kind: 'modal', id: 'timezone' } },
     { id: 'account:light', group: 'Account', label: 'Use the light theme', icon: 'eye', keywords: 'theme appearance', target: { kind: 'theme', choice: 'light' } },
     { id: 'account:dark', group: 'Account', label: 'Use the dark theme', icon: 'eye', keywords: 'theme appearance', target: { kind: 'theme', choice: 'dark' } },
     { id: 'account:dark-grey', group: 'Account', label: 'Use the dark grey theme', icon: 'eye', keywords: 'theme appearance charcoal graphite', target: { kind: 'theme', choice: 'dark-grey' } },
