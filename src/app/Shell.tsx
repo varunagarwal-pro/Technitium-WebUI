@@ -710,9 +710,6 @@ export function Shell({
                 <MenuItem icon="theme" onClick={() => { close(); open('theme') }}>
                   Change Theme
                 </MenuItem>
-                <MenuItem icon="clock" onClick={() => { close(); open('timezone') }}>
-                  Display Timezone
-                </MenuItem>
                 {/*
                 One entry and not two: upstream declares both and hides one
                 (`index.html:72-73`, `initUpdateNotificationMenu`), which is how
@@ -727,6 +724,9 @@ export function Shell({
                     Disable Update Notification
                   </MenuItem>
                 )}
+                <MenuItem icon="clock" onClick={() => { close(); open('timezone') }}>
+                  Display Timezone
+                </MenuItem>
                 <Separator />
                 <MenuItem icon="logout" tone="danger" onClick={() => { close(); onLogout() }}>
                   Logout
