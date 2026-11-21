@@ -41,7 +41,6 @@ function parts(iso: string): Date | null {
   return Number.isNaN(d.getTime()) ? null : d
 }
 
-<<<<<<< HEAD
 const FORMATTERS_LONG = new Map<string, Intl.DateTimeFormat>()
 const FORMATTERS_SHORT = new Map<string, Intl.DateTimeFormat>()
 
@@ -90,7 +89,6 @@ export function dateTime(iso: string | null | undefined, tz?: SupportedTimezone)
   if (iso == null) return ''
   const d = parts(iso)
   if (d == null) return ''
-<<<<<<< HEAD
   return formatDate(d, true, tz)
 }
 
@@ -100,13 +98,6 @@ export function minuteStamp(iso: string | null | undefined, tz?: SupportedTimezo
   const d = parts(iso)
   if (d == null) return ''
   return formatDate(d, false, tz)
-=======
-  if (d.getFullYear() <= 1) return '0001-01-01 00:00'
-  return (
-    `${pad4(d.getFullYear())}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())} ` +
-    `${pad2(d.getHours())}:${pad2(d.getMinutes())}`
-  )
->>>>>>> sentinel-customizations
 }
 
 const THRESHOLD = { ss: 44, s: 45, m: 45, h: 22, d: 26, M: 11 }
