@@ -23,6 +23,11 @@ describe('dateTime / minuteStamp', () => {
     expect(dateTime('not a date')).toBe('')
     expect(minuteStamp(null)).toBe('')
   })
+
+  it('formats .NET default date 0001-01-01 properly without throwing', () => {
+    expect(dateTime('0001-01-01T00:00:00')).toBe('0001-01-01 00:00:00')
+    expect(minuteStamp('0001-01-01T00:00:00')).toBe('0001-01-01 00:00')
+  })
 })
 
 describe('fromNow: the moment literals', () => {
