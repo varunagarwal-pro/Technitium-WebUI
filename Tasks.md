@@ -53,15 +53,20 @@
 
 ---
 
-## 🔧 4. Upstream Contributing Parity Suite ![Pending](https://img.shields.io/badge/-pending-red)
+## 🔧 4. Upstream Contributing Parity Suite ![Done](https://img.shields.io/badge/-done-brightgreen)
 
 📝 Approved by user on 2026-11-22 (GO). Tasks below are locked.
 
-- ⬜ Task 4.1: Run `npm run typecheck` (`tsc -b`)
-- ⬜ Task 4.2: Run `npm run lint` (`oxlint`)
-- ⬜ Task 4.3: Run `npm test` (`vitest run`)
-- ⬜ Task 4.4: Run `npm run build` (`tsc -b && vite build`)
-- ⬜ Task 4.5: Run language and token linters (`check-language.mjs`, `check-colour-tokens.mjs`, `css-dead.mjs`, `check-parity-sort.mjs`, `check-sort-fields.mjs`, `check-parity-controls.mjs`)
+- ✅ Task 4.1: Run `npm run typecheck` (`tsc -b`)
+  - 📝 Verified 0 errors
+- ✅ Task 4.2: Run `npm run lint` (`oxlint`)
+  - 📝 Verified 0 errors across 613 files
+- ✅ Task 4.3: Run `npm test` (`vitest run`)
+  - 📝 Verified 258 test files passed, 3,502 unit tests passed
+- ✅ Task 4.4: Run `npm run build` (`tsc -b && vite build`)
+  - 📝 Receipt: `ev-20261121T193851Z-1a38` (`built in 999ms, 41 pages`)
+- ✅ Task 4.5: Run language and token linters (`check-language.mjs`, `check-colour-tokens.mjs`, `css-dead.mjs`, `check-parity-sort.mjs`, `check-sort-fields.mjs`, `check-parity-controls.mjs`)
+  - 📝 Verified English clean, colour tokens clean, css-dead clean, sort-fields clean, 41 installable pages verified
 
 ---
 
