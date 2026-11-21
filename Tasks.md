@@ -83,7 +83,23 @@
 
 ---
 
+## 🔧 6. Fleet Production Deployment (`/opt/technitium/technitium-console`) ![Done](https://img.shields.io/badge/-done-brightgreen)
+
+📝 Approved by user on 2026-11-22 (GO). Tasks below are locked.
+
+- ✅ Task 6.1: Package production distribution archive and sha256 checksum in `temp/`
+  - 📝 Receipt: `ev-20261121T200724Z-6937` (`technitium-console.tar.gz 568.5 KB, sha256 88392a722e...`)
+- ✅ Task 6.2: Execute atomic fleet deployment to `/opt/technitium/technitium-console` across Mumbai, Phoenix, and Oregon
+  - 📝 Receipt: `ev-20261121T200732Z-7fb0` (`Mumbai 5.86s, Oregon 17.25s, Phoenix 16.32s; all PASS`)
+- ✅ Task 6.3: Verify HTTP 200 and console responsiveness on all 3 nodes
+  - 📝 Receipt: `ev-20261121T200815Z-4004` (`All nodes verified serving React #root, index-CM5jnHqn.js, index-Dixdv4kR.css`)
+
+---
+
 ## 📅 Change Log
+
+### 2026-11-22: Fleet Deployment Approved
+- Added Section 6 for multi-node atomic deployment to `/opt/technitium/technitium-console` preserving stock `www`.
 
 ### 2026-11-22: Task Ledger Initialized
 - Initialized status tracking for upstream sync, PR remediation, and branch realignment.
