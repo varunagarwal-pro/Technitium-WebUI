@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { Profile } from './Profile'
+import { Profile } from './Profile.tsx'
 import { ThemeContext } from '../../theme/useTheme'
 import * as client from '../../api/client'
 
@@ -403,16 +403,16 @@ describe('My Profile: the theme', () => {
     expect(setChoice).toHaveBeenCalledWith('light')
   })
 
-  it('a stored amber checks none (deviation 1)', async () => {
+  it('checks custom themes including amber when stored', async () => {
     mock()
     render(
-      <ThemeContext.Provider value={{ choice: 'amber', resolved: 'dark', setChoice: () => {} }}>
+      <ThemeContext.Provider value={{ choice: 'amber', resolved: 'amber', setChoice: () => {} }}>
         <Profile token="t" />
       </ThemeContext.Provider>,
     )
     await loaded()
-    for (const r of within(screen.getByRole('radiogroup', { name: 'Theme' })).getAllByRole('radio')) {
-      expect(r).not.toBeChecked()
-    }
+    const group = screen.getByRole('radiogroup', { name: 'Theme' })
+    expect(within(group).getByLabelText('Amber Theme')).toBeChecked()
+    expect(within(group).getByLabelText('Dark Theme')).not.toBeChecked()
   })
 })

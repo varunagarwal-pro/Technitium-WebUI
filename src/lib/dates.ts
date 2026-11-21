@@ -44,6 +44,7 @@ export function dateTime(iso: string | null | undefined): string {
   if (iso == null) return ''
   const d = parts(iso)
   if (d == null) return ''
+  if (d.getFullYear() <= 1) return '0001-01-01 00:00:00'
   return (
     `${pad4(d.getFullYear())}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())} ` +
     `${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`
@@ -55,6 +56,7 @@ export function minuteStamp(iso: string | null | undefined): string {
   if (iso == null) return ''
   const d = parts(iso)
   if (d == null) return ''
+  if (d.getFullYear() <= 1) return '0001-01-01 00:00'
   return (
     `${pad4(d.getFullYear())}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())} ` +
     `${pad2(d.getHours())}:${pad2(d.getMinutes())}`

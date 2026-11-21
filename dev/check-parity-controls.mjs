@@ -30,9 +30,10 @@ What it does NOT answer, worth having in front of you before believing a green:
 */
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 const REF = process.env.REF ?? 'http://127.0.0.1:5381'
-const SOURCE = new URL('../src/', import.meta.url).pathname
+const SOURCE = fileURLToPath(new URL('../src/', import.meta.url))
 
 /* Destinations upstream has and that must NOT be here, with their reason. Every
    line is a decision, not an oversight: if it is not justified, it is a finding. */
