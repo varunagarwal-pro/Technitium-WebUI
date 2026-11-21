@@ -15,13 +15,12 @@ force, not what the value is.
 */
 const DARK = '#101010'
 const LIGHT = '#fafafa'
-const AMBER = '#1d140a'
 
 let sheet: HTMLStyleElement
 
 beforeEach(() => {
   sheet = document.createElement('style')
-  sheet.textContent = `[data-theme='dark'] { --pan: ${DARK}; } [data-theme='light'] { --pan: ${LIGHT}; } [data-theme='amber'] { --pan: ${AMBER}; }`
+  sheet.textContent = `[data-theme='dark'] { --pan: ${DARK}; } [data-theme='light'] { --pan: ${LIGHT}; }`
   document.head.append(sheet)
   for (const media of ['(prefers-color-scheme: light)', '(prefers-color-scheme: dark)']) {
     const meta = document.createElement('meta')
@@ -62,11 +61,11 @@ describe('the theme-color of the browser bar', () => {
     expect(painted()).toEqual([DARK, DARK])
   })
 
-  it('draws a stored Amber as the amber theme', () => {
+  it('draws a stored Amber as the dark theme it renders as', () => {
     mockSystemTheme(false)
     localStorage.setItem('theme', 'amber')
     applyStoredTheme()
-    expect(painted()).toEqual([AMBER, AMBER])
+    expect(painted()).toEqual([DARK, DARK])
   })
 
   it('changes when the user picks another theme', async () => {

@@ -61,13 +61,7 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..')
 export const TOKENS = 'src/theme/tokens.css'
 
 /* The selectors a colour token may be declared under, whitespace removed. */
-export const THEME_BLOCKS = [
-  ":root,[data-theme='dark']",
-  "[data-theme='light']",
-  "[data-theme='dark-grey']",
-  "[data-theme='amber']",
-  "[data-theme='glassmorphism']",
-]
+export const THEME_BLOCKS = [":root,[data-theme='dark']", "[data-theme='light']"]
 
 export const ALLOWED = [
   {
@@ -209,12 +203,7 @@ export function themeTokens(text) {
   const code = stripComments(text, 'css')
   const out = {}
   for (const b of blocks(code)) {
-    let theme = null
-    if (b.selector === THEME_BLOCKS[0]) theme = 'dark'
-    else if (b.selector === THEME_BLOCKS[1]) theme = 'light'
-    else if (b.selector === THEME_BLOCKS[2]) theme = 'dark-grey'
-    else if (b.selector === THEME_BLOCKS[3]) theme = 'amber'
-    else if (b.selector === THEME_BLOCKS[4]) theme = 'glassmorphism'
+    const theme = b.selector === THEME_BLOCKS[0] ? 'dark' : b.selector === THEME_BLOCKS[1] ? 'light' : null
     if (!theme) continue
     const decls = new Map()
     for (const [, name, value] of code.slice(b.from + 1, b.to).matchAll(/(--[\w-]+|color-scheme)\s*:\s*([^;]+);/g))
@@ -224,28 +213,14 @@ export function themeTokens(text) {
   return out
 }
 
+/*
+Every property the dark block declares, the light block declares too. A token
+light forgot is not an error anybody would see: `:root` carries the dark value,
+so it quietly paints dark on a light page.
+*/
 export function findMissingInLight(text) {
   const { dark = new Map(), light = new Map() } = themeTokens(text)
   return [...dark.keys()].filter((name) => !light.has(name))
-}
-
-/*
-Every property the dark block declares, every other theme declares too. A token
-another theme forgot would quietly fall back to dark.
-*/
-const KNOWN_THEMES = ['light', 'dark-grey', 'amber', 'glassmorphism']
-
-export function findMissingInThemes(text) {
-  const tokens = themeTokens(text)
-  const dark = tokens.dark || new Map()
-  const missing = []
-  for (const theme of KNOWN_THEMES) {
-    const decls = tokens[theme] || new Map()
-    for (const name of dark.keys()) {
-      if (!decls.has(name)) missing.push(`${name} is declared for dark and not for ${theme}`)
-    }
-  }
-  return missing
 }
 
 /** The colour literals and `color-scheme` declarations in `tokens.css` that are outside every theme block. */
@@ -275,8 +250,8 @@ export function check(root = ROOT, allowed = ALLOWED) {
     if (rel === TOKENS) {
       for (const f of findOutsideThemes(text))
         findings.push(`${rel}:${f.line}  ${f.literal}  is outside every theme block`)
-      for (const m of findMissingInThemes(text))
-        findings.push(`${rel}  ${m}`)
+      for (const name of findMissingInLight(text))
+        findings.push(`${rel}  ${name}  is declared for dark and not for light`)
       continue
     }
     const kind = file.endsWith('.css') ? 'css' : 'ts'

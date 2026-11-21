@@ -26,29 +26,15 @@ contract anybody reads, so it is NOT replicated: this console only writes when t
 user picks.
 */
 
-export type ThemeChoice =
-  | 'system'
-  | 'light'
-  | 'dark'
-  | 'dark-grey'
-  | 'amber'
-  | 'glassmorphism'
-
-/** What the user can pick here: all system and custom themes. */
-export type OfferedTheme = ThemeChoice
-export type ResolvedTheme = Exclude<ThemeChoice, 'system'>
+export type ThemeChoice = 'system' | 'light' | 'dark' | 'amber'
+/** What the user can pick here: upstream's list without Amber. */
+export type OfferedTheme = Exclude<ThemeChoice, 'amber'>
+export type ResolvedTheme = 'light' | 'dark'
 
 export const THEME_KEY = 'theme'
 export const SYSTEM_DARK_QUERY = '(prefers-color-scheme: dark)'
 
-export const KNOWN: readonly string[] = [
-  'system',
-  'light',
-  'dark',
-  'dark-grey',
-  'amber',
-  'glassmorphism',
-]
+const KNOWN: readonly string[] = ['system', 'light', 'dark', 'amber']
 
 /*
 Storage and `matchMedia` can both be missing or throw: a browser in a privacy
@@ -99,13 +85,8 @@ export function resolveTheme(choice: ThemeChoice | null, prefersDark: boolean): 
     case 'light':
       return 'light'
     case 'dark':
-      return 'dark'
-    case 'dark-grey':
-      return 'dark-grey'
     case 'amber':
-      return 'amber'
-    case 'glassmorphism':
-      return 'glassmorphism'
+      return 'dark'
     default:
       return prefersDark ? 'dark' : 'light'
   }
@@ -128,7 +109,7 @@ does not declare `color-scheme` yet. Where both are present they say the same:
 export function applyTheme(resolved: ResolvedTheme): void {
   const root = document.documentElement
   root.dataset.theme = resolved
-  root.style.colorScheme = resolved === 'light' ? 'light' : 'dark'
+  root.style.colorScheme = resolved
   paintThemeColor(root)
 }
 

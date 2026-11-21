@@ -1,7 +1,7 @@
 import { Panel } from '../../ui/Panel'
 import { Icon } from '../../ui/Icon'
 import { useTheme } from '../../theme/useTheme'
-import type { OfferedTheme, ResolvedTheme } from '../../theme/theme'
+import type { OfferedTheme } from '../../theme/theme'
 import styles from './Profile.module.css'
 
 /*
@@ -21,14 +21,11 @@ kept, visually hidden, so the arrow keys move through the group as in the dialog
 
 const OPTIONS: { value: OfferedTheme; label: string }[] = [
   { value: 'system', label: 'Use System Theme (default)' },
-  { value: 'dark', label: 'Dark Theme' },
   { value: 'light', label: 'Light Theme' },
-  { value: 'dark-grey', label: 'Dark Grey Theme' },
-  { value: 'amber', label: 'Amber Theme' },
-  { value: 'glassmorphism', label: 'Glassmorphism Theme' },
+  { value: 'dark', label: 'Dark Theme' },
 ]
 
-function Swatch({ theme }: { theme: ResolvedTheme }) {
+function Swatch({ theme }: { theme: 'light' | 'dark' }) {
   return (
     <span className={styles.swatchHalf} data-theme={theme}>
       <i />
@@ -38,7 +35,7 @@ function Swatch({ theme }: { theme: ResolvedTheme }) {
 
 export function ThemeChoice({ className }: { className?: string }) {
   const { choice, setChoice } = useTheme()
-  const checked = choice ?? 'system'
+  const checked = choice === 'amber' ? '' : (choice ?? 'system')
 
   return (
     <Panel title="Theme" className={className}>

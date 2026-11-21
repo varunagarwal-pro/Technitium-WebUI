@@ -58,7 +58,7 @@ reviews:
     - "!**/temp/**"
 
   path_instructions:
-    - path: "{src,web}/**"
+    - path: "web/**"
       instructions: |
         Ensure pure client-side administration interface architecture (no backend server or database dependencies).
         Maintain full parity with Technitium DNS Server HTTP API and responsive light/dark themes.
