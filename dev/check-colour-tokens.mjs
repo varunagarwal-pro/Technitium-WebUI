@@ -233,12 +233,14 @@ export function findMissingInLight(text) {
 Every property the dark block declares, every other theme declares too. A token
 another theme forgot would quietly fall back to dark.
 */
+const KNOWN_THEMES = ['light', 'dark-grey', 'amber', 'glassmorphism']
+
 export function findMissingInThemes(text) {
   const tokens = themeTokens(text)
   const dark = tokens.dark || new Map()
   const missing = []
-  for (const [theme, decls] of Object.entries(tokens)) {
-    if (theme === 'dark') continue
+  for (const theme of KNOWN_THEMES) {
+    const decls = tokens[theme] || new Map()
     for (const name of dark.keys()) {
       if (!decls.has(name)) missing.push(`${name} is declared for dark and not for ${theme}`)
     }
