@@ -224,6 +224,11 @@ export function themeTokens(text) {
   return out
 }
 
+export function findMissingInLight(text) {
+  const { dark = new Map(), light = new Map() } = themeTokens(text)
+  return [...dark.keys()].filter((name) => !light.has(name))
+}
+
 /*
 Every property the dark block declares, every other theme declares too. A token
 another theme forgot would quietly fall back to dark.
