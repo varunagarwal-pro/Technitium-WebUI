@@ -21,8 +21,11 @@ kept, visually hidden, so the arrow keys move through the group as in the dialog
 
 const OPTIONS: { value: OfferedTheme; label: string }[] = [
   { value: 'system', label: 'Use System Theme (default)' },
-  { value: 'light', label: 'Light Theme' },
   { value: 'dark', label: 'Dark Theme' },
+  { value: 'light', label: 'Light Theme' },
+  { value: 'dark-grey', label: 'Dark Grey Theme' },
+  { value: 'amber', label: 'Amber Theme' },
+  { value: 'glassmorphism', label: 'Glassmorphism Theme' },
 ]
 
 function Swatch({ theme }: { theme: ResolvedTheme }) {
@@ -35,7 +38,7 @@ function Swatch({ theme }: { theme: ResolvedTheme }) {
 
 export function ThemeChoice({ className }: { className?: string }) {
   const { choice, setChoice } = useTheme()
-  const checked = choice === 'amber' ? '' : (choice ?? 'system')
+  const checked = choice ?? 'system'
 
   return (
     <Panel title="Theme" className={className}>
