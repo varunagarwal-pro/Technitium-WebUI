@@ -95,33 +95,44 @@
 
 ---
 
-## 🔧 7. Upstream PR #37 & PR #38 Round-2 Remediation ![Pending](https://img.shields.io/badge/-pending-orange)
+## 🔧 7. Upstream PR #37 & PR #38 Round-2 Remediation ![Done](https://img.shields.io/badge/-done-brightgreen)
 
-📝 Plan prepared on 2026-11-22 per upstream review feedback from byGarcia. Awaiting user GO.
+📝 Approved by user on 2026-11-22 (GO). Remediations completed and deployed. Tasks locked.
 
 ### PR #37 (feat/telemetry-visual-enhancements)
-- ⬜ Task 7.1: Fix donut mode legend percentage in `src/screens/dashboard/Breakdown.tsx` using active visible total
-- ⬜ Task 7.2: Add unit test in `src/screens/dashboard/Breakdown.test.tsx` verifying legend shares match donut tooltip when slices are hidden
-- ⬜ Task 7.3: Remove stray blank lines after `.tiles` in `src/screens/dashboard/Dashboard.module.css`
-- ⬜ Task 7.4: Revert out-of-scope Windows imports and check-installable script from PR #37
-- ⬜ Task 7.5: Verify PR #37 locally, commit, push to `origin/feat/telemetry-visual-enhancements`, and update PR description
+- ✅ Task 7.1: Fix donut mode legend percentage in `src/screens/dashboard/Breakdown.tsx` using active visible total
+- ✅ Task 7.2: Add unit test in `src/screens/dashboard/Breakdown.test.tsx` verifying legend shares match donut tooltip when slices are hidden
+- ✅ Task 7.3: Remove stray blank lines after `.tiles` in `src/screens/dashboard/Dashboard.module.css`
+- ✅ Task 7.4: Revert out-of-scope Windows imports and check-installable script from PR #37
+- ✅ Task 7.5: Verify PR #37 locally, commit, push to `origin/feat/telemetry-visual-enhancements`, and update PR description
+  - 📝 Commit `be42241` pushed to `origin/feat/telemetry-visual-enhancements`
 
 ### PR #38 (feat/display-timezone)
-- ⬜ Task 7.6: Fix calendar day walking and DST clock change handling in `src/screens/dashboard/heatmap.ts` (`weekSpan` and `heatRows`)
-- ⬜ Task 7.7: Ensure year-one 4-digit padding (`pad4`) in `src/lib/dates.ts` (`formatDate`) across all timezones
-- ⬜ Task 7.8: Clean up IST leftovers in `src/lib/timezone.ts`, `src/app/palette/items.ts`, and `src/screens/modals/ChangeTimezone.tsx` (neutral ordering with Local and UTC first)
-- ⬜ Task 7.9: Restore existing tests in `Heatmap.test.tsx`, `BlockLists.nodes.test.tsx`, and `chart-labels.test.ts` to test default (`local`), add dedicated zoned/DST test blocks, and reset timezones to `local`
-- ⬜ Task 7.10: Remove trailing blank lines in `src/screens/logs/Logs.module.css` and revert out-of-scope Windows imports
-- ⬜ Task 7.11: Verify PR #38 locally under both default and non-UTC timezones (`TZ=Europe/Madrid`), commit, push to `origin/feat/display-timezone`, and update PR description
+- ✅ Task 7.6: Fix calendar day walking and DST clock change handling in `src/screens/dashboard/heatmap.ts` (`weekSpan` and `heatRows`)
+- ✅ Task 7.7: Ensure year-one 4-digit padding (`pad4`) in `src/lib/dates.ts` (`formatDate`) across all timezones
+- ✅ Task 7.8: Clean up IST leftovers in `src/lib/timezone.ts`, `src/app/palette/items.ts`, and `src/screens/modals/ChangeTimezone.tsx` (neutral ordering with Local and UTC first)
+- ✅ Task 7.9: Restore existing tests in `Heatmap.test.tsx`, `BlockLists.nodes.test.tsx`, and `chart-labels.test.ts` to test default (`local`), add dedicated zoned/DST test blocks, and reset timezones to `local`
+- ✅ Task 7.10: Remove trailing blank lines in `src/screens/logs/Logs.module.css` and revert out-of-scope Windows imports
+- ✅ Task 7.11: Verify PR #38 locally under both default and non-UTC timezones (`TZ=Europe/Madrid`), commit, push to `origin/feat/display-timezone`, and update PR description
+  - 📝 Commit `2930840` pushed to `origin/feat/display-timezone`
 
 ### Integration & Upstream Communication
-- ⬜ Task 7.12: Synchronize fixes into `deploy/sentinel-console`, build release bundle, and deploy to all 3 servers (`Mumbai`, `Phoenix`, `Oregon`)
-- ⬜ Task 7.13: Verify live deployment via evidence gate receipt
-- ⬜ Task 7.14: Post human developer follow-up comments on upstream PR #37 and PR #38
+- ✅ Task 7.12: Synchronize fixes into `deploy/sentinel-console`, build release bundle, and deploy to all 3 servers (`Mumbai`, `Phoenix`, `Oregon`)
+  - 📝 Built bundle in 1.01s across 41 pages; release tarball `6e674f5d9bc26ac7037f5d9e149f160a761caafaffd886ec8c48f7f0b25e6644`
+- ✅ Task 7.13: Verify live deployment via evidence gate receipt
+  - 📝 Receipt: `ev-20261122T151535Z-8784` (`Exit code 0; Mumbai, Phoenix, Oregon all HTTP 200 OK`)
+- ✅ Task 7.14: Post human developer follow-up comments on upstream PR #37 and PR #38
+  - 📝 Comments posted: PR #37 comment `7080973313`, PR #38 comment `7081117717`
 
 ---
 
 ## 📅 Change Log
+
+### 2026-11-22: Upstream Round-2 PR Remediations Completed & Fleet Deployed
+- Completed all round-2 review adjustments requested by byGarcia on PR #37 and PR #38.
+- Pushed clean, strictly scoped commits to `origin/feat/telemetry-visual-enhancements` and `origin/feat/display-timezone`.
+- Updated PR #38 description to align with final code and posted human developer review responses on both PRs.
+- Synchronized release into `deploy/sentinel-console`, built production bundle, and executed atomic deployment across Mumbai, Phoenix, and Oregon. Verified HTTP 200 OK via receipt `ev-20261122T151535Z-8784`.
 
 ### 2026-11-22: Upstream Round-2 Feedback & Remediation Plan Staged
 - Added Section 7 detailing all bug fixes requested by upstream owner byGarcia on PR #37 and PR #38.
