@@ -1,6 +1,6 @@
 # 📋 Technitium WebUI - Status Tracker
 
-![Project](https://img.shields.io/badge/project-technitium--webui-blue) ![Status](https://img.shields.io/badge/status-completed-brightgreen) ![Version](https://img.shields.io/badge/version-1.4.3-lightgrey)
+![Project](https://img.shields.io/badge/project-technitium--webui-blue) ![Status](https://img.shields.io/badge/status-in--progress-orange) ![Version](https://img.shields.io/badge/version-1.4.3-lightgrey)
 
 > [!NOTE]
 > Tracking Upstream Sync (v1.4.3 @ `2a30418`), PR #37 & PR #38 remediation, and `sentinel-customizations` branch realignment.
@@ -95,7 +95,36 @@
 
 ---
 
+## 🔧 7. Upstream PR #37 & PR #38 Round-2 Remediation ![Pending](https://img.shields.io/badge/-pending-orange)
+
+📝 Plan prepared on 2026-11-22 per upstream review feedback from byGarcia. Awaiting user GO.
+
+### PR #37 (feat/telemetry-visual-enhancements)
+- ⬜ Task 7.1: Fix donut mode legend percentage in `src/screens/dashboard/Breakdown.tsx` using active visible total
+- ⬜ Task 7.2: Add unit test in `src/screens/dashboard/Breakdown.test.tsx` verifying legend shares match donut tooltip when slices are hidden
+- ⬜ Task 7.3: Remove stray blank lines after `.tiles` in `src/screens/dashboard/Dashboard.module.css`
+- ⬜ Task 7.4: Revert out-of-scope Windows imports and check-installable script from PR #37
+- ⬜ Task 7.5: Verify PR #37 locally, commit, push to `origin/feat/telemetry-visual-enhancements`, and update PR description
+
+### PR #38 (feat/display-timezone)
+- ⬜ Task 7.6: Fix calendar day walking and DST clock change handling in `src/screens/dashboard/heatmap.ts` (`weekSpan` and `heatRows`)
+- ⬜ Task 7.7: Ensure year-one 4-digit padding (`pad4`) in `src/lib/dates.ts` (`formatDate`) across all timezones
+- ⬜ Task 7.8: Clean up IST leftovers in `src/lib/timezone.ts`, `src/app/palette/items.ts`, and `src/screens/modals/ChangeTimezone.tsx` (neutral ordering with Local and UTC first)
+- ⬜ Task 7.9: Restore existing tests in `Heatmap.test.tsx`, `BlockLists.nodes.test.tsx`, and `chart-labels.test.ts` to test default (`local`), add dedicated zoned/DST test blocks, and reset timezones to `local`
+- ⬜ Task 7.10: Remove trailing blank lines in `src/screens/logs/Logs.module.css` and revert out-of-scope Windows imports
+- ⬜ Task 7.11: Verify PR #38 locally under both default and non-UTC timezones (`TZ=Europe/Madrid`), commit, push to `origin/feat/display-timezone`, and update PR description
+
+### Integration & Upstream Communication
+- ⬜ Task 7.12: Synchronize fixes into `deploy/sentinel-console`, build release bundle, and deploy to all 3 servers (`Mumbai`, `Phoenix`, `Oregon`)
+- ⬜ Task 7.13: Verify live deployment via evidence gate receipt
+- ⬜ Task 7.14: Post human developer follow-up comments on upstream PR #37 and PR #38
+
+---
+
 ## 📅 Change Log
+
+### 2026-11-22: Upstream Round-2 Feedback & Remediation Plan Staged
+- Added Section 7 detailing all bug fixes requested by upstream owner byGarcia on PR #37 and PR #38.
 
 ### 2026-11-22: Fleet Deployment Approved
 - Added Section 6 for multi-node atomic deployment to `/opt/technitium/technitium-console` preserving stock `www`.
