@@ -166,6 +166,13 @@
 
 ## 📅 Change Log
 
+### 2026-11-23: Cluster Release Finalized & Deployed to Fleet (Receipt ev-20261123T073638Z-45dd)
+- Merged latest `feat/display-timezone` commit into `deploy/sentinel-console`.
+- Compiled production bundle (`npm run build`) across 41 routes and asset bundles in 2.65s.
+- Packaged release archive `technitium-console.tar.gz` (SHA256: `c0dbb72bf84dcee1386fcab31dda1812d6018bd1a294ec1fc14d814804ea759b`).
+- Executed 64-bit multi-threaded atomic deployment concurrently to Phoenix (17.48s), Oregon (21.96s), and Mumbai (6.02s).
+- Verified HTTP 200 OK, `<div id="root"></div>`, and asset bundles on all three servers via receipt `ev-20261123T073638Z-45dd`.
+
 ### 2026-11-23: Upstream Round-3 PR Remediations Completed & Fleet Deployed
 - Resolved all round-3 feedback items requested by upstream maintainer byGarcia on PR #37 and PR #38.
 - PR #37: Suppressed percentage share for hidden entries in donut mode, updated file header comment, retitled PR to `feat(dashboard): donut breakdown view and top three rank badges`, and pushed commit `2e69929`.
