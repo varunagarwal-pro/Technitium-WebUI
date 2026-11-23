@@ -126,32 +126,54 @@
 
 ---
 
-## 🔧 8. Upstream PR #37 & PR #38 Round-3 Remediation ![In Progress](https://img.shields.io/badge/-in--progress-orange)
+## 🔧 8. Upstream PR #37 & PR #38 Round-3 Remediation ![Completed](https://img.shields.io/badge/-completed-brightgreen)
 
-📝 Awaiting user approval (GO). Plan staged in `temp/upstream_pr_remediation_round3_plan.md`.
+📝 Completed round-3 remediation requested by byGarcia on PR #37 and PR #38. All changes verified, committed, pushed, deployed to Mumbai, Phoenix, and Oregon, and review comments posted.
 
 ### PR #37 (feat/telemetry-visual-enhancements)
-- ⬜ Task 8.1: Suppress percentage share for hidden entries in donut mode in `src/screens/dashboard/Breakdown.tsx` (`datum: ''`)
-- ⬜ Task 8.2: Update file header comment in `Breakdown.tsx` and add unit test in `src/screens/dashboard/Breakdown.test.tsx`
-- ⬜ Task 8.3: Commit, push to `origin/feat/telemetry-visual-enhancements`, update PR #37 title and description
+- ✅ Task 8.1: Suppress percentage share for hidden entries in donut mode in `src/screens/dashboard/Breakdown.tsx` (`datum: ''`)
+  - 📝 Omitted share percentage (`datum: ''`) for hidden donut slices; visible items calculate correct shares
+- ✅ Task 8.2: Update file header comment in `Breakdown.tsx` and add unit test in `src/screens/dashboard/Breakdown.test.tsx`
+  - 📝 Header comment updated to describe stacked bar & donut toggle; 5/5 unit tests pass in `Breakdown.test.tsx`
+- ✅ Task 8.3: Commit, push to `origin/feat/telemetry-visual-enhancements`, update PR #37 title and description
+  - 📝 Commit `2e69929` pushed to `origin/feat/telemetry-visual-enhancements`; PR #37 title & body updated on GitHub
 
 ### PR #38 (feat/display-timezone)
-- ⬜ Task 8.4: Implement era-aware year zero formatting in `src/lib/dates.ts` (`formatDate`) and update `dates.test.ts`
-- ⬜ Task 8.5: Implement clock change disambiguation (skipped forward, repeated earlier) in `src/screens/logs/dates.ts` (`toIso`)
-- ⬜ Task 8.6: Fix `tzMidnight` in `heatmap.ts` to return exact sub-hour midnight and handle skipped midnight
-- ⬜ Task 8.7: Fix `untilText` in `blocking-state.ts` to compare calendar days in the active display timezone
-- ⬜ Task 8.8: Fix `rangeInstants` in `custom-range.ts` to align start time to display timezone midnight
-- ⬜ Task 8.9: Add comprehensive test suites for all timezone edge cases and run Vitest under multiple `TZ` environments
-- ⬜ Task 8.10: Commit, push to `origin/feat/display-timezone`, update PR #38 description with clean markdown
-
+- ✅ Task 8.4: Implement era-aware year zero formatting in `src/lib/dates.ts` (`formatDate`) and update `dates.test.ts`
+  - 📝 Switched `formatDate` to `formatToParts` with era detection; year one formats as `0000-12-31 19:03:58` in `America/New_York`
+- ✅ Task 8.5: Implement clock change disambiguation (skipped forward, repeated earlier) in `src/screens/logs/dates.ts` (`toIso`)
+  - 📝 Implemented browser-native disambiguation: repeated hours choose earlier instant, skipped hours advance forward
+- ✅ Task 8.6: Fix `tzMidnight` in `heatmap.ts` to return exact sub-hour midnight and handle skipped midnight
+  - 📝 Removed UTC hour flooring in `tzMidnight`; Beirut spring-forward midnight resolves to 22:00Z
+- ✅ Task 8.7: Fix `untilText` in `blocking-state.ts` to compare calendar days in the active display timezone
+  - 📝 Formatted and compared calendar day strings in display timezone; added 9 tests in `blocking-state.test.tsx`
+- ✅ Task 8.8: Fix `rangeInstants` in `custom-range.ts` to align start time to display timezone midnight
+  - 📝 Anchored custom range midnight in resolved display timezone for ≤ 7 days; 7 tests pass in `custom-range.test.ts`
+- ✅ Task 8.9: Add comprehensive test suites for all timezone edge cases and run Vitest under multiple `TZ` environments
+  - 📝 46/46 unit tests pass under `Europe/Madrid` and `UTC` across `dates.test.ts`, `custom-range.test.ts`, `heatmap.test.ts`, `blocking-state.test.tsx`
+- ✅ Task 8.10: Commit, push to `origin/feat/display-timezone`, update PR #38 description with clean markdown
+  - 📝 Commits `ad8efb1` and `8c28b95` pushed to `origin/feat/display-timezone`; PR #38 body updated on GitHub
+  
 ### Integration & Upstream Communication
-- ⬜ Task 8.11: Merge PR #37 and PR #38 into `deploy/sentinel-console`, verify full build and typecheck
-- ⬜ Task 8.12: Package production bundle, deploy across Mumbai, Phoenix, and Oregon, and verify HTTP 200 via evidence gate
-- ⬜ Task 8.13: Post human developer review responses on upstream PR #37 and PR #38
+- ✅ Task 8.11: Merge PR #37 and PR #38 into `deploy/sentinel-console`, verify full build and typecheck
+  - 📝 Clean merges into `deploy/sentinel-console`; `npm run build` passed in 1.07s across 41 pages with 0 errors
+- ✅ Task 8.12: Package production bundle, deploy across Mumbai, Phoenix, and Oregon, and verify HTTP 200 via evidence gate
+  - 📝 Receipt: `ev-20261123T044832Z-1089` (`Exit code 0; Mumbai, Phoenix, Oregon all HTTP 200 OK`)
+- ✅ Task 8.13: Post human developer review responses on upstream PR #37 and PR #38
+  - 📝 Comments posted: PR #37 comment `7091894309`, PR #38 comment `7091894716`
 
 ---
 
 ## 📅 Change Log
+
+### 2026-11-23: Upstream Round-3 PR Remediations Completed & Fleet Deployed
+- Resolved all round-3 feedback items requested by upstream maintainer byGarcia on PR #37 and PR #38.
+- PR #37: Suppressed percentage share for hidden entries in donut mode, updated file header comment, retitled PR to `feat(dashboard): donut breakdown view and top three rank badges`, and pushed commit `2e69929`.
+- PR #38: Added era-aware year zero formatting (`0000-12-31 19:03:58`), browser-native DST disambiguation (repeated earlier, skipped forward, Beirut skipped midnight), display timezone calendar day comparison in `untilText`, and display timezone midnight anchoring in `rangeInstants`. Pushed commits `ad8efb1` and `8c28b95`.
+- Updated PR #38 description on GitHub with clean GFM markdown, removing escaped backslashes and truncated text.
+- Synchronized changes into `deploy/sentinel-console`, compiled production bundle (`npm run build`), packaged release archive (`technitium-console.tar.gz`), and deployed concurrently to Mumbai, Phoenix, and Oregon.
+- Verified live HTTP 200 OK on all three servers via evidence gate receipt `ev-20261123T044832Z-1089`.
+- Posted comprehensive human developer feedback comments on GitHub PR #37 and PR #38.
 
 ### 2026-11-23: Upstream Round-3 Feedback & Remediation Plan Staged
 - Added Section 8 detailing all bug fixes requested by upstream owner byGarcia on PR #37 and PR #38.
