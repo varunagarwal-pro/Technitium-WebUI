@@ -1,10 +1,10 @@
-# 🌿 Sentinel-Labs Branching Strategy & Lifecycle Architecture
+# 🌿 SentinelLabs Branching Strategy & Lifecycle Architecture
 
 [![Ecosystem](https://img.shields.io/badge/Ecosystem-Sentinel--Labs-blue?style=for-the-badge&logo=shield)](https://github.com/varunagarwal-pro)
-[![Target](https://img.shields.io/badge/Console-Technitium--Webui-purple?style=for-the-badge&logo=react)](https://github.com/varunagarwal-pro/Technitium-Webui)
+[![Target](https://img.shields.io/badge/Console-Technitium--Webui-purple?style=for-the-badge&logo=react)](https://github.com/varunagarwal-pro/Technitium-WebUI)
 [![Fleet](https://img.shields.io/badge/Fleet-Mumbai%20%7C%20Phoenix%20%7C%20Oregon-emerald?style=for-the-badge&logo=linux)](https://github.com/varunagarwal-pro)
 
-> **📌 Target Repository:** `varunagarwal-pro/Technitium-Webui`  
+> **📌 Target Repository:** `varunagarwal-pro/Technitium-WebUI`  
 > **📅 Version:** 1.0.0 (Sovereign Production Standard)  
 > **👤 Lead Maintainer:** Varun Agarwal (Sentinel Labs)
 
@@ -12,7 +12,7 @@
 
 ## 🧭 1. Architectural Overview & Philosophy
 
-The branching strategy for `Technitium-Webui` enforces a strict separation of concerns across four distinct operational boundaries:
+The branching strategy for `Technitium-WebUI` enforces a strict separation of concerns across four distinct operational boundaries:
 1. **Vanilla Upstream Mirroring:** Clean, fast-forwardable upstream tracking without local commit pollution.
 2. **Open-Source Contribution:** Clean, isolated feature branches for upstream pull requests.
 3. **Sovereign Customizations:** Proprietary Sentinel enhancements that do not belong upstream.
@@ -43,8 +43,8 @@ flowchart TD
 * **Role:** 100% byte-for-byte pure vanilla replica of upstream `byGarcia/technitium-console:main`.
 * **Invariants:**
   * **Strictly zero local commits.** No customizations, no feature merges, and no manual changes.
-  * Enrolled as a **Tier A** pure mirror in `D:\Sentinel-Labs\upstream\fleet.toml`.
-  * Automatically audited and fast-forwarded by Sentinel-Orbit's serverless `fleet-upstream-sync` engine.
+  * Enrolled as a **Tier A** pure mirror in `D:\SentinelLabs\upstream\fleet.toml`.
+  * Automatically audited and fast-forwarded by SentinelOrbit's serverless `fleet-upstream-sync` engine.
   * If `main` contains any local commit, the fleet engine halts immediately with a divergence alert.
 
 ### 🟡 `feat/display-timezone` — Upstream PR #38
@@ -85,7 +85,7 @@ flowchart TD
 
 ## 🔄 3. Upstream Sync & Lifecycle Workflow
 
-1. **Upstream Releases:** When `byGarcia/technitium-console` cuts a new release, Sentinel-Orbit fast-forwards `main` (Tier A).
+1. **Upstream Releases:** When `byGarcia/technitium-console` cuts a new release, SentinelOrbit fast-forwards `main` (Tier A).
 2. **Rebasing Sovereign Features:** `sentinel-customizations` pulls from updated `main` to verify compatibility.
 3. **Deploying Releases:** `deploy/sentinel-console` merges `main` and `sentinel-customizations`, compiles the distribution bundle via `npm run build`, and deploys across Mumbai, Phoenix, and Oregon via `tools/Deploy-Fleet.ps1` or `temp/deploy_fleet.py`.
-4. **Zero Main Pollution:** Because `main` is never modified locally, `python tools/upstream/cli.py fleet --mode check --repo technitium-webui` always returns `[ OK ] technitium-webui A UP-TO-DATE:`.
+4. **Zero Main Pollution:** Because `main` is never modified locally, `python tools/upstream/cli.py fleet --mode check --repo Technitium-WebUI` always returns `[ OK ] Technitium-WebUI A UP-TO-DATE:`.
