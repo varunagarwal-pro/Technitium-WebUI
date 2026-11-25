@@ -55,13 +55,13 @@ flowchart TD
   * Real-time reactive label re-formatting on dashboard charts, heatmap, and query logs.
 * **Lifecycle:** Isolated to upstream PR requirements. Merges into upstream `develop` upon maintainer acceptance.
 
-### 🟣 `feat/telemetry-visual-enhancements` — Upstream PR #37
+### 🟣 `feat/telemetry-visual-enhancements` — Upstream PR #37 *(Merged & Retired)*
 * **Role:** Dedicated feature branch for upstream Pull Request #37 against `byGarcia/technitium-console:develop`.
 * **Scope:**
   * Rank indicator badges (`#1`, `#2`, `#3`) and volume share bars for Top Lists.
   * Dynamic donut chart center count summing active visible slices.
   * Accessibility enhancements respecting `prefers-reduced-motion`.
-* **Lifecycle:** Isolated to upstream PR requirements. Merges into upstream `develop` upon maintainer acceptance.
+* **Lifecycle:** Squash-merged into `byGarcia/technitium-console:develop` (`0b98183`) on 2026-11-23; branch retired and deleted locally and on `origin`.
 
 ### 🛡️ `sentinel-customizations` — Sovereign Customizations
 * **Role:** The permanent home for Sentinel-specific enhancements that are not intended for upstream.

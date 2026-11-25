@@ -166,6 +166,12 @@
 
 ## 📅 Change Log
 
+### 2026-11-25: PR #37 Retired, PR #38 Round-4 Fixes Pushed & `deploy/sentinel-console` Compiled
+- Retired and deleted `feat/telemetry-visual-enhancements` locally and on `origin` after verifying zero diff against upstream PR #37 squash merge (`0b98183` in `byGarcia/technitium-console:develop`).
+- Fast-forwarded `feat/display-timezone` to `origin/feat/display-timezone` (`b15a48c`), applied `temp/02_pr38-round4-fixes.patch`, and pushed commit `09c48ef` (restoring `'local'` heatmap live cell via `weekSpan(now, 'local').to`, probing before/after DST offsets in `toIso` for 30-min transitions like `Australia/Lord_Howe`, and replacing `'er' + 'a'` with `era: 'short'`).
+- Verified PR #38 unit suites under `TZ=UTC` (`ev-20261125T080612Z-e7e3`) and `TZ=Europe/Madrid` (`ev-20261125T080621Z-70ec`), `heatmap.test.ts` (`ev-20261125T080652Z-daac`, `ev-20261125T080659Z-4c29`), and repo linters (`ev-20261125T080706Z-1069`).
+- Fast-forwarded `sentinel-customizations` (`efb55a5`) and `deploy/sentinel-console` (`8713731`), merged `feat/display-timezone` (`09c48ef`) into `deploy/sentinel-console`, and verified `typecheck`, `lint:language`, and `npm run build` (`✓ built in 2.96s`) via receipt `ev-20261125T080943Z-d712`.
+
 ### 2026-11-23: Cluster Release Finalized & Deployed to Fleet (Receipt ev-20261123T073638Z-45dd)
 - Merged latest `feat/display-timezone` commit into `deploy/sentinel-console`.
 - Compiled production bundle (`npm run build`) across 41 routes and asset bundles in 2.65s.
