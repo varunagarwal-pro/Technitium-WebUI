@@ -166,6 +166,11 @@
 
 ## 📅 Change Log
 
+### 2026-11-26: Upstream PR #38 Merged (`f2c7859`) & Branch Retired
+- Confirmed upstream PR #38 (`feat(timezone): global display timezone support`) merged into `byGarcia/technitium-console:develop` as `f2c7859` on 2026-11-25.
+- Fetched `upstream --prune` and deleted `feat/display-timezone` locally and on `origin`.
+- Updated `docs/BRANCHING_STRATEGY.md` to mark `feat/display-timezone` as merged & retired (`main` remains at `2a30418` awaiting the next upstream release; fleet already live on `99cecf6`).
+
 ### 2026-11-25: PR #37 Retired, PR #38 Round-4 Fixes Pushed & `deploy/sentinel-console` Fleet Deployed (Receipt ev-20261125T172718Z-5b3d)
 - Retired and deleted `feat/telemetry-visual-enhancements` locally and on `origin` after verifying zero diff against upstream PR #37 squash merge (`0b98183` in `byGarcia/technitium-console:develop`).
 - Fast-forwarded `feat/display-timezone` to `origin/feat/display-timezone` (`b15a48c`), applied `temp/02_pr38-round4-fixes.patch`, and pushed commit `09c48ef` (restoring `'local'` heatmap live cell via `weekSpan(now, 'local').to`, probing before/after DST offsets in `toIso` for 30-min transitions like `Australia/Lord_Howe`, and replacing `'er' + 'a'` with `era: 'short'`).

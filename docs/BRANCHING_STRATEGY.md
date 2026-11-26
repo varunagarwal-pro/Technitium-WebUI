@@ -47,13 +47,13 @@ flowchart TD
   * Automatically audited and fast-forwarded by SentinelOrbit's serverless `fleet-upstream-sync` engine.
   * If `main` contains any local commit, the fleet engine halts immediately with a divergence alert.
 
-### 🟡 `feat/display-timezone` — Upstream PR #38
+### 🟡 `feat/display-timezone` — Upstream PR #38 *(Merged & Retired)*
 * **Role:** Dedicated feature branch for upstream Pull Request #38 against `byGarcia/technitium-console:develop`.
 * **Scope:**
   * Configurable IANA display timezone preference persisted in `localStorage`.
   * Dynamic DST-aware UTC offset calculation via native `Intl.DateTimeFormat`.
   * Real-time reactive label re-formatting on dashboard charts, heatmap, and query logs.
-* **Lifecycle:** Isolated to upstream PR requirements. Merges into upstream `develop` upon maintainer acceptance.
+* **Lifecycle:** Squash-merged into `byGarcia/technitium-console:develop` (`f2c7859`) on 2026-11-25; branch retired and deleted locally and on `origin`.
 
 ### 🟣 `feat/telemetry-visual-enhancements` — Upstream PR #37 *(Merged & Retired)*
 * **Role:** Dedicated feature branch for upstream Pull Request #37 against `byGarcia/technitium-console:develop`.
