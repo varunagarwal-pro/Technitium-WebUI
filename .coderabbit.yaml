@@ -28,7 +28,8 @@ reviews:
     base_branches:
       - "main"
       - "master"
-      - "deploy/sentinel-console"
+      - "custom"
+      - "dev"
 
   finishing_touches:
     autofix:

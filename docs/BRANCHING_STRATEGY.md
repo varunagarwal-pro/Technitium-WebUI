@@ -12,11 +12,12 @@
 
 ## 🧭 1. Architectural Overview & Philosophy
 
-The branching strategy for `Technitium-WebUI` enforces a strict separation of concerns across four distinct operational boundaries:
-1. **Vanilla Upstream Mirroring:** Clean, fast-forwardable upstream tracking without local commit pollution.
-2. **Open-Source Contribution:** Clean, isolated feature branches for upstream pull requests.
-3. **Sovereign Customizations:** Proprietary Sentinel enhancements that do not belong upstream.
-4. **Cluster Production Deployments:** Release staging for live deployment across the Sentinel server fleet.
+The branching strategy for `Technitium-WebUI` follows the **SentinelLabs Unified 5-Role Branch Standard (Tier C)** documented in [`D:\SentinelLabs\Docs\Upstream-Sync-Manual.md`](../../../Docs/Upstream-Sync-Manual.md):
+1. **`upstream-mirror`:** Read-only pristine upstream mirror of `byGarcia/technitium-console:main`.
+2. **`custom`:** Long-lived sovereign customizations (replaces `sentinel-customizations`).
+3. **`dev`:** Active development & pre-release integration.
+4. **`feat/*` / `fix/*` & `upstream-try-merge`:** Disposable PR branches (auto-deleted on merge).
+5. **`main`:** Integrated, tested, deployable production branch (`upstream-mirror` + `custom`), deployed to `/opt/technitium/technitium-console` via `tools/Deploy-Fleet.ps1`.
 
 ```mermaid
 flowchart TD
