@@ -1,0 +1,175 @@
+diff --git a/src/lib/dates.test.ts b/src/lib/dates.test.ts
+index 9baca47..1fb7576 100644
+--- a/src/lib/dates.test.ts
++++ b/src/lib/dates.test.ts
+@@ -139,5 +139,12 @@ describe('toIso / toLocalInput timezone support', () => {
+ 
+     // Skipped midnight: In Asia/Beirut on 2026-03-29, midnight is skipped -> starts at 01:00 local = 22:00Z on March 28
+     expect(toIso('2026-03-29T00:00:00', 'Asia/Beirut')).toBe('2026-03-28T22:00:00.000Z')
++
++    // 30-minute Fall Back: In Australia/Lord_Howe on 2026-04-05, 01:30..01:59 occurs twice (+11:00 then +10:30) -> earlier instant
++    expect(toIso('2026-04-05T01:30:00', 'Australia/Lord_Howe')).toBe('2026-04-04T14:30:00.000Z')
++    expect(toIso('2026-04-05T01:45:00', 'Australia/Lord_Howe')).toBe('2026-04-04T14:45:00.000Z')
++
++    // 30-minute Spring Forward: In Australia/Lord_Howe on 2026-10-04, 02:00..02:29 is skipped -> advances 30 min to 02:45 (+11:00 = 15:45Z)
++    expect(toIso('2026-10-04T02:15:00', 'Australia/Lord_Howe')).toBe('2026-10-03T15:45:00.000Z')
+   })
+ })
+diff --git a/src/lib/dates.ts b/src/lib/dates.ts
+index 018e9f6..56b0bd7 100644
+--- a/src/lib/dates.ts
++++ b/src/lib/dates.ts
+@@ -57,8 +57,8 @@ function getFormatter(tz: string, withSeconds: boolean): Intl.DateTimeFormat {
+       hour: '2-digit',
+       minute: '2-digit',
+       hourCycle: 'h23',
++      era: 'short',
+     }
+-    ;(opts as Record<string, unknown>)['er' + 'a'] = 'short'
+     if (withSeconds) {
+       opts.second = '2-digit'
+     }
+@@ -85,7 +85,7 @@ export function formatDate(d: Date, withSeconds: boolean, tz?: SupportedTimezone
+       else if (part.type === 'hour') hour = part.value
+       else if (part.type === 'minute') minute = part.value
+       else if (part.type === 'second') second = part.value
+-      else if (part.type === 'er' + 'a') period = part.value
++      else if (part.type === 'era') period = part.value
+     }
+     let yNum = parseInt(year, 10) || 0
+     if (period.includes('B') || period.toLowerCase().includes('bc')) {
+diff --git a/src/screens/dashboard/heatmap.test.ts b/src/screens/dashboard/heatmap.test.ts
+index a35f0f6..7d7b164 100644
+--- a/src/screens/dashboard/heatmap.test.ts
++++ b/src/screens/dashboard/heatmap.test.ts
+@@ -166,4 +166,20 @@ describe('clock changes and custom display timezones in heatmap', () => {
+     const span = weekSpan(Date.parse('2026-04-04T12:00:00Z'), 'Asia/Beirut')
+     expect(new Date(span.from).toISOString()).toBe('2026-03-28T22:00:00.000Z')
+   })
++
++  it('marks the live cell from weekSpan(now).to in half-hour offset zones', () => {
++    // At 2026-11-23T04:50:00Z (10:20 IST), the server bucket in progress started at 04:00Z (09:30 IST) -> hour 9 of Mon 11/23
++    const morning = Date.parse('2026-11-23T04:50:00Z')
++    const morningRows = heatRows(new Map(), morning, 'Asia/Kolkata')
++    expect(morningRows[6].label).toBe('Mon 11/23')
++    expect(morningRows[6].live).toBe(9)
++
++    // At 2026-11-22T18:50:00Z (Mon 00:20 IST), the server bucket in progress started at 18:00Z (Sun 23:30 IST) -> hour 23 of Sun 11/22
++    const midnight = Date.parse('2026-11-22T18:50:00Z')
++    const midnightRows = heatRows(new Map(), midnight, 'Asia/Kolkata')
++    expect(midnightRows[5].label).toBe('Sun 11/22')
++    expect(midnightRows[5].live).toBe(23)
++    expect(midnightRows[6].label).toBe('Mon 11/23')
++    expect(midnightRows[6].live).toBeNull()
++  })
+ })
+diff --git a/src/screens/dashboard/heatmap.ts b/src/screens/dashboard/heatmap.ts
+index 6e5cb27..6275f77 100644
+--- a/src/screens/dashboard/heatmap.ts
++++ b/src/screens/dashboard/heatmap.ts
+@@ -219,9 +219,9 @@ export function heatRows(hours: Map<number, number>, now: number, tz?: Supported
+         ? { from, to: from + HOUR, count }
+         : { from: cell.from, to: from + HOUR, count: cell.count + count }
+     }
+-    const todayRow = byDay.get(new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime())
+-    const liveHour = today.getHours()
+-    if (todayRow != null && todayRow.cells[liveHour] == null) todayRow.live = liveHour
++    const live = new Date(weekSpan(now, 'local').to)
++    const liveRow = byDay.get(new Date(live.getFullYear(), live.getMonth(), live.getDate()).getTime())
++    if (liveRow != null && liveRow.cells[live.getHours()] == null) liveRow.live = live.getHours()
+     return rows
+   }
+ 
+diff --git a/src/screens/logs/dates.ts b/src/screens/logs/dates.ts
+index 9456b9e..6b05b54 100644
+--- a/src/screens/logs/dates.ts
++++ b/src/screens/logs/dates.ts
+@@ -14,19 +14,24 @@ import { getTimezone, type SupportedTimezone } from '../../lib/timezone'
+ 
+ const pad = (n: number, width = 2) => String(n).padStart(width, '0')
+ 
++const WALL_FORMATTERS = new Map<string, Intl.DateTimeFormat>()
++
+ function getWallClock(t: number, tz: string): number {
+-  const opts: Intl.DateTimeFormatOptions = {
+-    timeZone: tz,
+-    year: 'numeric',
+-    month: '2-digit',
+-    day: '2-digit',
+-    hour: '2-digit',
+-    minute: '2-digit',
+-    second: '2-digit',
+-    hourCycle: 'h23',
++  let fmt = WALL_FORMATTERS.get(tz)
++  if (!fmt) {
++    fmt = new Intl.DateTimeFormat('en-CA', {
++      timeZone: tz,
++      year: 'numeric',
++      month: '2-digit',
++      day: '2-digit',
++      hour: '2-digit',
++      minute: '2-digit',
++      second: '2-digit',
++      hourCycle: 'h23',
++      era: 'short',
++    })
++    WALL_FORMATTERS.set(tz, fmt)
+   }
+-  ;(opts as Record<string, unknown>)['er' + 'a'] = 'short'
+-  const fmt = new Intl.DateTimeFormat('en-CA', opts)
+   const parts = fmt.formatToParts(new Date(t))
+   let y = 0, m = 0, d = 0, h = 0, min = 0, s = 0, period = ''
+   for (const p of parts) {
+@@ -36,7 +41,7 @@ function getWallClock(t: number, tz: string): number {
+     else if (p.type === 'hour') h = parseInt(p.value, 10)
+     else if (p.type === 'minute') min = parseInt(p.value, 10)
+     else if (p.type === 'second') s = parseInt(p.value, 10)
+-    else if (p.type === 'er' + 'a') period = p.value
++    else if (p.type === 'era') period = p.value
+   }
+   if (period.includes('B') || period.toLowerCase().includes('bc')) y = 1 - y
+   return Date.UTC(y, m - 1, d, h, min, s)
+@@ -71,26 +76,26 @@ export function toIso(value: string, tz?: SupportedTimezone): string {
+   const targetWall = Date.UTC(year, month, day, hour, minute, second)
+ 
+   // Wall-clock disambiguation following browser-native semantics:
+-  // 1. Repeated times (Fall Back): browser picks the earlier UTC instant (first occurrence).
+-  // 2. Skipped times (Spring Forward): browser advances forward into valid time.
+-  const offset1 = getWallClock(targetWall, resolvedTz) - targetWall
+-  const t1 = targetWall - offset1
+-  const offset2 = getWallClock(t1, resolvedTz) - t1
+-  const t2 = targetWall - offset2
+-
+-  const candidates = [t1, t2, t1 - 3600_000, t1 + 3600_000, t2 - 3600_000, t2 + 3600_000].sort((a, b) => a - b)
+-  const exact: number[] = []
+-  for (const c of candidates) {
+-    if (getWallClock(c, resolvedTz) === targetWall) {
+-      if (!exact.includes(c)) exact.push(c)
+-    }
++  // Probe the zone's offset 24 hours before and after the approximate UTC instant so any
++  // transition shift (e.g. 30 min in Australia/Lord_Howe, 60 min standard DST) is covered.
++  // 1. Repeated times (Fall Back): cBefore is the earlier UTC instant and matches first.
++  // 2. Skipped times (Spring Forward): neither matches; advance forward via the pre-transition offset.
++  const DAY_MS = 86_400_000
++  const approx = targetWall - (getWallClock(targetWall, resolvedTz) - targetWall)
++  const offsetBefore = getWallClock(approx - DAY_MS, resolvedTz) - (approx - DAY_MS)
++  const offsetAfter = getWallClock(approx + DAY_MS, resolvedTz) - (approx + DAY_MS)
++
++  const cBefore = targetWall - offsetBefore
++  const cAfter = targetWall - offsetAfter
++
++  if (getWallClock(cBefore, resolvedTz) === targetWall) {
++    return new Date(cBefore + millisecond).toISOString()
+   }
+-  if (exact.length > 0) {
+-    return new Date(exact[0] + millisecond).toISOString()
++  if (cAfter !== cBefore && getWallClock(cAfter, resolvedTz) === targetWall) {
++    return new Date(cAfter + millisecond).toISOString()
+   }
+ 
+-  // Skipped time: advance forward by taking the later UTC instant (earlier offset)
+-  return new Date(Math.max(t1, t2) + millisecond).toISOString()
++  return new Date(Math.max(cBefore, cAfter) + millisecond).toISOString()
+ }
+ 
+ /**

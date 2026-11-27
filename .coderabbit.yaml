@@ -1,4 +1,4 @@
-# CodeRabbit Master Review Configuration — Technitium-WebUI
+# CodeRabbit Master Review Configuration - technitium-webui
 # Reference: Docs/CodeRabbit.md
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 version: 2
@@ -28,8 +28,7 @@ reviews:
     base_branches:
       - "main"
       - "master"
-      - "custom"
-      - "dev"
+      - "deploy/sentinel-console"
 
   finishing_touches:
     autofix:
@@ -59,7 +58,7 @@ reviews:
     - "!**/temp/**"
 
   path_instructions:
-    - path: "{src,web}/**"
+    - path: "web/**"
       instructions: |
         Ensure pure client-side administration interface architecture (no backend server or database dependencies).
         Maintain full parity with Technitium DNS Server HTTP API and responsive light/dark themes.

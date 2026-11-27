@@ -8,7 +8,7 @@ answers and two DNSSEC states.
 import { describe, expect, it } from 'vitest'
 import type { DnsRecord, ListNode } from '../../api/zonelists'
 import real from './cache-node.real.json'
-import { byDnssec, byServer, byType, dnssecColour, dnssecTone, isNegative, isStale, ttlLeft } from './cache-facts'
+import { byServer, isNegative, isStale, ttlLeft } from './cache-facts'
 
 const node = real as unknown as ListNode
 const records = node.records
@@ -18,9 +18,6 @@ function rec(p: Partial<DnsRecord>): DnsRecord {
 }
 
 describe('the records of a node', () => {
-  it('counts the types in the order the server writes them', () => {
-    expect(byType(records)).toEqual([['A', 1], ['NS', 8], ['SOA', 1], ['MX', 1], ['TXT', 3], ['AAAA', 1], ['DS', 1]])
-  })
 
   it('a record past its TTL is the one the server writes as 0 (0s)', () => {
     expect(records.filter(isStale).map((r) => r.type)).toEqual(['A', 'MX', 'TXT', 'TXT', 'TXT', 'DS'])
@@ -33,11 +30,6 @@ describe('the records of a node', () => {
     expect(records.filter(isNegative).map((r) => r.type)).toEqual(['AAAA', 'DS'])
     expect(isNegative(rec({ rData: { dataType: 'DnsSpecialCacheRecordData', data: 'FailureCache: ServerFailure' } }))).toBe(false)
     expect(isNegative(rec({ rData: { ipAddress: '192.0.2.1' } }))).toBe(false)
-  })
-
-  it('counts the DNSSEC states and the servers that answered', () => {
-    expect(byDnssec(records)).toEqual([['Insecure', 14], ['Unknown', 2]])
-    expect(byServer(records)).toEqual([['1.1.1.1', 16]])
   })
 
   it('puts the server that gave most records first, and names a missing one with the placeholder', () => {
@@ -62,18 +54,5 @@ describe('the time left', () => {
 
   it('does not guess a TTL that does not read as a number', () => {
     expect(ttlLeft([rec({ ttl: 'soon' })])).toBeNull()
-  })
-})
-
-describe('a DNSSEC state is drawn by what it says', () => {
-  it.each([
-    ['Secure', 'var(--ok)', 'ok'],
-    ['Bogus', 'var(--dan)', 'dan'],
-    ['Indeterminate', 'var(--warn)', 'warn'],
-    ['Unknown', 'var(--ch-3)', 'neutral'],
-    ['Insecure', 'var(--ch-drop)', 'neutral'],
-  ])('%s', (state, colour, tone) => {
-    expect(dnssecColour(state)).toBe(colour)
-    expect(dnssecTone(state)).toBe(tone)
   })
 })

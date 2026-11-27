@@ -1,0 +1,24 @@
+{
+  "id": "ev-20261125T080543Z-c778",
+  "task": "PR38 Round4 timezone suite (TZ=UTC)",
+  "utc": "2026-11-25T08:05:48Z",
+  "cwd": "D:\\SentinelLabs\\Technitium-WebUI",
+  "argv": [
+    "npx",
+    "vitest",
+    "run",
+    "src/lib/dates.test.ts",
+    "src/screens/dashboard/heatmap.test.ts",
+    "src/api/chart-labels.test.ts",
+    "src/screens/dashboard/custom-range.test.ts",
+    "src/screens/blocking/blocking-state.test.tsx",
+    "src/lib/timezone.test.ts",
+    "src/screens/modals/ChangeTimezone.test.tsx"
+  ],
+  "exit_code": 1,
+  "seconds": 5.09,
+  "output_file": "ev-20261125T080543Z-c778.out.txt",
+  "sha256": "57a55069708adc31c75da27f9c4451601cca0d3b27ff307643bd56c462f434b4",
+  "bytes": 7138,
+  "weak": ""
+}

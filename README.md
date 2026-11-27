@@ -19,10 +19,10 @@ that works on your phone.
 |---|---|
 | ![The dashboard](docs/screenshots/dashboard.png) | ![Clients, with one client open](docs/screenshots/clients.png) |
 
-**Latest release: [v1.4.3](https://github.com/byGarcia/technitium-console/releases/latest) for
-Technitium DNS Server 15.5.x and 15.6.x**, with the one-line installer working again on
-Technitium's own Linux install, quick ranges in Query Logs, and a zone's records found by their
-data and changed several at a time.
+**Latest release: [v1.4.4](https://github.com/byGarcia/technitium-console/releases/latest) for
+Technitium DNS Server 15.5.x and 15.6.x**, with a display time zone of your choosing, bar or donut
+breakdowns on the Dashboard, and the Docker image saying why a server that redirects to HTTPS
+turned it away.
 [What's new](CHANGELOG.md) · [Which console for which server](CHANGELOG.md#which-version-for-which-server) · [Installing](#installing) · [Technitium in Docker](#docker)
 
 It replaces the console the server ships with. Install it and the DNS service behaves exactly as
@@ -542,8 +542,10 @@ above (`X.Y.Z`, `X.Y`, `latest`, `develop`).
 web service, with nothing after it. The host can be an address, a name in your DNS, a Compose
 service or an `extra_hosts` entry. If it is missing or malformed, the container stops with one line
 saying why. A self-signed certificate works: the connection is encrypted, but the certificate is
-not checked. The server can come up after this container; until it does, the console loads and says
-it cannot reach the server.
+not checked. If the server redirects HTTP to HTTPS (*Settings › Web Service*), use its HTTPS
+address, `https://host:53443` by default: the console says so if `TECHNITIUM_URL` names the HTTP
+port. The server can come up after this container; until it does, the console loads and says it
+cannot reach the server.
 
 **Custom lists:** mount each `json/*-custom.json` file over its place in the image. The console
 reads `quick-block-lists`, `quick-forwarders-list` and `dnsclient-server-list`:
@@ -565,6 +567,11 @@ restarted.
   `TECHNITIUM_URL` and re-create the container. If the server redirects HTTP to HTTPS, use its
   HTTPS address here.
 - It listens on plain HTTP. To reach it over HTTPS, put your own reverse proxy in front.
+- A server with single sign-on and the HTTP to HTTPS redirect both on turns this container away
+  while it is served over HTTP, even with an `https://` `TECHNITIUM_URL`: for single sign-on it
+  reads the browser's scheme from the container, sees HTTP and redirects. Serve the console over
+  HTTPS through a reverse proxy that sends `X-Forwarded-Proto: https` (the container passes it on),
+  or turn the redirect off. The console says which case it is.
 
 ## Building
 

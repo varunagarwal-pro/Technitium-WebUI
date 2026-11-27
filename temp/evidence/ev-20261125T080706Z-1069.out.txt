@@ -1,0 +1,3773 @@
+$ powershell -NoProfile -Command npm run lint; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; npm run lint:language; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; npm run lint:colours; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; npm run lint:dashes; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; npm run lint:breaks; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; node dev/css-dead.mjs; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; node dev/check-sort-fields.mjs; exit $LASTEXITCODE
+[cwd] D:\SentinelLabs\Technitium-WebUI
+[stdout]
+
+> technitium-console@1.4.3 lint
+> oxlint
+
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/dhcp/model.test.ts:63:7]
+ 62 | 
+ 63 |   it('\"Add Scope\" starts from empty but with \"Use This DNS Server\" checked', () => {
+    :       ^^
+ 64 |     expect(blankForm().useThisDnsServer).toBe(true)
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/dhcp/model.test.ts:63:18]
+ 62 | 
+ 63 |   it('\"Add Scope\" starts from empty but with \"Use This DNS Server\" checked', () => {
+    :                  ^^
+ 64 |     expect(blankForm().useThisDnsServer).toBe(true)
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/dhcp/model.test.ts:63:48]
+ 62 | 
+ 63 |   it('\"Add Scope\" starts from empty but with \"Use This DNS Server\" checked', () => {
+    :                                                ^^
+ 64 |     expect(blankForm().useThisDnsServer).toBe(true)
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/dhcp/model.test.ts:63:69]
+ 62 | 
+ 63 |   it('\"Add Scope\" starts from empty but with \"Use This DNS Server\" checked', () => {
+    :                                                                     ^^
+ 64 |     expect(blankForm().useThisDnsServer).toBe(true)
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/model.test.ts:142:12]
+ 141 | describe('buildBody: DNS servers', () => {
+ 142 |   it('with \"Use This DNS Server\" checked `dnsServers` is NOT sent', () => {
+     :            ^^
+ 143 |     const b = body(form({ useThisDnsServer: true, dnsServers: '1.1.1.1' }))
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/model.test.ts:142:33]
+ 141 | describe('buildBody: DNS servers', () => {
+ 142 |   it('with \"Use This DNS Server\" checked `dnsServers` is NOT sent', () => {
+     :                                 ^^
+ 143 |     const b = body(form({ useThisDnsServer: true, dnsServers: '1.1.1.1' }))
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/model.test.ts:196:36]
+ 195 | describe('buildBody: validation alerts, with their literal texts', () => {
+ 196 |   it('an empty required cell gives \"Missing!\" and points at that cell', () => {
+     :                                    ^^
+ 197 |     const e = error(
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/model.test.ts:196:46]
+ 195 | describe('buildBody: validation alerts, with their literal texts', () => {
+ 196 |   it('an empty required cell gives \"Missing!\" and points at that cell', () => {
+     :                                              ^^
+ 197 |     const e = error(
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/model.test.ts:205:29]
+ 204 | 
+ 205 |   it('a cell with `|` gives \"Invalid Character!\"', () => {
+     :                             ^^
+ 206 |     const e = error(
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/model.test.ts:205:49]
+ 204 | 
+ 205 |   it('a cell with `|` gives \"Invalid Character!\"', () => {
+     :                                                 ^^
+ 206 |     const e = error(
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+   ,-[src/screens/settings/panes/Tsig.tsx:8:14]
+ 7 |  *  "Add" button. */
+ 8 | export const TSIG_ALGORITHMS: { value: string; label: string }[] = [
+   :              ^^^^^^^^^^^^^^^
+ 9 |   { value: 'hmac-md5.sig-alg.reg.int', label: 'HMAC-MD5 (obsolete)' },
+   `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/dashboard/dashboard-sample.tsx:21:17]
+ 20 | 
+ 21 | export function useDashboardSample(token: string | null, node: string, canView: boolean, refreshOn: unknown): DashboardSample {
+    :                 ^^^^^^^^^^^^^^^^^^
+ 22 |   const app = useLoggingApp(token, canView)
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/ui/Table.tsx:278:17]
+ 277 |  */
+ 278 | export function labelCells(table: HTMLTableElement) {
+     :                 ^^^^^^^^^^
+ 279 |   const head = table.tHead?.rows[0]
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/ui/Table.tsx:396:17]
+ 395 | */
+ 396 | export function compareSortValues(a: SortValue, b: SortValue): number {
+     :                 ^^^^^^^^^^^^^^^^^
+ 397 |   if (typeof a === 'number' && typeof b === 'number') return Math.sign(a - b)
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/ui/Table.tsx:411:17]
+ 410 | 
+ 411 | export function useSort<T>(keys: Keys<T>, rows: T[]) {
+     :                 ^^^^^^^
+ 412 |   const [sort, setSort] = useState<Sort | null>(null)
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/dashboard/Chart.tsx:107:17]
+ 106 | */
+ 107 | export function tooltipLine(item: TooltipItem<ChartType>): string {
+     :                 ^^^^^^^^^^^
+ 108 |   const c = item.chart
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/dhcp/LeaseSummary.tsx:29:14]
+ 28 | 
+ 29 | export const LEASE_TYPES = ['Dynamic', 'Reserved'] as const
+    :              ^^^^^^^^^^^
+ 30 | 
+    `----
+
+  ! react(refs): Cannot access refs during render
+    ,-[src/screens/dashboard/useLive.ts:44:9]
+ 43 |   const latest = useRef(epoch)
+ 44 |   latest.current = epoch
+    :   ^^^|^^^^^^|^^^
+    :      |      `-- Cannot update ref value during render
+    :      `-- This value is a ref
+ 45 |   const running = active && targets.length > 0 && !(stoppedOn != null &&
+    `----
+  help: React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/refs
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/dashboard/useLive.ts:49:5]
+ 47 | 
+ 48 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 49 |     setReadings([])
+    :     ^^^^^|^^^^^
+    :          `-- Avoid calling setState() directly within an effect
+ 50 |     if (!running) return
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/dashboard/useLive.ts:136:19]
+ 135 |   const [arrived, setArrived] = useState(0)
+ 136 |   useEffect(() => setArrived(Date.now()), [data])
+     :   ^^^^|^^^^       ^^^^^|^^^^
+     :       |                `-- Avoid calling setState() directly within an effect
+     :       `-- This is the containing effect
+ 137 |   return useMemo(
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/ui/Menu.tsx:144:18]
+ 142 |   */
+ 143 |   useLayoutEffect(() => {
+     :   ^^^^^^^|^^^^^^^
+     :          `-- This is the containing effect
+ 144 |     if (!open) { setBox(null); return }
+     :                  ^^^|^^
+     :                     `-- Avoid calling setState() directly within an effect
+ 145 |     const r = trigger.current?.getBoundingClientRect()
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/settings/parts.tsx:25:3]
+ 24 |   Warning,
+ 25 |   panelFormStyles,
+    :   ^^^^^^^^^^^^^^^
+ 26 |   type Column,
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/settings/parts.tsx:29:10]
+ 28 | } from '../../ui/PanelForm'
+ 29 | export { default as settingsStyles } from './Settings.module.css'
+    :          ^^^^^^^
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/dhcp/Dhcp.tsx:29:14]
+ 28 | 
+ 29 | export const SUB_TABS = ['Leases', 'Scopes'] as const
+    :              ^^^^^^^^
+ 30 | export type SubTab = (typeof SUB_TABS)[number]
+    `----
+
+  ! eslint(no-control-regex): Unexpected control character
+     ,-[src/lib/punycode.ts:119:15]
+ 118 |     .map((label) => {
+ 119 |       if (!/[^\x00-\x7f]/.test(label)) return label
+     :               ^^|^
+     :                 `-- 'U+0000' is a control character.
+ 120 |       return PREFIX + encodeLabel(label.normalize('NFC').toLowerCase())
+     `----
+  help: Avoid matching control characters in regular expressions. If intentional, disable this rule for the expression.
+
+  ! eslint(no-control-regex): Unexpected control character
+     ,-[src/lib/punycode.ts:140:13]
+ 139 |         decoded == null ||
+ 140 |         !/[^\x00-\x7f]/.test(decoded) ||
+     :             ^^|^
+     :               `-- 'U+0000' is a control character.
+ 141 |         !/^[\p{L}\p{M}\p{N}-]+$/u.test(decoded) ||
+     `----
+  help: Avoid matching control characters in regular expressions. If intentional, disable this rule for the expression.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/ui/StatCard.tsx:14:10]
+ 13 | */
+ 14 | export { styles as statStyles }
+    :          ^^^^^^
+ 15 | 
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/ui/StatCard.tsx:114:17]
+ 113 | /** The chips' side of `hot`: hovering or focusing a chip lights its segment. */
+ 114 | export function hotEvents(key: string, setHot: (key: string | null) => void) {
+     :                 ^^^^^^^^^
+ 115 |   return {
+     `----
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/filter.test.ts:32:55]
+ 31 | describe('name filter', () => {
+ 32 |   it('without a wildcard the comparison is EXACT, not \"contains\"', () => {
+    :                                                       ^^
+ 33 |     expect(filterBy(RECORDS, { name: 'www', type: '' }, 'casa.test').map((r) => r.name)).toEqual([
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/filter.test.ts:32:65]
+ 31 | describe('name filter', () => {
+ 32 |   it('without a wildcard the comparison is EXACT, not \"contains\"', () => {
+    :                                                                 ^^
+ 33 |     expect(filterBy(RECORDS, { name: 'www', type: '' }, 'casa.test').map((r) => r.name)).toEqual([
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:162:31]
+ 161 | 
+ 162 |   it('unreserving alerts with \"Unreserved!\"', async () => {
+     :                               ^^
+ 163 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:162:44]
+ 161 | 
+ 162 |   it('unreserving alerts with \"Unreserved!\"', async () => {
+     :                                            ^^
+ 163 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:247:30]
+ 246 | 
+ 247 |   it('with no scopes it says \"No Scope Found\"', async () => {
+     :                              ^^
+ 248 |     vi.spyOn(api, 'listScopes').mockResolvedValue({ kind: 'ok', data: [] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:247:46]
+ 246 | 
+ 247 |   it('with no scopes it says \"No Scope Found\"', async () => {
+     :                                              ^^
+ 248 |     vi.spyOn(api, 'listScopes').mockResolvedValue({ kind: 'ok', data: [] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:305:35]
+ 304 | 
+ 305 |   it('without permissions neither \"Add Scope\", nor \"Enable\"/\"Disable\", nor \"Delete\" show', async () => {
+     :                                   ^^
+ 306 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:305:46]
+ 304 | 
+ 305 |   it('without permissions neither \"Add Scope\", nor \"Enable\"/\"Disable\", nor \"Delete\" show', async () => {
+     :                                              ^^
+ 306 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:305:54]
+ 304 | 
+ 305 |   it('without permissions neither \"Add Scope\", nor \"Enable\"/\"Disable\", nor \"Delete\" show', async () => {
+     :                                                      ^^
+ 306 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:305:62]
+ 304 | 
+ 305 |   it('without permissions neither \"Add Scope\", nor \"Enable\"/\"Disable\", nor \"Delete\" show', async () => {
+     :                                                              ^^
+ 306 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:305:65]
+ 304 | 
+ 305 |   it('without permissions neither \"Add Scope\", nor \"Enable\"/\"Disable\", nor \"Delete\" show', async () => {
+     :                                                                 ^^
+ 306 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:305:74]
+ 304 | 
+ 305 |   it('without permissions neither \"Add Scope\", nor \"Enable\"/\"Disable\", nor \"Delete\" show', async () => {
+     :                                                                          ^^
+ 306 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:305:82]
+ 304 | 
+ 305 |   it('without permissions neither \"Add Scope\", nor \"Enable\"/\"Disable\", nor \"Delete\" show', async () => {
+     :                                                                                  ^^
+ 306 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:305:90]
+ 304 | 
+ 305 |   it('without permissions neither \"Add Scope\", nor \"Enable\"/\"Disable\", nor \"Delete\" show', async () => {
+     :                                                                                          ^^
+ 306 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:328:7]
+ 327 | describe('DHCP › Scopes: the form', () => {
+ 328 |   it('\"Add Scope\" opens the empty form with \"Use This DNS Server\" checked', async () => {
+     :       ^^
+ 329 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:328:18]
+ 327 | describe('DHCP › Scopes: the form', () => {
+ 328 |   it('\"Add Scope\" opens the empty form with \"Use This DNS Server\" checked', async () => {
+     :                  ^^
+ 329 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:328:47]
+ 327 | describe('DHCP › Scopes: the form', () => {
+ 328 |   it('\"Add Scope\" opens the empty form with \"Use This DNS Server\" checked', async () => {
+     :                                               ^^
+ 329 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:328:68]
+ 327 | describe('DHCP › Scopes: the form', () => {
+ 328 |   it('\"Add Scope\" opens the empty form with \"Use This DNS Server\" checked', async () => {
+     :                                                                    ^^
+ 329 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:342:7]
+ 341 | 
+ 342 |   it('\"Edit\" loads the scope and fills the form', async () => {
+     :       ^^
+ 343 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:342:13]
+ 341 | 
+ 342 |   it('\"Edit\" loads the scope and fills the form', async () => {
+     :             ^^
+ 343 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:359:7]
+ 358 | 
+ 359 |   it('\"Enable DNS Updates\" unchecked disables the overwrite checkbox', async () => {
+     :       ^^
+ 360 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:359:27]
+ 358 | 
+ 359 |   it('\"Enable DNS Updates\" unchecked disables the overwrite checkbox', async () => {
+     :                           ^^
+ 360 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:436:29]
+ 435 | 
+ 436 |   it('a `|` in a cell gives \"Invalid Character!\" with its literal text', async () => {
+     :                             ^^
+ 437 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:436:49]
+ 435 | 
+ 436 |   it('a `|` in a cell gives \"Invalid Character!\" with its literal text', async () => {
+     :                                                 ^^
+ 437 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:457:7]
+ 456 | 
+ 457 |   it('\"Cancel\" returns to the table and reloads it', async () => {
+     :       ^^
+ 458 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dhcp/Dhcp.test.tsx:457:15]
+ 456 | 
+ 457 |   it('\"Cancel\" returns to the table and reloads it', async () => {
+     :               ^^
+ 458 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/clients/ClientList.tsx:32:14]
+ 31 | 
+ 32 | export const FILTER_LABEL: Record<Filter, string> = { all: 'All', heavy: 'High block rate', quiet: 'Quiet' }
+    :              ^^^^^^^^^^^^
+ 33 | export const SORT_LABEL: Record<SortBy, string> = { queries: 'Most queries', blocked: 'Most blocked', name: 'Name' }
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/clients/ClientList.tsx:33:14]
+ 32 | export const FILTER_LABEL: Record<Filter, string> = { all: 'All', heavy: 'High block rate', quiet: 'Quiet' }
+ 33 | export const SORT_LABEL: Record<SortBy, string> = { queries: 'Most queries', blocked: 'Most blocked', name: 'Name' }
+    :              ^^^^^^^^^^
+ 34 | 
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/dashboard/TopStats.tsx:73:17]
+ 72 | /** An entry matches the search by its name and, for a client, its domain. */
+ 73 | export function matchesTop(f: TopEntry, search: string): boolean {
+    :                 ^^^^^^^^^^
+ 74 |   const q = search.trim().toLowerCase()
+    `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/dashboard/TopStats.tsx:111:5]
+ 108 | 
+ 109 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 110 |     if (type == null) return
+ 111 |     setLoading(true)
+     :     ^^^^^|^^^^
+     :          `-- Avoid calling setState() directly within an effect
+ 112 |     setRows([])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! eslint(no-unused-vars): Variable 'contrast' is declared but never used. Unused variables should start with a '_'.
+    ,-[dev/row-colours.mjs:48:7]
+ 47 | 
+ 48 | const contrast = (a, b) => {
+    :       ^^^^|^^^
+    :           `-- 'contrast' is declared here
+ 49 |   const [x, y] = [luminance(a), luminance(b)].sort((m, n) => n - m)
+    `----
+  help: Consider removing this declaration.
+
+  ! eslint(no-unused-vars): Variable 'label' is declared but never used. Unused variables should start with a '_'.
+     ,-[dev/row-colours.mjs:138:7]
+ 137 | }
+ 138 | const label = (k) => NAME[k] ?? k
+     :       ^^|^^
+     :         `-- 'label' is declared here
+ 139 | 
+     `----
+  help: Consider removing this declaration.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/ui/Tooltip.tsx:81:17]
+ 80 | */
+ 81 | export function useTooltip({
+    :                 ^^^^^^^^^^
+ 82 |   text,
+    `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/ui/Tooltip.tsx:139:16]
+ 137 |      draw one frame in last time's place. */
+ 138 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 139 |     if (!open) setBox(null)
+     :                ^^^|^^
+     :                   `-- Avoid calling setState() directly within an effect
+ 140 |   }, [open])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/dhcp/Leases.tsx:189:10]
+ 187 | 
+ 188 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 189 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 190 |   }, [load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dashboard/TopStats.test.tsx:104:28]
+ 103 | 
+ 104 |   it('with no data it says \"No Data\", with the upstream text', async () => {
+     :                            ^^
+ 105 |     mockTop({ topClients: [] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dashboard/TopStats.test.tsx:104:37]
+ 103 | 
+ 104 |   it('with no data it says \"No Data\", with the upstream text', async () => {
+     :                                     ^^
+ 105 |     mockTop({ topClients: [] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dashboard/TopStats.test.tsx:111:21]
+ 110 | 
+ 111 | describe('the three \"More\" buttons of the Dashboard', () => {
+     :                     ^^
+ 112 |   const chart = { labels: ['a', 'b'], datasets: [{ label: 'Total', data: [1, 2] }] }
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dashboard/TopStats.test.tsx:111:27]
+ 110 | 
+ 111 | describe('the three \"More\" buttons of the Dashboard', () => {
+     :                           ^^
+ 112 |   const chart = { labels: ['a', 'b'], datasets: [{ label: 'Total', data: [1, 2] }] }
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dashboard/TopStats.test.tsx:130:7]
+ 129 | 
+ 130 |   it('\"More\" on Top Clients opens the modal and asks for TopClients', async () => {
+     :       ^^
+ 131 |     // Before this modal existed the three buttons were in place and did nothing.
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/dashboard/TopStats.test.tsx:130:13]
+ 129 | 
+ 130 |   it('\"More\" on Top Clients opens the modal and asks for TopClients', async () => {
+     :             ^^
+ 131 |     // Before this modal existed the three buttons were in place and did nothing.
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/lists/record.test.ts:53:39]
+ 52 | 
+ 53 |   it('a stale cache record arrives as \"0 (0s)\" and is respected', () => {
+    :                                       ^^
+ 54 |     expect(splitTtl({ ...CACHE_DNSKEY, ttl: '0 (0s)' })).toEqual({ value: '0', human: '0s' })
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/lists/record.test.ts:53:47]
+ 52 | 
+ 53 |   it('a stale cache record arrives as \"0 (0s)\" and is respected', () => {
+    :                                               ^^
+ 54 |     expect(splitTtl({ ...CACHE_DNSKEY, ttl: '0 (0s)' })).toEqual({ value: '0', human: '0s' })
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/lists/record.test.ts:122:20]
+ 121 | 
+ 122 |   it('year 0001 is \"never\", not a date', () => {
+     :                    ^^
+ 123 |     expect(shortDate('0001-01-01T00:00:00')).toBeNull()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/lists/record.test.ts:122:27]
+ 121 | 
+ 122 |   it('year 0001 is \"never\", not a date', () => {
+     :                           ^^
+ 123 |     expect(shortDate('0001-01-01T00:00:00')).toBeNull()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-unsafe-optional-chaining): Unsafe usage of optional chaining
+     ,-[src/api/apps.test.ts:116:13]
+ 115 |     expect(opts?.form).toBeInstanceOf(FormData)
+ 116 |     expect((opts?.form as FormData).get('fileAppZip')).toBeInstanceOf(File)
+     :             ^^^^^^^^^^
+ 117 |   })
+     `----
+  help: If this short-circuits with 'undefined' the evaluation will throw TypeError
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/api/apps.test.ts:142:47]
+ 141 | 
+ 142 |   it('with no capability at all, the label is \"Generic\"', () => {
+     :                                               ^^
+ 143 |     expect(dnsAppLabels(base)).toEqual(['Generic'])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/api/apps.test.ts:142:56]
+ 141 | 
+ 142 |   it('with no capability at all, the label is \"Generic\"', () => {
+     :                                                        ^^
+ 143 |     expect(dnsAppLabels(base)).toEqual(['Generic'])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/api/apps.test.ts:146:54]
+ 145 | 
+ 146 |   it('it honours the upstream order and does not add \"Generic\" if there is any', () => {
+     :                                                      ^^
+ 147 |     expect(
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/api/apps.test.ts:146:63]
+ 145 | 
+ 146 |   it('it honours the upstream order and does not add \"Generic\" if there is any', () => {
+     :                                                               ^^
+ 147 |     expect(
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/api/records.test.ts:120:48]
+ 119 | 
+ 120 |   it('an empty svcParams travels as the string \"false\", not as an empty string', () => {
+     :                                                ^^
+ 121 |     expect(flattenSvcParams({})).toBe('false')
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/api/records.test.ts:120:55]
+ 119 | 
+ 120 |   it('an empty svcParams travels as the string \"false\", not as an empty string', () => {
+     :                                                       ^^
+ 121 |     expect(flattenSvcParams({})).toBe('false')
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/apps/UpdateApp.tsx:37:7]
+ 34 | 
+ 35 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 36 |     if (open) {
+ 37 |       setAlert(null)
+    :       ^^^^|^^^
+    :           `-- Avoid calling setState() directly within an effect
+ 38 |       setBusy(false)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/lib/dates.test.ts:78:33]
+ 77 | 
+ 78 |   it('under 45 s it always says \"a few seconds ago\"', () => {
+    :                                 ^^
+ 79 |     expect(ago(0)).toBe('a few seconds ago')
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/lib/dates.test.ts:78:52]
+ 77 | 
+ 78 |   it('under 45 s it always says \"a few seconds ago\"', () => {
+    :                                                    ^^
+ 79 |     expect(ago(0)).toBe('a few seconds ago')
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/lib/dates.test.ts:84:25]
+ 83 | 
+ 84 |   it('the threshold for \"a minute\" is at 45 s, not at 60', () => {
+    :                         ^^
+ 85 |     expect(ago(45_000)).toBe('a minute ago')
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/lib/dates.test.ts:84:35]
+ 83 | 
+ 84 |   it('the threshold for \"a minute\" is at 45 s, not at 60', () => {
+    :                                   ^^
+ 85 |     expect(ago(45_000)).toBe('a minute ago')
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/lib/dates.test.ts:106:33]
+ 105 | 
+ 106 |   it('a future date carries the \"in\" prefix, not the \"ago\" suffix', () => {
+     :                                 ^^
+ 107 |     expect(fromNow(new Date(now + 3 * 3600_000).toISOString(), now)).toBe('in 3 hours')
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/lib/dates.test.ts:106:37]
+ 105 | 
+ 106 |   it('a future date carries the \"in\" prefix, not the \"ago\" suffix', () => {
+     :                                     ^^
+ 107 |     expect(fromNow(new Date(now + 3 * 3600_000).toISOString(), now)).toBe('in 3 hours')
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/lib/dates.test.ts:106:56]
+ 105 | 
+ 106 |   it('a future date carries the \"in\" prefix, not the \"ago\" suffix', () => {
+     :                                                        ^^
+ 107 |     expect(fromNow(new Date(now + 3 * 3600_000).toISOString(), now)).toBe('in 3 hours')
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/lib/dates.test.ts:106:61]
+ 105 | 
+ 106 |   it('a future date carries the \"in\" prefix, not the \"ago\" suffix', () => {
+     :                                                             ^^
+ 107 |     expect(fromNow(new Date(now + 3 * 3600_000).toISOString(), now)).toBe('in 3 hours')
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/lib/dates.test.ts:110:41]
+ 109 | 
+ 110 |   it('`0001-01-01T00:00:00` is the .NET \"never\" and comes out as years, it does not blow up', () => {
+     :                                         ^^
+ 111 |     expect(fromNow('0001-01-01T00:00:00', now)).toMatch(/ years ago$/)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/lib/dates.test.ts:110:48]
+ 109 | 
+ 110 |   it('`0001-01-01T00:00:00` is the .NET \"never\" and comes out as years, it does not blow up', () => {
+     :                                                ^^
+ 111 |     expect(fromNow('0001-01-01T00:00:00', now)).toMatch(/ years ago$/)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Move your React context(s) to a separate file.
+    ,-[src/ui/Dialog.tsx:45:14]
+ 44 | /** True inside a dialog: a `Notifier` there stays in the dialog, beside what it is about. */
+ 45 | export const InDialog = createContext(false)
+    :              ^^^^^^^^
+ 46 | 
+    `----
+
+  ! react(purity): Cannot call impure function during render
+     ,-[src/ui/Select.tsx:313:19]
+ 312 |     if (e.key.length === 1 && !e.metaKey && !e.ctrlKey && !e.altKey) {
+ 313 |       const now = Date.now()
+     :                   ^^^^^|^^^^
+     :                        `-- Cannot call impure function
+ 314 |       keys2.current.text = now > keys2.current.until ? e.key : keys2.current.text + e.key
+     `----
+  help: `Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component re-renders
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/purity
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/ui/Select.tsx:196:18]
+ 194 |   // The box is measured right before painting, so it does not visibly jump.
+ 195 |   useLayoutEffect(() => {
+     :   ^^^^^^^|^^^^^^^
+     :          `-- This is the containing effect
+ 196 |     if (!open) { setBox(null); return }
+     :                  ^^^|^^
+     :                     `-- Avoid calling setState() directly within an effect
+ 197 |     const r = trigger.current?.getBoundingClientRect()
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/apps/InstallApp.tsx:35:7]
+ 32 | 
+ 33 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 34 |     if (open) {
+ 35 |       setName('')
+    :       ^^^|^^^
+    :          `-- Avoid calling setState() directly within an effect
+ 36 |       setAlert(null)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/settings/panes/Blocking.tsx:53:17]
+ 52 | 
+ 53 | export function nextUpdateText(iso: string | null | undefined): string {
+    :                 ^^^^^^^^^^^^^^
+ 54 |   if (iso == null) return 'Not Scheduled'
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/blocking/Blocking.tsx:20:14]
+ 19 | 
+ 20 | export const BLOCKING_TABS = ['Overview', 'Rules', 'Lists'] as const
+    :              ^^^^^^^^^^^^^
+ 21 | type Tab = (typeof BLOCKING_TABS)[number]
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/clients/ClientActions.tsx:81:14]
+ 80 | /** The confirmations of the two lists. OURS. */
+ 81 | export const ASK: Record<BypassList, { add: (ip: string) => string; remove: (ip: string) => string }> = {
+    :              ^^^
+ 82 |   blockingBypassList: {
+    `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/apps/StoreApps.tsx:77:5]
+ 74 | 
+ 75 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 76 |     if (!open) return
+ 77 |     setAlert(null)
+    :     ^^^^|^^^
+    :         `-- Avoid calling setState() directly within an effect
+ 78 |     setStoreApps(null)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/ui/EditableTable.tsx:73:17]
+ 72 |  */
+ 73 | export function markCheckColumns(table: HTMLTableElement) {
+    :                 ^^^^^^^^^^^^^^^^
+ 74 |   const head = Array.from(table.tHead?.rows[0]?.cells ?? [])
+    `----
+
+  ! react(immutability): Cannot reassign variable after render completes
+     ,-[src/app/palette/CommandPalette.tsx:119:15]
+  83 | 
+  84 |   let lastGroup: Group | null = null
+     :       ^^^^|^^^^
+     :           `-- `lastGroup` is declared here
+  85 |   const optionId = (i: number) => `${listId}-o${i}`
+  86 | 
+  87 |   return (
+  88 |     <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
+  89 |       <RadixDialog.Portal>
+  90 |         <RadixDialog.Overlay className={styles.overlay} />
+  91 |         <RadixDialog.Content className={styles.palette} aria-describedby={undefined}>
+  92 |           <RadixDialog.Title className={text.sr}>Search</RadixDialog.Title>
+  93 |           <div className={styles.field}>
+  94 |             <Icon name="search" size={18} />
+  95 |             <input
+  96 |               className={styles.input}
+  97 |               autoFocus
+  98 |               role="combobox"
+  99 |               aria-expanded="true"
+ 100 |               aria-controls={listId}
+ 101 |               aria-autocomplete="list"
+ 102 |               aria-activedescendant={shown.length > 0 ? optionId(active) : undefined}
+ 103 |               aria-label="Search"
+ 104 |               placeholder="Search or jump to…"
+ 105 |               spellCheck={false}
+ 106 |               autoComplete="off"
+ 107 |               value={query}
+ 108 |               onChange={(e) => setQuery(e.target.value)}
+ 109 |               onKeyDown={onKeyDown}
+ 110 |             />
+ 111 |             <kbd className={styles.esc}>Esc</kbd>
+ 112 |           </div>
+ 113 |           <div className={styles.list} id={listId} role="listbox" aria-label="Results" ref={list}>
+ 114 |             {shown.length === 0 && query.trim() !== '' && (
+ 115 |               <p className={styles.none}>No matches for &ldquo;{query.trim()}&rdquo;.</p>
+ 116 |             )}
+ 117 |             {shown.map((item, i) => {
+ 118 |               const heading = item.group !== lastGroup ? item.group : null
+ 119 |               lastGroup = item.group
+     :               ^^^^|^^^^
+     :                   `-- Cannot reassign `lastGroup` after render completes
+ 120 |               return (
+     `----
+  help: Reassigning `lastGroup` after render has completed can cause inconsistent behavior on subsequent renders. Consider using state instead
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/immutability
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/app/palette/CommandPalette.tsx:161:14]
+ 160 | /** Ctrl+K, or ⌘K on a Mac: the palette's shortcut, shown where it is offered. */
+ 161 | export const PALETTE_KEYS =
+     :              ^^^^^^^^^^^^
+ 162 |   typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform) ? '⌘K' : 'Ctrl K'
+     `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/app/palette/CommandPalette.tsx:45:7]
+ 42 | 
+ 43 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 44 |     if (open) {
+ 45 |       setQuery('')
+    :       ^^^^|^^^
+    :           `-- Avoid calling setState() directly within an effect
+ 46 |       setActive(0)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/app/palette/CommandPalette.tsx:57:19]
+ 56 | 
+ 57 |   useEffect(() => setActive(0), [query])
+    :   ^^^^|^^^^       ^^^^|^^^^
+    :       |               `-- Avoid calling setState() directly within an effect
+    :       `-- This is the containing effect
+ 58 |   useEffect(() => {
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/blocking/BlockLists.tsx:557:10]
+ 555 | 
+ 556 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 557 |     void readCounts()
+     :          ^^^^^|^^^^
+     :               `-- Avoid calling setState() directly within an effect
+ 558 |   }, [readCounts])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/ui/ClusterNodeSelect.tsx:40:17]
+ 39 | 
+ 40 | export function nodeOptions(
+    :                 ^^^^^^^^^^^
+ 41 |   nodes: ClusterNode[],
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/ui/ClusterNodeSelect.tsx:51:17]
+ 50 |  *  and this server everywhere else. */
+ 51 | export function defaultNode(aggregate: boolean, thisServer: string): string {
+    :                 ^^^^^^^^^^^
+ 52 |   return aggregate ? AGGREGATE : thisServer
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/ui/ClusterNodeSelect.tsx:98:17]
+ 97 |    or empty when the cluster is not initialised. */
+ 98 | export function primaryNodeName(nodes: readonly ClusterNode[], initialised: boolean): string {
+    :                 ^^^^^^^^^^^^^^^
+ 99 |   if (!initialised) return ''
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Move your React context(s) to a separate file.
+    ,-[src/ui/ClusterNodeSelect.tsx:12:14]
+ 11 | */
+ 12 | export const ThisServerName = createContext('')
+    :              ^^^^^^^^^^^^^^
+ 13 | 
+    `----
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/settings/model.test.ts:38:54]
+ 37 | 
+ 38 |   it('the nulls are drawn as an empty string, not as \"null\"', () => {
+    :                                                      ^^
+ 39 |     const f = base()
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/settings/model.test.ts:38:60]
+ 37 | 
+ 38 |   it('the nulls are drawn as an empty string, not as \"null\"', () => {
+    :                                                            ^^
+ 39 |     const f = base()
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:171:9]
+ 170 | 
+ 171 |   it('a \"|\" in a cell gives the invalid-character alert', () => {
+     :         ^^
+ 172 |     const r = buildBody({
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:171:12]
+ 170 | 
+ 171 |   it('a \"|\" in a cell gives the invalid-character alert', () => {
+     :            ^^
+ 172 |     const r = buildBody({
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:207:40]
+ 206 | describe('buildBody: body of settings/set', () => {
+ 207 |   it('empty lists travel as the string \"false\"', () => {
+     :                                        ^^
+ 208 |     const b = body()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:207:47]
+ 206 | describe('buildBody: body of settings/set', () => {
+ 207 |   it('empty lists travel as the string \"false\"', () => {
+     :                                               ^^
+ 208 |     const b = body()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:216:60]
+ 215 | 
+ 216 |   it('empty End Points fall to their default value, not to \"false\"', () => {
+     :                                                            ^^
+ 217 |     expect(body({ dnsServerLocalEndPoints: '' }).dnsServerLocalEndPoints).toBe('0.0.0.0:53,[::]:53')
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:216:67]
+ 215 | 
+ 216 |   it('empty End Points fall to their default value, not to \"false\"', () => {
+     :                                                                   ^^
+ 217 |     expect(body({ dnsServerLocalEndPoints: '' }).dnsServerLocalEndPoints).toBe('0.0.0.0:53,[::]:53')
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:227:33]
+ 226 | 
+ 227 |   it('the tables serialise with \"|\" between ALL the cells', () => {
+     :                                 ^^
+ 228 |     const b = body()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:227:36]
+ 226 | 
+ 227 |   it('the tables serialise with \"|\" between ALL the cells', () => {
+     :                                    ^^
+ 228 |     const b = body()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:232:30]
+ 231 | 
+ 232 |   it('empty tables travel as \"false\"', () => {
+     :                              ^^
+ 233 |     const b = body({ qpmPrefixLimitsIPv4: [], qpmPrefixLimitsIPv6: [], tsigKeys: [] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:232:37]
+ 231 | 
+ 232 |   it('empty tables travel as \"false\"', () => {
+     :                                     ^^
+ 233 |     const b = body({ qpmPrefixLimitsIPv4: [], qpmPrefixLimitsIPv6: [], tsigKeys: [] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:238:12]
+ 237 | 
+ 238 |   it('with \"No Proxy\" NO other proxy field is sent', () => {
+     :            ^^
+ 239 |     const b = body()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:238:22]
+ 237 | 
+ 238 |   it('with \"No Proxy\" NO other proxy field is sent', () => {
+     :                      ^^
+ 239 |     const b = body()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:245:75]
+ 244 | 
+ 245 |   it('with a proxy configured, an empty bypass is an empty string and not \"false\"', () => {
+     :                                                                           ^^
+ 246 |     const b = body({ proxyType: 'Socks5', proxyAddress: 'p', proxyPort: '1080' })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:245:82]
+ 244 | 
+ 245 |   it('with a proxy configured, an empty bypass is an empty string and not \"false\"', () => {
+     :                                                                                  ^^
+ 246 |     const b = body({ proxyType: 'Socks5', proxyAddress: 'p', proxyPort: '1080' })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:251:40]
+ 250 | 
+ 251 |   it('the booleans travel as lowercase \"true\"/\"false\"', () => {
+     :                                        ^^
+ 252 |     const b = body()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:251:46]
+ 250 | 
+ 251 |   it('the booleans travel as lowercase \"true\"/\"false\"', () => {
+     :                                              ^^
+ 252 |     const b = body()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:251:49]
+ 250 | 
+ 251 |   it('the booleans travel as lowercase \"true\"/\"false\"', () => {
+     :                                                 ^^
+ 252 |     const b = body()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/model.test.ts:251:56]
+ 250 | 
+ 251 |   it('the booleans travel as lowercase \"true\"/\"false\"', () => {
+     :                                                        ^^
+ 252 |     const b = body()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/ui/DialogForm.tsx:217:10]
+ 216 | 
+ 217 | export { styles as dialogForm }
+     :          ^^^^^^
+     `----
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/lists/Lists.test.tsx:234:28]
+ 233 | 
+ 234 |   it('deleting alerts with \"deleted from Allowed Zone\", which is not the Blocked text', async () => {
+     :                            ^^
+ 235 |     vi.spyOn(api, 'deleteDomain').mockResolvedValue(OK)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/lists/Lists.test.tsx:234:55]
+ 233 | 
+ 234 |   it('deleting alerts with \"deleted from Allowed Zone\", which is not the Blocked text', async () => {
+     :                                                       ^^
+ 235 |     vi.spyOn(api, 'deleteDomain').mockResolvedValue(OK)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/lists/Lists.test.tsx:275:28]
+ 274 |      successfully.". They are two different sentences and both are contract. */
+ 275 |   it('deleting alerts with \"Blocked zone ... was deleted successfully\"', async () => {
+     :                            ^^
+ 276 |     vi.spyOn(api, 'deleteDomain').mockResolvedValue(OK)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/lists/Lists.test.tsx:275:71]
+ 274 |      successfully.". They are two different sentences and both are contract. */
+ 275 |   it('deleting alerts with \"Blocked zone ... was deleted successfully\"', async () => {
+     :                                                                       ^^
+ 276 |     vi.spyOn(api, 'deleteDomain').mockResolvedValue(OK)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/apps/AppConfig.tsx:51:7]
+ 48 | 
+ 49 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 50 |     if (open) {
+ 51 |       setConfig(initialConfig)
+    :       ^^^^|^^^^
+    :           `-- Avoid calling setState() directly within an effect
+ 52 |       setAlert(null)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/apps/advanced-blocking/EditorField.tsx:20:17]
+ 19 | /** What may be drawn at this control right now, in the order it was reported. */
+ 20 | export function problemsAt(problems: Problem[], target: string, field: string, showErrors: boolean): Problem[] {
+    :                 ^^^^^^^^^^
+ 21 |   return problems.filter(
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/apps/advanced-blocking/EditorField.tsx:27:17]
+ 26 | /** The attributes of the control that `shown` belongs to. */
+ 27 | export function fieldAttrs(target: string, field: string, shown: Problem[]) {
+    :                 ^^^^^^^^^^
+ 28 |   const id = `ab-${target}-${field}`
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/apps/advanced-blocking/EditorField.tsx:51:17]
+ 50 | /** Lines that hold something: a blank line is not an entry, and the text stays as typed. */
+ 51 | export function counted(text: string, one: string, many: string): string {
+    :                 ^^^^^^^
+ 52 |   const n = text.split('\n').filter((line) => line.trim() !== '').length
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/apps/advanced-blocking/EditorField.tsx:56:14]
+ 55 | 
+ 56 | export const fieldStyles = {
+    :              ^^^^^^^^^^^
+ 57 |   /** For an `Input`: its border when `aria-invalid` is set. */
+    `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/zones/modals/CloneZone.tsx:35:5]
+ 32 | 
+ 33 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 34 |     if (!open) return
+ 35 |     setBlank('')
+    :     ^^^^|^^^
+    :         `-- Avoid calling setState() directly within an effect
+ 36 |     setNotice(null)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(refs): Cannot access refs during render
+     ,-[src/screens/lists/Lists.tsx:644:21]
+ 643 |             node={node}
+ 644 |             chosen={nodeFrom.current}
+     :                     ^^^^^^^^|^^^^^^^
+     :                             `-- Cannot access ref value during render
+ 645 |             nodeTitle={nodeTitle}
+     `----
+  help: React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/refs
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/lists/Lists.tsx:120:7]
+ 117 |   // `resetImport*Modal`: on opening, the modal starts clean and with the focus inside.
+ 118 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 119 |     if (open) {
+ 120 |       setText('')
+     :       ^^^|^^^
+     :          `-- Avoid calling setState() directly within an effect
+ 121 |       setNotice(null)
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/dashboard/Heatmap.tsx:74:5]
+ 68 | 
+ 69 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 70 |     let cancelled = false
+ 71 |     const now = hour + HOUR - 1
+ 72 |     const span = weekSpan(now, timezone)
+ 73 |     const asks = hourRequests(span.from, span.to)
+ 74 |     setState({ kind: 'loading' })
+    :     ^^^^|^^^
+    :         `-- Avoid calling setState() directly within an effect
+ 75 |     if (asks == null) {
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/dashboard/Dashboard.test.tsx:42:39]
+ 41 |   })
+ 42 |   it('with no queries it is a literal \"0%\", not \"0.00%\"', () => {
+    :                                       ^^
+ 43 |     expect(percentage(0, 0)).toBe('0%')
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/dashboard/Dashboard.test.tsx:42:43]
+ 41 |   })
+ 42 |   it('with no queries it is a literal \"0%\", not \"0.00%\"', () => {
+    :                                           ^^
+ 43 |     expect(percentage(0, 0)).toBe('0%')
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/dashboard/Dashboard.test.tsx:42:51]
+ 41 |   })
+ 42 |   it('with no queries it is a literal \"0%\", not \"0.00%\"', () => {
+    :                                                   ^^
+ 43 |     expect(percentage(0, 0)).toBe('0%')
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/dashboard/Dashboard.test.tsx:42:58]
+ 41 |   })
+ 42 |   it('with no queries it is a literal \"0%\", not \"0.00%\"', () => {
+    :                                                          ^^
+ 43 |     expect(percentage(0, 0)).toBe('0%')
+    `----
+  help: Replace `\"` with `"`.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/ui/PanelForm.tsx:442:10]
+ 441 | export { HelpText, GroupRow, Row }
+ 442 | export { styles as panelFormStyles }
+     :          ^^^^^^
+     `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/zones/modals/ViewDs.tsx:61:5]
+ 58 | 
+ 59 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 60 |     if (!open) return
+ 61 |     setNotice(null)
+    :     ^^^^|^^^^
+    :         `-- Avoid calling setState() directly within an effect
+ 62 |     setLoading(true)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/dashboard/Panels.tsx:28:17]
+ 27 | */
+ 28 | export function hasData(d?: ChartData): d is ChartData {
+    :                 ^^^^^^^
+ 29 |   if (!d?.datasets?.length) return false
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/dashboard/Panels.tsx:257:17]
+ 256 | */
+ 257 | export function useHidden(resetOn: unknown) {
+     :                 ^^^^^^^^^
+ 258 |   const [hidden, setHidden] = useState<ReadonlySet<string>>(() => new Set())
+     `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/dashboard/Panels.tsx:259:19]
+ 258 |   const [hidden, setHidden] = useState<ReadonlySet<string>>(() => new Set())
+ 259 |   useEffect(() => setHidden(new Set()), [resetOn])
+     :   ^^^^|^^^^       ^^^^|^^^^
+     :       |               `-- Avoid calling setState() directly within an effect
+     :       `-- This is the containing effect
+ 260 |   const toggle = (label: string) =>
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/zones/modals/ConvertZone.tsx:32:17]
+ 31 | 
+ 32 | export function conversionTargets(sourceType: string): ConversionTable {
+    :                 ^^^^^^^^^^^^^^^^^
+ 33 |   switch (sourceType) {
+    `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/zones/modals/ConvertZone.tsx:78:5]
+ 75 | 
+ 76 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 77 |     if (!open) return
+ 78 |     setTarget(conversionTargets(sourceType).byDefault)
+    :     ^^^^|^^^^
+    :         `-- Avoid calling setState() directly within an effect
+ 79 |     setNotice(null)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/apps/Apps.tsx:61:17]
+ 60 | 
+ 61 | export function error(outcome: { kind: string; message?: string }): AlertState {
+    :                 ^^^^^
+ 62 |   return noticeFromFailure(outcome)
+    `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/apps/Apps.tsx:121:10]
+ 119 | 
+ 120 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 121 |     void reload()
+     :          ^^^|^^
+     :             `-- Avoid calling setState() directly within an effect
+ 122 |   }, [reload])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/Zones.test.tsx:73:29]
+ 72 | 
+ 73 |   it('with no zones it says \"No Zone Found\"', async () => {
+    :                             ^^
+ 74 |     server({ 'zones/list': { zones: [], pageNumber: 1, totalPages: 1, totalZones: 0 } })
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/Zones.test.tsx:73:44]
+ 72 | 
+ 73 |   it('with no zones it says \"No Zone Found\"', async () => {
+    :                                            ^^
+ 74 |     server({ 'zones/list': { zones: [], pageNumber: 1, totalPages: 1, totalZones: 0 } })
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/Zones.test.tsx:81:47]
+ 80 | 
+ 81 |   it('the filters do NOT reload on their own: \"Go\" has to be pressed', async () => {
+    :                                               ^^
+ 82 |     const user = userEvent.setup()
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/Zones.test.tsx:81:51]
+ 80 | 
+ 81 |   it('the filters do NOT reload on their own: \"Go\" has to be pressed', async () => {
+    :                                                   ^^
+ 82 |     const user = userEvent.setup()
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:99:7]
+  98 |      disabled until a zone is ticked, and never hidden. */
+  99 |   it('\"Delete Zones\" is disabled with nothing checked, and enabled once a zone is', async () => {
+     :       ^^
+ 100 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:99:21]
+  98 |      disabled until a zone is ticked, and never hidden. */
+  99 |   it('\"Delete Zones\" is disabled with nothing checked, and enabled once a zone is', async () => {
+     :                     ^^
+ 100 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:134:55]
+ 133 | 
+ 134 |   it('delete lives in the row menu, not loose next to \"Disable\"', async () => {
+     :                                                       ^^
+ 135 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:134:64]
+ 133 | 
+ 134 |   it('delete lives in the row menu, not loose next to \"Disable\"', async () => {
+     :                                                                ^^
+ 135 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:225:33]
+ 224 | 
+ 225 |   it('the name filter is exact: \"w\" does not find \"www\"', async () => {
+     :                                 ^^
+ 226 |     const { user } = await openZone()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:225:36]
+ 224 | 
+ 225 |   it('the name filter is exact: \"w\" does not find \"www\"', async () => {
+     :                                    ^^
+ 226 |     const { user } = await openZone()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:225:53]
+ 224 | 
+ 225 |   it('the name filter is exact: \"w\" does not find \"www\"', async () => {
+     :                                                     ^^
+ 226 |     const { user } = await openZone()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:225:58]
+ 224 | 
+ 225 |   it('the name filter is exact: \"w\" does not find \"www\"', async () => {
+     :                                                          ^^
+ 226 |     const { user } = await openZone()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:307:55]
+ 306 | 
+ 307 |   it('an unsigned Primary DOES offer DNSSEC, but only \"Sign Zone\"', async () => {
+     :                                                       ^^
+ 308 |     // `divZoneDnssecOptions` is shown for every Primary; what changes is what is
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:307:66]
+ 306 | 
+ 307 |   it('an unsigned Primary DOES offer DNSSEC, but only \"Sign Zone\"', async () => {
+     :                                                                  ^^
+ 308 |     // `divZoneDnssecOptions` is shown for every Primary; what changes is what is
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:329:7]
+ 328 | describe('modals', () => {
+ 329 |   it('\"Add Zone\" validates the name before calling the server', async () => {
+     :       ^^
+ 330 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:329:17]
+ 328 | describe('modals', () => {
+ 329 |   it('\"Add Zone\" validates the name before calling the server', async () => {
+     :                 ^^
+ 330 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:363:7]
+ 362 | 
+ 363 |   it('\"Convert Zone\" on a Primary only allows converting to Forwarder', async () => {
+     :       ^^
+ 364 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:363:21]
+ 362 | 
+ 363 |   it('\"Convert Zone\" on a Primary only allows converting to Forwarder', async () => {
+     :                     ^^
+ 364 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:378:7]
+ 377 | 
+ 378 |   it('\"Import Zone\" alerts if no file is chosen', async () => {
+     :       ^^
+ 379 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:378:20]
+ 377 | 
+ 378 |   it('\"Import Zone\" alerts if no file is chosen', async () => {
+     :                    ^^
+ 379 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:392:7]
+ 391 | 
+ 392 |   it('\"Clone Zone\" requires the new name and sends zone and sourceZone', async () => {
+     :       ^^
+ 393 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/Zones.test.tsx:392:19]
+ 391 | 
+ 392 |   it('\"Clone Zone\" requires the new name and sends zone and sourceZone', async () => {
+     :                   ^^
+ 393 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/zones/modals/EditZoneFile.tsx:65:5]
+ 61 |   // `showEditZoneFileModal` (zone.js:1238-1278).
+ 62 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 63 |     if (!open) return
+ 64 |     let current = true
+ 65 |     setOverwriteSoaSerial(false)
+    :     ^^^^^^^^^^|^^^^^^^^^^
+    :               `-- Avoid calling setState() directly within an effect
+ 66 |     setLoading(true)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/zones/modals/ImportZone.tsx:57:5]
+ 54 |   // all false: "Overwrite Existing Records" starts checked.
+ 55 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 56 |     if (!open) return
+ 57 |     setMode('File')
+    :     ^^^|^^^
+    :        `-- Avoid calling setState() directly within an effect
+ 58 |     setZoneFile(null)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/zones/modals/UnsignZone.tsx:36:15]
+ 34 | 
+ 35 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 36 |     if (open) setNotice(null)
+    :               ^^^^|^^^^
+    :                   `-- Avoid calling setState() directly within an effect
+ 37 |   }, [open])
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/zones/modals/AddZone.tsx:79:5]
+ 76 | 
+ 77 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 78 |     if (!open) return
+ 79 |     setF(initialAddZoneForm(useSoaSerialDateScheme, dnssecValidation))
+    :     ^^|^
+    :       `-- Avoid calling setState() directly within an effect
+ 80 |     setZoneFile(null)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/apps/Apps.test.tsx:127:47]
+ 126 | 
+ 127 |   it('it announces the new version and offers \"Store Update\" only if there is one', async () => {
+     :                                               ^^
+ 128 |     withApps([UP_TO_DATE, WITH_UPDATE])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/apps/Apps.test.tsx:127:61]
+ 126 | 
+ 127 |   it('it announces the new version and offers \"Store Update\" only if there is one', async () => {
+     :                                                             ^^
+ 128 |     withApps([UP_TO_DATE, WITH_UPDATE])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/apps/Apps.test.tsx:304:54]
+ 303 |   /* The server returns `config: null` as soon as someone saves an empty one. */
+ 304 |   it('a null config opens the editor empty, not with \"null\"', async () => {
+     :                                                      ^^
+ 305 |     withApps([UP_TO_DATE])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/apps/Apps.test.tsx:304:60]
+ 303 |   /* The server returns `config: null` as soon as someone saves an empty one. */
+ 304 |   it('a null config opens the editor empty, not with \"null\"', async () => {
+     :                                                            ^^
+ 305 |     withApps([UP_TO_DATE])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:181:36]
+ 180 | describe('Settings: Blocking', () => {
+ 181 |   it('with no date, the labels are \"Not Set\" and \"Not Scheduled\"', async () => {
+     :                                    ^^
+ 182 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:181:45]
+ 180 | describe('Settings: Blocking', () => {
+ 181 |   it('with no date, the labels are \"Not Set\" and \"Not Scheduled\"', async () => {
+     :                                             ^^
+ 182 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:181:52]
+ 180 | describe('Settings: Blocking', () => {
+ 181 |   it('with no date, the labels are \"Not Set\" and \"Not Scheduled\"', async () => {
+     :                                                    ^^
+ 182 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:181:67]
+ 180 | describe('Settings: Blocking', () => {
+ 181 |   it('with no date, the labels are \"Not Set\" and \"Not Scheduled\"', async () => {
+     :                                                                   ^^
+ 182 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:188:7]
+ 187 | 
+ 188 |   it('\"Update Now\" is off if there are no lists configured', async () => {
+     :       ^^
+ 189 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:188:19]
+ 187 | 
+ 188 |   it('\"Update Now\" is off if there are no lists configured', async () => {
+     :                   ^^
+ 189 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:194:7]
+ 193 | 
+ 194 |   it('\"Update Now\" follows the LOADED lists, not the checkbox nor the typed ones (v15.5)', async () => {
+     :       ^^
+ 195 |     server({ blockListUrls: ['https://example.com/list.txt'] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:194:19]
+ 193 | 
+ 194 |   it('\"Update Now\" follows the LOADED lists, not the checkbox nor the typed ones (v15.5)', async () => {
+     :                   ^^
+ 195 |     server({ blockListUrls: ['https://example.com/list.txt'] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:205:7]
+ 204 | 
+ 205 |   it('\"Update Now\" stays off while typing lists that were not saved (v15.5)', async () => {
+     :       ^^
+ 206 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:205:19]
+ 204 | 
+ 205 |   it('\"Update Now\" stays off while typing lists that were not saved (v15.5)', async () => {
+     :                   ^^
+ 206 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:221:21]
+ 220 | 
+ 221 |   it('switching off \"Enable Blocking\" switches off the rest of the sub-tab', async () => {
+     :                     ^^
+ 222 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:221:38]
+ 220 | 
+ 221 |   it('switching off \"Enable Blocking\" switches off the rest of the sub-tab', async () => {
+     :                                      ^^
+ 222 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:231:24]
+ 230 | 
+ 231 |   it('with no minutes, \"Temporary Disable Now\" alerts with the literal text', async () => {
+     :                        ^^
+ 232 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:231:47]
+ 230 | 
+ 231 |   it('with no minutes, \"Temporary Disable Now\" alerts with the literal text', async () => {
+     :                                               ^^
+ 232 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:271:7]
+ 270 | 
+ 271 |   it('\"Update Now\" confirms and fires forceUpdateBlockLists', async () => {
+     :       ^^
+ 272 |     const spy = server({ blockListUrls: ['https://example.com/list.txt'] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:271:19]
+ 270 | 
+ 271 |   it('\"Update Now\" confirms and fires forceUpdateBlockLists', async () => {
+     :                   ^^
+ 272 |     const spy = server({ blockListUrls: ['https://example.com/list.txt'] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:291:7]
+ 290 | describe('Settings: action bar', () => {
+ 291 |   it('\"Flush Cache\" confirms and calls cache/flush with its literal alert', async () => {
+     :       ^^
+ 292 |     const spy = server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:291:20]
+ 290 | describe('Settings: action bar', () => {
+ 291 |   it('\"Flush Cache\" confirms and calls cache/flush with its literal alert', async () => {
+     :                    ^^
+ 292 |     const spy = server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:410:7]
+ 409 | 
+ 410 |   it('\"None\" in the logging switches off its four options and the folder', async () => {
+     :       ^^
+ 411 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/settings/Settings.test.tsx:410:13]
+ 409 | 
+ 410 |   it('\"None\" in the logging switches off its four options and the folder', async () => {
+     :             ^^
+ 411 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/zones/modals/SignZone.tsx:92:5]
+ 89 | 
+ 90 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 91 |     if (!open) return
+ 92 |     setF(initial())
+    :     ^^|^
+    :       `-- Avoid calling setState() directly within an effect
+ 93 |     setNotice(null)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! eslint(no-unsafe-optional-chaining): Unsafe usage of optional chaining
+     ,-[src/screens/zones/Zones.bulk.test.tsx:186:56]
+ 185 |       const answer = base(route, init)
+ 186 |       if (route.startsWith('zones/records/delete') && (init?.body as Record<string, string>).domain === 'www.casa.test') await gate
+     :                                                        ^^^^^^^^^^
+ 187 |       return answer
+     `----
+  help: If this short-circuits with 'undefined' the evaluation will throw TypeError
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/session/SessionProvider.tsx:19:7]
+ 14 | 
+ 15 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 16 |     const intent = readBootIntent()
+ 17 | 
+ 18 |     if (intent.kind === 'show-error') {
+ 19 |       setState({ phase: 'login', alert: { type: 'danger', title: 'Error!', text: intent.message } })
+    :       ^^^^|^^^
+    :           `-- Avoid calling setState() directly within an effect
+ 20 |       return
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/record-form.test.ts:86:28]
+ 85 | 
+ 86 |   it('an unknown type says \"to add record\", with no article', () => {
+    :                            ^^
+ 87 |     expect(error(form({ type: 'Unknown', unknownType: 'TYPE65280' })).text).toBe(
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/record-form.test.ts:86:43]
+ 85 | 
+ 86 |   it('an unknown type says \"to add record\", with no article', () => {
+    :                                           ^^
+ 87 |     expect(error(form({ type: 'Unknown', unknownType: 'TYPE65280' })).text).toBe(
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/record-form.test.ts:92:11]
+ 91 | 
+ 92 |   it('the \"resoure\" typo of upstream is kept', () => {
+    :           ^^
+ 93 |     expect(error(form({ type: 'Unknown' })).text).toBe(
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/record-form.test.ts:92:20]
+ 91 | 
+ 92 |   it('the \"resoure\" typo of upstream is kept', () => {
+    :                    ^^
+ 93 |     expect(error(form({ type: 'Unknown' })).text).toBe(
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-form.test.ts:104:48]
+ 103 | 
+ 104 |   it('CAA with no flags and no tag sends 0 and \"issue\"', () => {
+     :                                                ^^
+ 105 |     const b = body(form({ type: 'CAA', name: 'x', caaValue: 'letsencrypt.org' }))
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-form.test.ts:104:55]
+ 103 | 
+ 104 |   it('CAA with no flags and no tag sends 0 and \"issue\"', () => {
+     :                                                       ^^
+ 105 |     const b = body(form({ type: 'CAA', name: 'x', caaValue: 'letsencrypt.org' }))
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-form.test.ts:137:17]
+ 136 | 
+ 137 |   it('TLSA with \"Full\" requires a complete PEM, but only when adding', () => {
+     :                 ^^
+ 138 |     const f = form({
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-form.test.ts:137:23]
+ 136 | 
+ 137 |   it('TLSA with \"Full\" requires a complete PEM, but only when adding', () => {
+     :                       ^^
+ 138 |     const f = form({
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-form.test.ts:228:33]
+ 227 | 
+ 228 |   it('FWD when editing: without \"this-server\" it sends the proxy; with it, no', () => {
+     :                                 ^^
+ 229 |     const original = rec('FWD', {
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-form.test.ts:228:46]
+ 227 | 
+ 228 |   it('FWD when editing: without \"this-server\" it sends the proxy; with it, no', () => {
+     :                                              ^^
+ 229 |     const original = rec('FWD', {
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-form.test.ts:242:22]
+ 241 | 
+ 242 |   it('the alert says \"to update the record\"', () => {
+     :                      ^^
+ 243 |     const original = rec('A', { ipAddress: '10.0.0.1' })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-form.test.ts:242:44]
+ 241 | 
+ 242 |   it('the alert says \"to update the record\"', () => {
+     :                                            ^^
+ 243 |     const original = rec('A', { ipAddress: '10.0.0.1' })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-form.test.ts:289:43]
+ 288 | 
+ 289 |   it('an empty list travels as the string \"false\"', () => {
+     :                                           ^^
+ 290 |     expect(serializeSvcParams([])).toEqual({ value: 'false' })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-form.test.ts:289:50]
+ 288 | 
+ 289 |   it('an empty list travels as the string \"false\"', () => {
+     :                                                  ^^
+ 290 |     expect(serializeSvcParams([])).toEqual({ value: 'false' })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/zones/modals/DnssecProperties.tsx:742:17]
+ 741 |  */
+ 742 | export function keyActions(k: PrivateKey): {
+     :                 ^^^^^^^^^^
+ 743 |   remove: boolean
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/zones/modals/DnssecProperties.tsx:770:17]
+ 769 | */
+ 770 | export function stateNotes(keys: PrivateKey[]): StateNote[] {
+     :                 ^^^^^^^^^^
+ 771 |   const notes: StateNote[] = []
+     `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/zones/modals/DnssecProperties.tsx:146:5]
+ 143 | 
+ 144 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 145 |     if (!open) return
+ 146 |     setNotice(null)
+     :     ^^^^|^^^^
+     :         `-- Avoid calling setState() directly within an effect
+ 147 |     setAdding(false)
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/dashboard/Dashboard.tsx:70:10]
+ 69 | /* Blocking › Overview reads these from here: the figures' format, and the Queries legend its bars share. */
+ 70 | export { percentage }
+    :          ^^^^^^^^^^
+ 71 | export { hasData, Legend, useHidden } from './Panels'
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/dashboard/Dashboard.tsx:71:10]
+ 70 | export { percentage }
+ 71 | export { hasData, Legend, useHidden } from './Panels'
+    :          ^^^^^^^
+ 72 | 
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/dashboard/Dashboard.tsx:71:27]
+ 70 | export { percentage }
+ 71 | export { hasData, Legend, useHidden } from './Panels'
+    :                           ^^^^^^^^^
+ 72 | 
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/blocking/Overview.tsx:90:17]
+ 89 |  */
+ 90 | export function blockingChart(main: ChartData): ChartData {
+    :                 ^^^^^^^^^^^^^
+ 91 |   const total = series(main, 'Total')
+    `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/blocking/Overview.tsx:340:5]
+ 337 |   */
+ 338 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 339 |     hadData.current = false
+ 340 |     setData(null)
+     :     ^^^|^^^
+     :        `-- Avoid calling setState() directly within an effect
+ 341 |     setPrev(null)
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/apps/advanced-blocking/AdvancedBlocking.tsx:159:10]
+ 157 | 
+ 158 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 159 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 160 |   }, [load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/apps/advanced-blocking/AdvancedBlocking.tsx:173:5]
+ 169 | 
+ 170 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 171 |     if (focusId == null) return
+ 172 |     document.getElementById(focusId)?.focus()
+ 173 |     setFocusId(null)
+     :     ^^^^^|^^^^
+     :          `-- Avoid calling setState() directly within an effect
+ 174 |   }, [focusId])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/apps/advanced-blocking/AdvancedBlocking.tsx:179:5]
+ 175 | 
+ 176 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 177 |     if (scrollTo == null) return
+ 178 |     document.getElementById(scrollTo)?.scrollIntoView?.()
+ 179 |     setScrollTo(null)
+     :     ^^^^^|^^^^^
+     :          `-- Avoid calling setState() directly within an effect
+ 180 |   }, [scrollTo])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/LoginCover.tsx:32:14]
+ 31 | /** The answer block: one TXT record per thing the console offers. */
+ 32 | export const COVER_RECORDS: readonly { key: string; value: string }[] = [
+    :              ^^^^^^^^^^^^^
+ 33 |   { key: 'features.', value: 'every stock feature, same API' },
+    `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/UserDetails.tsx:126:20]
+ 124 | 
+ 125 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 126 |     if (open) void load()
+     :                    ^^|^
+     :                      `-- Avoid calling setState() directly within an effect
+ 127 |   }, [open, load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/record-view.test.ts:64:28]
+ 63 | 
+ 64 |   it('DS and RRSIG compose \"algorithm (number)\"', () => {
+    :                            ^^
+ 65 |     const p = pairs(rec('DS', { keyTag: 1, algorithm: 'ECDSAP256SHA256', algorithmNumber: 13, digestType: 'SHA256', digestTypeNumber: '2', digest: 'AB' }))
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/record-view.test.ts:64:48]
+ 63 | 
+ 64 |   it('DS and RRSIG compose \"algorithm (number)\"', () => {
+    :                                                ^^
+ 65 |     const p = pairs(rec('DS', { keyTag: 1, algorithm: 'ECDSAP256SHA256', algorithmNumber: 13, digestType: 'SHA256', digestTypeNumber: '2', digest: 'AB' }))
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-view.test.ts:112:48]
+ 111 | 
+ 112 |   it('a DNSKEY with no state does not show the \"Key State\" row', () => {
+     :                                                ^^
+ 113 |     expect(pairs(rec('DNSKEY', { flags: 257, protocol: 3, algorithm: 'X', algorithmNumber: 13, publicKey: 'AA', computedKeyTag: 1 }))).not.toHaveProperty(
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-view.test.ts:112:59]
+ 111 | 
+ 112 |   it('a DNSKEY with no state does not show the \"Key State\" row', () => {
+     :                                                           ^^
+ 113 |     expect(pairs(rec('DNSKEY', { flags: 257, protocol: 3, algorithm: 'X', algorithmNumber: 13, publicKey: 'AA', computedKeyTag: 1 }))).not.toHaveProperty(
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-view.test.ts:133:7]
+ 132 | 
+ 133 |   it('\"never\" carries no age after it', () => {
+     :       ^^
+ 134 |     const p = recordFooter(rec('A', {}), NOW)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-view.test.ts:133:14]
+ 132 | 
+ 133 |   it('\"never\" carries no age after it', () => {
+     :              ^^
+ 134 |     const p = recordFooter(rec('A', {}), NOW)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-view.test.ts:249:23]
+ 248 | 
+ 249 | describe('which types \"Add Record\" offers', () => {
+     :                       ^^
+ 250 |   it('a Forwarder hides the three DNSSEC ones', () => {
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/record-view.test.ts:249:35]
+ 248 | 
+ 249 | describe('which types \"Add Record\" offers', () => {
+     :                                   ^^
+ 250 |   it('a Forwarder hides the three DNSSEC ones', () => {
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/logs/LogText.tsx:58:17]
+ 57 | /** The width of the log's timestamp prefix in characters, 0 if it has none. */
+ 58 | export function stampWidth(text: string): number {
+    :                 ^^^^^^^^^^
+ 59 |   return LEADING_STAMP.exec(text)?.[1].length ?? 0
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/logs/LogText.tsx:67:17]
+ 66 | */
+ 67 | export function logNodes(
+    :                 ^^^^^^^^
+ 68 |   text: string,
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/logs/Logs.tsx:21:14]
+ 20 | 
+ 21 | export const SUB_TABS = ['View Logs', 'Query Logs'] as const
+    :              ^^^^^^^^
+ 22 | export type SubTab = (typeof SUB_TABS)[number]
+    `----
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/logs/Logs.test.tsx:96:29]
+ 95 | 
+ 96 |   it('with no files it says \"No Log File Was Found\" and \"Delete All Logs\" disappears, but NOT \"Delete All Stats\"', async () => {
+    :                             ^^
+ 97 |     vi.spyOn(api, 'listLogFiles').mockResolvedValue({ kind: 'ok', data: [] })
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/logs/Logs.test.tsx:96:52]
+ 95 | 
+ 96 |   it('with no files it says \"No Log File Was Found\" and \"Delete All Logs\" disappears, but NOT \"Delete All Stats\"', async () => {
+    :                                                    ^^
+ 97 |     vi.spyOn(api, 'listLogFiles').mockResolvedValue({ kind: 'ok', data: [] })
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/logs/Logs.test.tsx:96:59]
+ 95 | 
+ 96 |   it('with no files it says \"No Log File Was Found\" and \"Delete All Logs\" disappears, but NOT \"Delete All Stats\"', async () => {
+    :                                                           ^^
+ 97 |     vi.spyOn(api, 'listLogFiles').mockResolvedValue({ kind: 'ok', data: [] })
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/logs/Logs.test.tsx:96:76]
+ 95 | 
+ 96 |   it('with no files it says \"No Log File Was Found\" and \"Delete All Logs\" disappears, but NOT \"Delete All Stats\"', async () => {
+    :                                                                            ^^
+ 97 |     vi.spyOn(api, 'listLogFiles').mockResolvedValue({ kind: 'ok', data: [] })
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/logs/Logs.test.tsx:96:99]
+ 95 | 
+ 96 |   it('with no files it says \"No Log File Was Found\" and \"Delete All Logs\" disappears, but NOT \"Delete All Stats\"', async () => {
+    :                                                                                                   ^^
+ 97 |     vi.spyOn(api, 'listLogFiles').mockResolvedValue({ kind: 'ok', data: [] })
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/logs/Logs.test.tsx:96:117]
+ 95 | 
+ 96 |   it('with no files it says \"No Log File Was Found\" and \"Delete All Logs\" disappears, but NOT \"Delete All Stats\"', async () => {
+    :                                                                                                                     ^^
+ 97 |     vi.spyOn(api, 'listLogFiles').mockResolvedValue({ kind: 'ok', data: [] })
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:148:7]
+ 147 | 
+ 148 |   it('\"Download\" asks for the whole file through a single-use token', async () => {
+     :       ^^
+ 149 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:148:17]
+ 147 | 
+ 148 |   it('\"Download\" asks for the whole file through a single-use token', async () => {
+     :                 ^^
+ 149 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:182:7]
+ 181 | 
+ 182 |   it('\"Delete All Logs\" confirms and alerts with \"Logs Deleted!\"', async () => {
+     :       ^^
+ 183 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:182:24]
+ 181 | 
+ 182 |   it('\"Delete All Logs\" confirms and alerts with \"Logs Deleted!\"', async () => {
+     :                        ^^
+ 183 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:182:52]
+ 181 | 
+ 182 |   it('\"Delete All Logs\" confirms and alerts with \"Logs Deleted!\"', async () => {
+     :                                                    ^^
+ 183 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:182:67]
+ 181 | 
+ 182 |   it('\"Delete All Logs\" confirms and alerts with \"Logs Deleted!\"', async () => {
+     :                                                                   ^^
+ 183 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:202:7]
+ 201 | 
+ 202 |   it('\"Delete All Stats\" calls the DASHBOARD endpoint, not the logs one', async () => {
+     :       ^^
+ 203 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:202:25]
+ 201 | 
+ 202 |   it('\"Delete All Stats\" calls the DASHBOARD endpoint, not the logs one', async () => {
+     :                         ^^
+ 203 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:299:7]
+ 298 | 
+ 299 |   it('\"Logs Per Page\" is remembered in localStorage under the upstream key', async () => {
+     :       ^^
+ 300 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:299:22]
+ 298 | 
+ 299 |   it('\"Logs Per Page\" is remembered in localStorage under the upstream key', async () => {
+     :                      ^^
+ 300 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:311:7]
+ 310 | 
+ 311 |   it('\"Query\" sends the fourteen filters with the form values', async () => {
+     :       ^^
+ 312 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:311:14]
+ 310 | 
+ 311 |   it('\"Query\" sends the fourteen filters with the form values', async () => {
+     :              ^^
+ 312 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:343:31]
+ 342 | 
+ 343 |   it('with no query-logs app, \"Query\" alerts with the text that points at Apps', async () => {
+     :                               ^^
+ 344 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:343:38]
+ 342 | 
+ 343 |   it('with no query-logs app, \"Query\" alerts with the text that points at Apps', async () => {
+     :                                      ^^
+ 344 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:361:7]
+ 360 | 
+ 361 |   it('\"Export\" alerts with the SAME title but WITHOUT \"from the Apps section.\"', async () => {
+     :       ^^
+ 362 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:361:15]
+ 360 | 
+ 361 |   it('\"Export\" alerts with the SAME title but WITHOUT \"from the Apps section.\"', async () => {
+     :               ^^
+ 362 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:361:57]
+ 360 | 
+ 361 |   it('\"Export\" alerts with the SAME title but WITHOUT \"from the Apps section.\"', async () => {
+     :                                                         ^^
+ 362 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:361:81]
+ 360 | 
+ 361 |   it('\"Export\" alerts with the SAME title but WITHOUT \"from the Apps section.\"', async () => {
+     :                                                                                 ^^
+ 362 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:378:7]
+ 377 | 
+ 378 |   it('\"Export\" with a valid app calls the export endpoint', async () => {
+     :       ^^
+ 379 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:378:15]
+ 377 | 
+ 378 |   it('\"Export\" with a valid app calls the export endpoint', async () => {
+     :               ^^
+ 379 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:393:7]
+ 392 | 
+ 393 |   it('\"Reset\" returns the form to its default values', async () => {
+     :       ^^
+ 394 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:393:14]
+ 392 | 
+ 393 |   it('\"Reset\" returns the form to its default values', async () => {
+     :              ^^
+ 394 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:407:7]
+ 406 | 
+ 407 |   it('\"Live Update\" pins page and order, empties the range and disables those four controls', async () => {
+     :       ^^
+ 408 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:407:20]
+ 406 | 
+ 407 |   it('\"Live Update\" pins page and order, empties the range and disables those four controls', async () => {
+     :                    ^^
+ 408 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:430:7]
+ 429 | 
+ 430 |   it('\"Live Update\" queries again every 2 s, and stopping cuts it', async () => {
+     :       ^^
+ 431 |     vi.useFakeTimers({ shouldAdvanceTime: true })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:430:20]
+ 429 | 
+ 430 |   it('\"Live Update\" queries again every 2 s, and stopping cuts it', async () => {
+     :                    ^^
+ 431 |     vi.useFakeTimers({ shouldAdvanceTime: true })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:566:53]
+ 565 | 
+ 566 |   it('a response with no data leaves the counter at \"0 logs\"', async () => {
+     :                                                     ^^
+ 567 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:566:61]
+ 565 | 
+ 566 |   it('a response with no data leaves the counter at \"0 logs\"', async () => {
+     :                                                             ^^
+ 567 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:611:7]
+ 610 | 
+ 611 |   it('\"Last\" is asked for with pageNumber -1, which is how upstream reaches the last', async () => {
+     :       ^^
+ 612 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/logs/Logs.test.tsx:611:13]
+ 610 | 
+ 611 |   it('\"Last\" is asked for with pageNumber -1, which is how upstream reaches the last', async () => {
+     :             ^^
+ 612 |     const user = userEvent.setup()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(refs): Cannot access refs during render
+     ,-[src/screens/profile/Profile.tsx:115:15]
+ 114 |   const onProfileRef = useRef(onProfile)
+ 115 |   onProfileRef.current = onProfile
+     :   ^^^^^^|^^^^^^^^^|^^^
+     :         |         `-- Cannot update ref value during render
+     :         `-- This value is a ref
+ 116 | 
+     `----
+  help: React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/refs
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/profile/Profile.tsx:119:5]
+ 116 | 
+ 117 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 118 |     let live = true
+ 119 |     setLoading(true)
+     :     ^^^^^|^^^^
+     :          `-- Avoid calling setState() directly within an effect
+ 120 |     void (async () => {
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/admin/parts.tsx:10:10]
+  9 | export type { Notice } from '../../lib/notice'
+ 10 | export { noticeFromFailure } from '../../lib/notice'
+    :          ^^^^^^^^^^^^^^^^^
+ 11 | 
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/admin/parts.tsx:69:10]
+ 68 | export { Notifier } from '../../ui/Notifier'
+ 69 | export { styles as adminStyles }
+    :          ^^^^^^
+    `----
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/options.test.ts:35:69]
+ 34 | describe('which tabs are visible', () => {
+ 35 |   it('a standalone Primary with no catalogs available does not show \"General\"', () => {
+    :                                                                     ^^
+ 36 |     const e = optionsState(options())
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/options.test.ts:35:78]
+ 34 | describe('which tabs are visible', () => {
+ 35 |   it('a standalone Primary with no catalogs available does not show \"General\"', () => {
+    :                                                                              ^^
+ 36 |     const e = optionsState(options())
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/options.test.ts:41:31]
+ 40 | 
+ 41 |   it('with catalogs available \"General\" appears and is the one that comes up open', () => {
+    :                               ^^
+ 42 |     const e = optionsState(options({ availableCatalogZoneNames: ['cat.test'] }))
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/options.test.ts:41:40]
+ 40 | 
+ 41 |   it('with catalogs available \"General\" appears and is the one that comes up open', () => {
+    :                                        ^^
+ 42 |     const e = optionsState(options({ availableCatalogZoneNames: ['cat.test'] }))
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/options.test.ts:47:26]
+ 46 | 
+ 47 |   it('a Catalog opens on \"Query Access\" even when there are more tabs', () => {
+    :                          ^^
+ 48 |     const e = optionsState(options({ type: 'Catalog' }))
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/options.test.ts:47:40]
+ 46 | 
+ 47 |   it('a Catalog opens on \"Query Access\" even when there are more tabs', () => {
+    :                                        ^^
+ 48 |     const e = optionsState(options({ type: 'Catalog' }))
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/options.test.ts:54:51]
+ 53 | 
+ 54 |   it('the secondaries and the stub always open on \"General\"', () => {
+    :                                                   ^^
+ 55 |     for (const type of ['Secondary', 'SecondaryForwarder', 'SecondaryCatalog', 'Stub']) {
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/options.test.ts:54:60]
+ 53 | 
+ 54 |   it('the secondaries and the stub always open on \"General\"', () => {
+    :                                                            ^^
+ 55 |     for (const type of ['Secondary', 'SecondaryForwarder', 'SecondaryCatalog', 'Stub']) {
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/options.test.ts:97:11]
+ 96 | describe('which criteria are offered', () => {
+ 97 |   it('the \"Name Servers In Zone\" ones disappear on five types', () => {
+    :           ^^
+ 98 |     for (const type of ['Stub', 'Forwarder', 'SecondaryForwarder', 'Catalog', 'SecondaryCatalog']) {
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/zones/options.test.ts:97:33]
+ 96 | describe('which criteria are offered', () => {
+ 97 |   it('the \"Name Servers In Zone\" ones disappear on five types', () => {
+    :                                 ^^
+ 98 |     for (const type of ['Stub', 'Forwarder', 'SecondaryForwarder', 'Catalog', 'SecondaryCatalog']) {
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/options.test.ts:116:33]
+ 115 | describe('the lists are enabled by some criteria and not by others', () => {
+ 116 |   it('the ACL only with the two \"UseSpecifiedNetworkACL\"', () => {
+     :                                 ^^
+ 117 |     expect(aclEditable('UseSpecifiedNetworkACL')).toBe(true)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/zones/options.test.ts:116:57]
+ 115 | describe('the lists are enabled by some criteria and not by others', () => {
+ 116 |   it('the ACL only with the two \"UseSpecifiedNetworkACL\"', () => {
+     :                                                         ^^
+ 117 |     expect(aclEditable('UseSpecifiedNetworkACL')).toBe(true)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/clients/Clients.tsx:107:14]
+ 106 | const CLIENT = 'client'
+ 107 | export const CLIENT_PARAMS = [Q, FILTER, SORT, PAGE, CLIENT]
+     :              ^^^^^^^^^^^^^
+ 108 | 
+     `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/clients/Clients.tsx:142:5]
+ 138 |   const [read, setRead] = useState<SettingsRead>({ kind: 'loading' })
+ 139 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 140 |     if (need != null) return
+ 141 |     let live = true
+ 142 |     setRead({ kind: 'loading' })
+     :     ^^^|^^^
+     :        `-- Avoid calling setState() directly within an effect
+ 143 |     void readSettings(token, node).then((r) => {
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/clients/Clients.tsx:243:5]
+ 240 |   /* A new period or node is a new question: what is on screen answers the old one. */
+ 241 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 242 |     hadData.current = false
+ 243 |     setStats(null)
+     :     ^^^^|^^^
+     :         `-- Avoid calling setState() directly within an effect
+ 244 |     setTop(null)
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/clients/Clients.tsx:320:18]
+ 309 |   const placed = useRef(false)
+ 310 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 311 |     if (placed.current || top == null) return
+ 312 |     /* A `High block rate` filter in the link needs the log sample to know its rows:
+ 313 |        the page is worked out once it is in, not on the unfiltered list (review of
+ 314 |        2026-11-06). A sample that will not come (no app, no permission, a failure)
+ 315 |        does not hold it. */
+ 316 |     if (filter === 'heavy' && entries == null && sample.kind === 'loading') return
+ 317 |     placed.current = true
+ 318 |     if (open == null) return
+ 319 |     const at = sorted.findIndex((r) => r.ip === open)
+ 320 |     if (at >= 0) setPage(Math.floor(at / PER_PAGE) + 1)
+     :                  ^^^|^^^
+     :                     `-- Avoid calling setState() directly within an effect
+ 321 |     else if (!rows.some((r) => r.ip === open)) setOpen(null)
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/modals/CreateApiToken.tsx:59:5]
+ 56 |   // auth.js:332-353: every opening starts on the form, empty.
+ 57 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 58 |     if (!open) return
+ 59 |     setAlert(null)
+    :     ^^^^|^^^
+    :         `-- Avoid calling setState() directly within an effect
+ 60 |     setName('')
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/modals/ChangePassword.tsx:63:5]
+ 60 |   // auth.js:400-441: every opening starts clean, the alert hidden.
+ 61 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 62 |     if (!open) return
+ 63 |     setAlert(null)
+    :     ^^^^|^^^
+    :         `-- Avoid calling setState() directly within an effect
+ 64 |     setCurrent(currentPassword ?? '')
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/admin/NodeSettings.tsx:59:5]
+ 55 | 
+ 56 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 57 |     if (!canView) return
+ 58 |     let live = true
+ 59 |     setAnswers(null)
+    :     ^^^^^|^^^^
+    :          `-- Avoid calling setState() directly within an effect
+ 60 |     const list = key === '' ? [] : key.split('\n')
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/settings/Settings.tsx:90:14]
+ 89 | 
+ 90 | export const SUB_TABS = [
+    :              ^^^^^^^^
+ 91 |   'General',
+    `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/settings/Settings.tsx:109:14]
+ 108 | */
+ 109 | export const MENU_TABS = SUB_TABS.filter((t) => t !== 'Blocking')
+     :              ^^^^^^^^^
+ 110 | 
+     `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/settings/Settings.tsx:279:10]
+ 277 | 
+ 278 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 279 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 280 |   }, [load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/modals/Configure2FA.tsx:34:17]
+ 33 | /** auth.js:549-555: the secret is shown in groups of four, "spaces don't matter". */
+ 34 | export function groupedSecret(secret: string): string {
+    :                 ^^^^^^^^^^^^^
+ 35 |   let out = ''
+    `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/modals/Configure2FA.tsx:69:5]
+ 66 | 
+ 67 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 68 |     if (!open) return
+ 69 |     setAlert(null)
+    :     ^^^^|^^^
+    :         `-- Avoid calling setState() directly within an effect
+ 70 |     setInit(null)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/admin/Permissions.tsx:69:10]
+ 67 | 
+ 68 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 69 |     void load()
+    :          ^^|^
+    :            `-- Avoid calling setState() directly within an effect
+ 70 |   }, [load])
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/Permissions.tsx:168:10]
+ 166 | 
+ 167 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 168 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 169 |   }, [load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/admin/Sessions.test.tsx:60:73]
+ 59 | 
+ 60 |   it('a session type it does not know is not swallowed: it comes out as \"Unknown\"', async () => {
+    :                                                                         ^^
+ 61 |     vi.spyOn(client, 'apiRequest').mockResolvedValue(
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/admin/Sessions.test.tsx:60:82]
+ 59 | 
+ 60 |   it('a session type it does not know is not swallowed: it comes out as \"Unknown\"', async () => {
+    :                                                                                  ^^
+ 61 |     vi.spyOn(client, 'apiRequest').mockResolvedValue(
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/admin/Cluster.test.tsx:87:7]
+ 86 | 
+ 87 |   it('\"Quick Add\" appends the chosen IP to the end of the list', async () => {
+    :       ^^
+ 88 |     const { user } = await open()
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/admin/Cluster.test.tsx:87:18]
+ 86 | 
+ 87 |   it('\"Quick Add\" appends the chosen IP to the end of the list', async () => {
+    :                  ^^
+ 88 |     const { user } = await open()
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/admin/Cluster.test.tsx:93:7]
+ 92 | 
+ 93 |   it('\"Quick Add\" compares by SUBSTRING, which is the upstream bug being replicated', async () => {
+    :       ^^
+ 94 |     const { user } = await open()
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/admin/Cluster.test.tsx:93:18]
+ 92 | 
+ 93 |   it('\"Quick Add\" compares by SUBSTRING, which is the upstream bug being replicated', async () => {
+    :                  ^^
+ 94 |     const { user } = await open()
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Cluster.test.tsx:135:37]
+ 134 | 
+ 135 |   it('the user comes filled in with \"admin\" and the OTP is not visible yet', async () => {
+     :                                     ^^
+ 136 |     const { user } = await open()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Cluster.test.tsx:135:44]
+ 134 | 
+ 135 |   it('the user comes filled in with \"admin\" and the OTP is not visible yet', async () => {
+     :                                            ^^
+ 136 |     const { user } = await open()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Cluster.test.tsx:271:7]
+ 270 | 
+ 271 |   it('\"Force Remove Node\" changes the ENDPOINT, not a parameter', async () => {
+     :       ^^
+ 272 |     const spy = server(CLUSTER_PRIMARY)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Cluster.test.tsx:271:26]
+ 270 | 
+ 271 |   it('\"Force Remove Node\" changes the ENDPOINT, not a parameter', async () => {
+     :                          ^^
+ 272 |     const spy = server(CLUSTER_PRIMARY)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Cluster.test.tsx:502:32]
+ 501 | describe('Cluster: the node table', () => {
+ 502 |   it('the node itself shows no \"Last Seen\", and a secondary looking at itself does show \"Last Synced\"', async () => {
+     :                                ^^
+ 503 |     server(CLUSTER_SECONDARY)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Cluster.test.tsx:502:43]
+ 501 | describe('Cluster: the node table', () => {
+ 502 |   it('the node itself shows no \"Last Seen\", and a secondary looking at itself does show \"Last Synced\"', async () => {
+     :                                           ^^
+ 503 |     server(CLUSTER_SECONDARY)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Cluster.test.tsx:502:91]
+ 501 | describe('Cluster: the node table', () => {
+ 502 |   it('the node itself shows no \"Last Seen\", and a secondary looking at itself does show \"Last Synced\"', async () => {
+     :                                                                                           ^^
+ 503 |     server(CLUSTER_SECONDARY)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Cluster.test.tsx:502:104]
+ 501 | describe('Cluster: the node table', () => {
+ 502 |   it('the node itself shows no \"Last Seen\", and a secondary looking at itself does show \"Last Synced\"', async () => {
+     :                                                                                                        ^^
+ 503 |     server(CLUSTER_SECONDARY)
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Cluster.test.tsx:517:45]
+ 516 | 
+ 517 |   it('an unknown type or state comes out as \"Unknown\" instead of blank', async () => {
+     :                                             ^^
+ 518 |     server({
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Cluster.test.tsx:517:54]
+ 516 | 
+ 517 |   it('an unknown type or state comes out as \"Unknown\" instead of blank', async () => {
+     :                                                      ^^
+ 518 |     server({
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Groups.test.tsx:200:7]
+ 199 | 
+ 200 |   it('\"Add User\" appends at the end and \"None\" empties the member list', async () => {
+     :       ^^
+ 201 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Groups.test.tsx:200:17]
+ 199 | 
+ 200 |   it('\"Add User\" appends at the end and \"None\" empties the member list', async () => {
+     :                 ^^
+ 201 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Groups.test.tsx:200:43]
+ 199 | 
+ 200 |   it('\"Add User\" appends at the end and \"None\" empties the member list', async () => {
+     :                                           ^^
+ 201 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Groups.test.tsx:200:49]
+ 199 | 
+ 200 |   it('\"Add User\" appends at the end and \"None\" empties the member list', async () => {
+     :                                                 ^^
+ 201 |     server()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Permissions.test.tsx:231:7]
+ 230 | 
+ 231 |   it('\"Add User\" adds the row with the three permissions false', async () => {
+     :       ^^
+ 232 |     const { user, spy } = await open()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Permissions.test.tsx:231:17]
+ 230 | 
+ 231 |   it('\"Add User\" adds the row with the three permissions false', async () => {
+     :                 ^^
+ 232 |     const { user, spy } = await open()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Permissions.test.tsx:240:7]
+ 239 | 
+ 240 |   it('\"None\" empties the whole table', async () => {
+     :       ^^
+ 241 |     const { user, spy } = await open()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Permissions.test.tsx:240:13]
+ 239 | 
+ 240 |   it('\"None\" empties the whole table', async () => {
+     :             ^^
+ 241 |     const { user, spy } = await open()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Permissions.test.tsx:249:7]
+ 248 | 
+ 249 |   it('\"Remove\" takes a row out and checking a box shows up in the send', async () => {
+     :       ^^
+ 250 |     const { user, spy } = await open()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Permissions.test.tsx:249:15]
+ 248 | 
+ 249 |   it('\"Remove\" takes a row out and checking a box shows up in the send', async () => {
+     :               ^^
+ 250 |     const { user, spy } = await open()
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/admin/Sso.test.tsx:63:63]
+ 62 | 
+ 63 |   it('the null fields from the server are drawn empty, not as \"null\"', async () => {
+    :                                                               ^^
+ 64 |     server()
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+    ,-[src/screens/admin/Sso.test.tsx:63:69]
+ 62 | 
+ 63 |   it('the null fields from the server are drawn empty, not as \"null\"', async () => {
+    :                                                                     ^^
+ 64 |     server()
+    `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Sso.test.tsx:214:43]
+ 213 | 
+ 214 |   it('an empty list travels as the string \"false\", not empty', async () => {
+     :                                           ^^
+ 215 |     const spy = server({ ssoScopes: [] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Sso.test.tsx:214:50]
+ 213 | 
+ 214 |   it('an empty list travels as the string \"false\", not empty', async () => {
+     :                                                  ^^
+ 215 |     const spy = server({ ssoScopes: [] })
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/Users.tsx:109:10]
+ 107 | 
+ 108 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 109 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 110 |   }, [load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/Users.tsx:484:5]
+ 481 | 
+ 482 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 483 |     if (!open) return
+ 484 |     setNotice(null)
+     :     ^^^^|^^^^
+     :         `-- Avoid calling setState() directly within an effect
+ 485 |     setDisplayName('')
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/about/About.tsx:106:17]
+ 105 | */
+ 106 | export function uptime(iso: string, now: number = Date.now()): string | null {
+     :                 ^^^^^^
+ 107 |   const start = new Date(iso).getTime()
+     `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/zones/modals/ZonePermissions.tsx:69:5]
+ 66 | 
+ 67 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 68 |     if (!open) return
+ 69 |     setNotice(null)
+    :     ^^^^|^^^^
+    :         `-- Avoid calling setState() directly within an effect
+ 70 |     setLoading(true)
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+    ,-[src/screens/admin/Admin.tsx:42:14]
+ 41 | */
+ 42 | export const SUB_TABS = ['Sessions', 'Users', 'Groups', 'Permissions', 'SSO', 'LDAP', 'Cluster'] as const
+    :              ^^^^^^^^
+ 43 | 
+    `----
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Users.test.tsx:114:7]
+ 113 | 
+ 114 |   it('\"Disable 2FA\" only appears if the user has it on', async () => {
+     :       ^^
+ 115 |     server([{ ...NEW_USER, totpEnabled: true }])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Users.test.tsx:114:20]
+ 113 | 
+ 114 |   it('\"Disable 2FA\" only appears if the user has it on', async () => {
+     :                    ^^
+ 115 |     server([{ ...NEW_USER, totpEnabled: true }])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Users.test.tsx:338:7]
+ 337 | 
+ 338 |   it('\"Add Group\" adds the group to the list and \"None\" empties it', async () => {
+     :       ^^
+ 339 |     const spy = server([NEW_USER])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Users.test.tsx:338:18]
+ 337 | 
+ 338 |   it('\"Add Group\" adds the group to the list and \"None\" empties it', async () => {
+     :                  ^^
+ 339 |     const spy = server([NEW_USER])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Users.test.tsx:338:52]
+ 337 | 
+ 338 |   it('\"Add Group\" adds the group to the list and \"None\" empties it', async () => {
+     :                                                    ^^
+ 339 |     const spy = server([NEW_USER])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! eslint(no-useless-escape): Unnecessary escape character '"'
+     ,-[src/screens/admin/Users.test.tsx:338:58]
+ 337 | 
+ 338 |   it('\"Add Group\" adds the group to the list and \"None\" empties it', async () => {
+     :                                                          ^^
+ 339 |     const spy = server([NEW_USER])
+     `----
+  help: Replace `\"` with `"`.
+
+  ! react(preserve-manual-memoization): Existing memoization could not be preserved
+     ,-[src/app/Shell.tsx:427:19]
+ 426 | 
+ 427 |   const handoff = useMemo<Handoff>(() => {
+     :                   ^^^|^^^          |
+     :                      |             `-- Manual memoization callback starts here
+     :                      `-- Manual memoization is not preserved here
+ 428 |     const visible = (id: string) => sections.some((s) => s.id === id)
+     `----
+  help: React Compiler could not prove that this useMemo/useCallback remains memoized. Fix related React Compiler errors inside the callback first. If manual memoization is not required for semantics, remove it; otherwise restructure the callback to avoid values that invalidate memoization
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/preserve-manual-memoization
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/app/Shell.tsx:271:26]
+ 269 |   >(null)
+ 270 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 271 |     if (pending != null) setPending(null)
+     :                          ^^^^^|^^^^
+     :                               `-- Avoid calling setState() directly within an effect
+ 272 |   }, [pending])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/Ldap.tsx:176:10]
+ 174 | 
+ 175 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 176 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 177 |   }, [load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/admin/Groups.tsx:85:10]
+ 83 | 
+ 84 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 85 |     void load()
+    :          ^^|^
+    :            `-- Avoid calling setState() directly within an effect
+ 86 |   }, [load])
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/Groups.tsx:296:5]
+ 293 | 
+ 294 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 295 |     if (!open) return
+ 296 |     setNotice(null)
+     :     ^^^^|^^^^
+     :         `-- Avoid calling setState() directly within an effect
+ 297 |     setName('')
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/Groups.tsx:401:10]
+ 399 | 
+ 400 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 401 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 402 |   }, [load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/Sessions.tsx:129:10]
+ 127 | 
+ 128 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 129 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 130 |   }, [load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/Sessions.tsx:379:5]
+ 375 | 
+ 376 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 377 |     if (!open) return
+ 378 |     let live = true
+ 379 |     setLoading(true)
+     :     ^^^^^|^^^^
+     :          `-- Avoid calling setState() directly within an effect
+ 380 |     setNotice(null)
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+    ,-[src/screens/zones/modals/ZoneOptions.tsx:78:5]
+ 75 | 
+ 76 |   useEffect(() => {
+    :   ^^^^|^^^^
+    :       `-- This is the containing effect
+ 77 |     if (!open) return
+ 78 |     setNotice(null)
+    :     ^^^^|^^^^
+    :         `-- Avoid calling setState() directly within an effect
+ 79 |     setQuickTsig('')
+    `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/Sso.tsx:143:10]
+ 141 | 
+ 142 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 143 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 144 |   }, [load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(refs): Cannot access refs during render
+     ,-[src/screens/zones/ZoneList.tsx:180:12]
+ 179 |   const acrossRef = useRef(across)
+ 180 |   acrossRef.current = across
+     :   ^^^^|^^^^^^^^|^^^
+     :       |        `-- Cannot update ref value during render
+     :       `-- This value is a ref
+ 181 |   const [acrossFilter, setAcrossFilter] = useState<AcrossFilter>(() => readAcrossFilter(readParam(LIST_ACROSS)))
+     `----
+  help: React refs are values that are not needed for rendering. Refs should only be accessed outside of render, such as in event handlers or effects. Accessing a ref value (the `current` property) during render can cause your component not to update as expected
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/refs
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/zones/ZoneRecords.tsx:235:10]
+ 233 | 
+ 234 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 235 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 236 |   }, [load, p.refresh])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/logs/QueryLogs.tsx:126:14]
+ 125 | /** The quick ranges (deviation 52), each how far back from now it starts. */
+ 126 | export const QUICK_RANGES = [
+     :              ^^^^^^^^^^^^
+ 127 |   { id: '15m', label: '15 min', span: 15 * 60_000 },
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/logs/QueryLogs.tsx:200:17]
+ 199 |  *  re-reads from `localStorage` how many entries per page. */
+ 200 | export function defaultFilters(appName: string, classPath: string): Filters {
+     :                 ^^^^^^^^^^^^^^
+ 201 |   let entriesPerPage: string = ENTRIES_PER_PAGE[0]
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/logs/QueryLogs.tsx:229:17]
+ 228 |  *  (logs.js:69-84 and 300-325). */
+ 229 | export function appsWithQueryLogs(apps: InstalledApp[]): { name: string; classPaths: string[] }[] {
+     :                 ^^^^^^^^^^^^^^^^^
+ 230 |   return apps
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/logs/QueryLogs.tsx:252:14]
+ 251 | */
+ 252 | export const LEGEND_ROWS: { cls: string; name: string; when: string }[] = [
+     :              ^^^^^^^^^^^
+ 253 |   { cls: styles.rServerFailure, name: 'Server Failure', when: 'RCODE ServerFailure' },
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/logs/QueryLogs.tsx:262:17]
+ 261 | 
+ 262 | export function rowClass(entry: QueryLogEntry): string {
+     :                 ^^^^^^^^
+ 263 |   const locked = ['blocked', 'upstreamblocked', 'upstreamblockedcached']
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/logs/QueryLogs.tsx:315:17]
+ 314 |  *  its field's own label and its value as the field shows it. */
+ 315 | export function activeFilters(f: Filters, reset: Filters): { label: string; value: string }[] {
+     :                 ^^^^^^^^^^^^^
+ 316 |   const optionLabel = (list: { value: string; label: string }[], v: string) =>
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/logs/QueryLogs.tsx:375:17]
+ 374 | /** The counter's text (logs.js:594-597). */
+ 375 | export function statusText(p: QueryLogPage): string {
+     :                 ^^^^^^^^^^
+ 376 |   if (p.entries.length === 0) return '0 logs'
+     `----
+
+  ! react(only-export-components): Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components.
+     ,-[src/screens/logs/QueryLogs.tsx:388:17]
+ 387 | */
+ 388 | export function pageRange(pageNumber: number, totalPages: number): number[] {
+     :                 ^^^^^^^^^
+ 389 |   return pageWindow(pageNumber, totalPages).pages
+     `----
+
+  ! react(set-state-in-effect): Calling setState synchronously within an effect can trigger cascading renders
+     ,-[src/screens/admin/Cluster.tsx:164:10]
+ 162 | 
+ 163 |   useEffect(() => {
+     :   ^^^^|^^^^
+     :       `-- This is the containing effect
+ 164 |     void load()
+     :          ^^|^
+     :            `-- Avoid calling setState() directly within an effect
+ 165 |   }, [load])
+     `----
+  help: Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.
+  note: React Compiler skipped optimizing this component or hook. Additional guidance: https://react.dev/reference/eslint-plugin-react-hooks/lints/set-state-in-effect
+
+Found 375 warnings and 0 errors.
+Finished in 279ms on 616 files with 117 rules using 28 threads.
+
+> technitium-console@1.4.3 lint:language
+> node dev/check-language.mjs
+
+
+  The repository is in English: no Spanish in the 784 tracked text files.
+
+
+> technitium-console@1.4.3 lint:colours
+> node dev/check-colour-tokens.mjs
+
+
+  Every colour is a token: no colour literal and no color-scheme in src/ outside the theme blocks of src/theme/tokens.css (1 allowed, each with its reason).
+
+
+> technitium-console@1.4.3 lint:dashes
+> node dev/check-dashes.mjs
+
+
+  No em dash in the 828 tracked files, apart from the "no value" placeholder.
+
+
+> technitium-console@1.4.3 lint:breaks
+> node dev/check-word-breaks.mjs
+
+Word breaks: none outside the allowed list.
+
+screens\about\About.module.css:  1 consumer(s)
+  .logo  (line 9)
+
+screens\admin\Admin.module.css:  5 consumer(s)
+  .ctlLine  (line 19)
+  .suffix  (line 20)
+  .group  (line 22)
+  .span  (line 64)
+
+ui\count.module.css:  0 consumer(s)
+  .count2  (line 19)
+  .above  (line 36)
+
+7 classes declared and never named, out of 1417 in 100 modules
+
+Not judged for dead classes (bracket access); their values ARE checked above:
+  screens\blocking\DomainCheck.module.css (bracket access: not judged)
+  screens\blocking\Rules.module.css (bracket access: not judged)
+  screens\dashboard\Heatmap.module.css (bracket access: not judged)
+  ui\Alert.module.css (bracket access: not judged)
+  ui\Button.module.css (bracket access: not judged)
+  ui\Dialog.module.css (bracket access: not judged)
+  ui\list.module.css (no resolved consumer: not judged)
+  ui\Tag.module.css (bracket access: not judged)
+every composes resolves, out of 100 modules
+
+  SORT FIELDS: the 65 sortable columns of 16 files all name a key that exists.
+
+
+[stderr]
+
+[exit code] 0

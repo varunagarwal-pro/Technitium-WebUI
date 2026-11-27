@@ -1,0 +1,75 @@
+$ npx vitest run src/lib/dates.test.ts src/screens/dashboard/heatmap.test.ts src/api/chart-labels.test.ts src/screens/dashboard/custom-range.test.ts src/screens/blocking/blocking-state.test.tsx src/lib/timezone.test.ts src/screens/modals/ChangeTimezone.test.tsx
+[cwd] D:\SentinelLabs\Technitium-WebUI
+[stdout]
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90mD:/SentinelLabs/Technitium-WebUI[39m
+
+ [32m✓[39m src/lib/timezone.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/lib/dates.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/api/chart-labels.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/screens/dashboard/custom-range.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/screens/dashboard/heatmap.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/screens/blocking/blocking-state.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[32m 166[2mms[22m[39m
+ [31m❯[39m src/screens/dashboard/Heatmap.test.tsx [2m([22m[2m8 tests[22m[2m | [22m[31m8 failed[39m[2m)[22m[32m 57[2mms[22m[39m
+[31m     [31m×[31m asks the node it is given, in pieces by hour, and names every cell with its day, hour and count[39m[32m 29[2mms[22m[39m
+[31m     [31m×[31m the hour in progress opens Query Logs for that hour too[39m[32m 3[2mms[22m[39m
+[31m     [31m×[31m a cell opens Query Logs for its hour, From its start To its last second[39m[32m 3[2mms[22m[39m
+[31m     [31m×[31m without a jump the cells are not buttons[39m[32m 6[2mms[22m[39m
+[31m     [31m×[31m is one stop for the keyboard, and the arrows move inside it[39m[32m 5[2mms[22m[39m
+[31m     [31m×[31m the same hour asks nothing again; a new hour does[39m[32m 2[2mms[22m[39m
+[31m     [31m×[31m a piece that fails leaves the panel saying so, not a week of quiet hours[39m[32m 2[2mms[22m[39m
+[31m     [31m×[31m names cells with UTC day, hour and count, and opens Query Logs in UTC[39m[32m 2[2mms[22m[39m
+ [32m✓[39m src/screens/modals/ChangeTimezone.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 1384[2mms[22m[39m
+     [33m[2m✓[22m[39m renders title, group label, and timezone options [33m 565[2mms[22m[39m
+     [33m[2m✓[22m[39m clicking a timezone radio updates active selection and localStorage [33m 349[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m7 passed[39m[22m[90m (8)[39m
+[2m      Tests [22m [1m[31m8 failed[39m[22m[2m | [22m[1m[32m77 passed[39m[22m[90m (85)[39m
+[2m   Start at [22m 09:05:50
+[2m   Duration [22m 5.84s[2m (transform 2.15s, setup 4.32s, import 3.52s, tests 1.71s, environment 16.74s)[22m
+
+
+[stderr]
+(node:29056) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28336) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13764) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:5304) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:30848) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:32704) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13540) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35924) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 8 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m src/screens/dashboard/Heatmap.test.tsx[2m > [22mthe week by hour[2m > [22masks the node it is given, in pieces by hour, and names every cell with its day, hour and count
+[41m[1m FAIL [22m[49m src/screens/dashboard/Heatmap.test.tsx[2m > [22mthe week by hour[2m > [22mthe hour in progress opens Query Logs for that hour too
+[41m[1m FAIL [22m[49m src/screens/dashboard/Heatmap.test.tsx[2m > [22mthe week by hour[2m > [22ma cell opens Query Logs for its hour, From its start To its last second
+[41m[1m FAIL [22m[49m src/screens/dashboard/Heatmap.test.tsx[2m > [22mthe week by hour[2m > [22mwithout a jump the cells are not buttons
+[41m[1m FAIL [22m[49m src/screens/dashboard/Heatmap.test.tsx[2m > [22mthe week by hour[2m > [22mis one stop for the keyboard, and the arrows move inside it
+[41m[1m FAIL [22m[49m src/screens/dashboard/Heatmap.test.tsx[2m > [22mthe week by hour[2m > [22mthe same hour asks nothing again; a new hour does
+[41m[1m FAIL [22m[49m src/screens/dashboard/Heatmap.test.tsx[2m > [22mthe week by hour[2m > [22ma piece that fails leaves the panel saying so, not a week of quiet hours
+[41m[1m FAIL [22m[49m src/screens/dashboard/Heatmap.test.tsx[2m > [22mthe week by hour with custom display timezone[2m > [22mnames cells with UTC day, hour and count, and opens Query Logs in UTC
+[31m[1mError[22m: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.[39m
+[90m [2m❯[22m createFiberFromTypeAndProps node_modules/react-dom/cjs/react-dom-client.development.js:[2m5021:28[22m[39m
+[90m [2m❯[22m createFiberFromElement node_modules/react-dom/cjs/react-dom-client.development.js:[2m5035:14[22m[39m
+[90m [2m❯[22m reconcileChildFibersImpl node_modules/react-dom/cjs/react-dom-client.development.js:[2m6920:31[22m[39m
+[90m [2m❯[22m node_modules/react-dom/cjs/react-dom-client.development.js:[2m7098:33[22m[39m
+[90m [2m❯[22m reconcileChildren node_modules/react-dom/cjs/react-dom-client.development.js:[2m9702:13[22m[39m
+[90m [2m❯[22m beginWork node_modules/react-dom/cjs/react-dom-client.development.js:[2m11899:15[22m[39m
+[90m [2m❯[22m runWithFiberInDEV node_modules/react-dom/cjs/react-dom-client.development.js:[2m874:13[22m[39m
+[90m [2m❯[22m performUnitOfWork node_modules/react-dom/cjs/react-dom-client.development.js:[2m17641:22[22m[39m
+[90m [2m❯[22m workLoopSync node_modules/react-dom/cjs/react-dom-client.development.js:[2m17469:41[22m[39m
+[90m [2m❯[22m renderRootSync node_modules/react-dom/cjs/react-dom-client.development.js:[2m17450:11[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/8]⎯[22m[39m
+
+
+[exit code] 1

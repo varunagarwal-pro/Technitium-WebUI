@@ -1,0 +1,85 @@
+$ powershell -NoProfile -Command npm run typecheck; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; npm run lint:language; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; npm run build; exit $LASTEXITCODE
+[cwd] D:\SentinelLabs\Technitium-WebUI
+[stdout]
+
+> technitium-console@1.4.3 typecheck
+> tsc -b --force
+
+
+> technitium-console@1.4.3 lint:language
+> node dev/check-language.mjs
+
+
+  The repository is in English: no Spanish in the 789 tracked text files.
+
+
+> technitium-console@1.4.3 build
+> tsc -b && vite build
+
+[36mvite v8.2.2 [32mbuilding client environment for production...[36m[39m
+transforming...
+✓ 486 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                  1.11 kB │ gzip:   0.47 kB
+dist/apps/index.html                             1.15 kB │ gzip:   0.48 kB
+dist/dhcp/index.html                             1.15 kB │ gzip:   0.48 kB
+dist/logs/index.html                             1.15 kB │ gzip:   0.48 kB
+dist/about/index.html                            1.15 kB │ gzip:   0.48 kB
+dist/admin/index.html                            1.15 kB │ gzip:   0.48 kB
+dist/cache/index.html                            1.15 kB │ gzip:   0.48 kB
+dist/zones/index.html                            1.15 kB │ gzip:   0.48 kB
+dist/allowed/index.html                          1.16 kB │ gzip:   0.48 kB
+dist/blocked/index.html                          1.16 kB │ gzip:   0.48 kB
+dist/clients/index.html                          1.16 kB │ gzip:   0.48 kB
+dist/profile/index.html                          1.16 kB │ gzip:   0.48 kB
+dist/blocking/index.html                         1.16 kB │ gzip:   0.48 kB
+dist/settings/index.html                         1.16 kB │ gzip:   0.48 kB
+dist/dashboard/index.html                        1.16 kB │ gzip:   0.48 kB
+dist/dnsclient/index.html                        1.16 kB │ gzip:   0.48 kB
+dist/admin/sso/index.html                        1.18 kB │ gzip:   0.48 kB
+dist/admin/ldap/index.html                       1.18 kB │ gzip:   0.49 kB
+dist/admin/users/index.html                      1.18 kB │ gzip:   0.49 kB
+dist/dhcp/leases/index.html                      1.18 kB │ gzip:   0.49 kB
+dist/dhcp/scopes/index.html                      1.18 kB │ gzip:   0.49 kB
+dist/admin/groups/index.html                     1.18 kB │ gzip:   0.49 kB
+dist/admin/cluster/index.html                    1.18 kB │ gzip:   0.49 kB
+dist/settings/tsig/index.html                    1.18 kB │ gzip:   0.49 kB
+dist/admin/sessions/index.html                   1.18 kB │ gzip:   0.49 kB
+dist/blocking/lists/index.html                   1.18 kB │ gzip:   0.49 kB
+dist/blocking/rules/index.html                   1.18 kB │ gzip:   0.49 kB
+dist/logs/view-logs/index.html                   1.18 kB │ gzip:   0.49 kB
+dist/settings/cache/index.html                   1.18 kB │ gzip:   0.49 kB
+dist/logs/query-logs/index.html                  1.18 kB │ gzip:   0.49 kB
+dist/settings/general/index.html                 1.18 kB │ gzip:   0.49 kB
+dist/settings/logging/index.html                 1.18 kB │ gzip:   0.49 kB
+dist/admin/permissions/index.html                1.18 kB │ gzip:   0.49 kB
+dist/blocking/overview/index.html                1.18 kB │ gzip:   0.49 kB
+dist/blocking/settings/index.html                1.18 kB │ gzip:   0.49 kB
+dist/settings/blocking/index.html                1.18 kB │ gzip:   0.49 kB
+dist/settings/recursion/index.html               1.19 kB │ gzip:   0.49 kB
+dist/settings/web-service/index.html             1.19 kB │ gzip:   0.49 kB
+dist/apps/advanced-blocking/index.html           1.19 kB │ gzip:   0.49 kB
+dist/settings/proxy-forwarders/index.html        1.19 kB │ gzip:   0.50 kB
+dist/settings/optional-protocols/index.html      1.19 kB │ gzip:   0.50 kB
+dist/assets/index-NTR-pFsg.css                 241.23 kB │ gzip:  42.68 kB
+dist/assets/index-BQhb-hQK.js                1,424.07 kB │ gzip: 410.90 kB
+
+[32m✓ built in 2.96s[39m
+
+[stderr]
+
+../fonts/plex-mono-400-latin.woff2 referenced in ../fonts/plex-mono-400-latin.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+../fonts/plex-mono-600-latin.woff2 referenced in ../fonts/plex-mono-600-latin.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+../fonts/archivo-latin.woff2 referenced in ../fonts/archivo-latin.woff2 didn't resolve at build time, it will remain unchanged to be resolved at runtime
+
+A PostCSS plugin did not pass the `from` option to `postcss.parse`. This may cause imported assets to be incorrectly transformed. If you've recently added a PostCSS plugin that raised this warning, please contact the package author to fix the issue.
+[33m[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+
+[exit code] 0

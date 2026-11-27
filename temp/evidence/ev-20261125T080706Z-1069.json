@@ -1,0 +1,18 @@
+{
+  "id": "ev-20261125T080706Z-1069",
+  "task": "PR38 Round4 repo linters",
+  "utc": "2026-11-25T08:07:17Z",
+  "cwd": "D:\\SentinelLabs\\Technitium-WebUI",
+  "argv": [
+    "powershell",
+    "-NoProfile",
+    "-Command",
+    "npm run lint; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; npm run lint:language; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; npm run lint:colours; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; npm run lint:dashes; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; npm run lint:breaks; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; node dev/css-dead.mjs; if ($LASTEXITCODE -ne 0){exit $LASTEXITCODE}; node dev/check-sort-fields.mjs; exit $LASTEXITCODE"
+  ],
+  "exit_code": 0,
+  "seconds": 10.41,
+  "output_file": "ev-20261125T080706Z-1069.out.txt",
+  "sha256": "5929434764a4670ee6637845c8c301b2d8f925114776a67ebf9d8c2a1cff3a59",
+  "bytes": 180252,
+  "weak": ""
+}

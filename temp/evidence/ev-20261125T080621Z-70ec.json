@@ -1,0 +1,24 @@
+{
+  "id": "ev-20261125T080621Z-70ec",
+  "task": "PR38 Round4 unit suites (TZ=Europe/Madrid)",
+  "utc": "2026-11-25T08:06:30Z",
+  "cwd": "D:\\SentinelLabs\\Technitium-WebUI",
+  "argv": [
+    "npx",
+    "vitest",
+    "run",
+    "src/lib/dates.test.ts",
+    "src/screens/dashboard/heatmap.test.ts$",
+    "src/api/chart-labels.test.ts",
+    "src/screens/dashboard/custom-range.test.ts",
+    "src/screens/blocking/blocking-state.test.tsx",
+    "src/lib/timezone.test.ts",
+    "src/screens/modals/ChangeTimezone.test.tsx"
+  ],
+  "exit_code": 0,
+  "seconds": 8.55,
+  "output_file": "ev-20261125T080621Z-70ec.out.txt",
+  "sha256": "0bf10ea261ec8d1830a4a93e708335f0ec9068283a5e5d8187c83fce18f4ad1c",
+  "bytes": 2574,
+  "weak": ""
+}

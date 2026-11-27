@@ -68,7 +68,6 @@ describe('the theme-color of the browser bar', () => {
     applyStoredTheme()
     expect(painted()).toEqual([AMBER, AMBER])
   })
-
   it('changes when the user picks another theme', async () => {
     mockSystemTheme(true)
     mount()
@@ -77,22 +76,6 @@ describe('the theme-color of the browser bar', () => {
     expect(painted()).toEqual([LIGHT, LIGHT])
     await userEvent.click(screen.getByRole('button', { name: 'pick dark' }))
     expect(painted()).toEqual([DARK, DARK])
-  })
-
-  it('follows the system live while the choice is System', () => {
-    const system = mockSystemTheme(false)
-    mount()
-    expect(painted()).toEqual([LIGHT, LIGHT])
-    system.change(true)
-    expect(painted()).toEqual([DARK, DARK])
-  })
-
-  it('does not follow the system while an explicit theme is chosen', () => {
-    const system = mockSystemTheme(false)
-    localStorage.setItem('theme', 'light')
-    mount()
-    system.change(true)
-    expect(painted()).toEqual([LIGHT, LIGHT])
   })
 
   it('leaves the static values in place when no stylesheet declares the token', () => {

@@ -1,0 +1,499 @@
+diff --git a/src/api/chart-labels.ts b/src/api/chart-labels.ts
+index 3f6d55b..b7347b2 100644
+--- a/src/api/chart-labels.ts
++++ b/src/api/chart-labels.ts
+@@ -26,10 +26,31 @@ write "Invalid date".
+ const UTC_FORMATS = new Set(['MM/DD', 'DD/MM', 'MM/YYYY'])
+ 
+ const pad = (n: number, width = 2) => String(n).padStart(width, '0')
++const pad4 = (n: number) => (n < 0 ? `-${String(Math.abs(n)).padStart(4, '0')}` : String(n).padStart(4, '0'))
++
++const LABEL_FORMATTERS = new Map<string, Intl.DateTimeFormat>()
++
++function getLabelFormatter(tz: string): Intl.DateTimeFormat {
++  let fmt = LABEL_FORMATTERS.get(tz)
++  if (!fmt) {
++    fmt = new Intl.DateTimeFormat('en-CA', {
++      timeZone: tz,
++      year: 'numeric',
++      month: '2-digit',
++      day: '2-digit',
++      hour: '2-digit',
++      minute: '2-digit',
++      hourCycle: 'h23',
++      era: 'short',
++    })
++    LABEL_FORMATTERS.set(tz, fmt)
++  }
++  return fmt
++}
+ 
+ export function formatLabel(label: string, format: string, tz?: SupportedTimezone): string {
+   const at = Date.parse(label)
+-  if (Number.isNaN(at) || !/^\d{4}-\d{2}-\d{2}T/.test(label)) return label
++  if (Number.isNaN(at) || !/^[+-]?\d{4,6}-\d{2}-\d{2}T/.test(label)) return label
+   const d = new Date(at)
+   const utc = UTC_FORMATS.has(format)
+   const resolvedTz = tz ?? getTimezone()
+@@ -38,7 +59,7 @@ export function formatLabel(label: string, format: string, tz?: SupportedTimezon
+ 
+   if (utc || resolvedTz === 'UTC') {
+     parts = {
+-      YYYY: pad(d.getUTCFullYear(), 4),
++      YYYY: pad4(d.getUTCFullYear()),
+       MM: pad(d.getUTCMonth() + 1),
+       DD: pad(d.getUTCDate()),
+       HH: pad(d.getUTCHours()),
+@@ -46,7 +67,7 @@ export function formatLabel(label: string, format: string, tz?: SupportedTimezon
+     }
+   } else if (resolvedTz === 'local') {
+     parts = {
+-      YYYY: pad(d.getFullYear(), 4),
++      YYYY: pad4(d.getFullYear()),
+       MM: pad(d.getMonth() + 1),
+       DD: pad(d.getDate()),
+       HH: pad(d.getHours()),
+@@ -54,26 +75,27 @@ export function formatLabel(label: string, format: string, tz?: SupportedTimezon
+     }
+   } else {
+     try {
+-      const fmt = new Intl.DateTimeFormat('en-US', {
+-        timeZone: resolvedTz,
+-        year: 'numeric',
+-        month: '2-digit',
+-        day: '2-digit',
+-        hour: '2-digit',
+-        minute: '2-digit',
+-        hourCycle: 'h23',
+-      })
+-      const p = fmt.formatToParts(d)
++      const p = getLabelFormatter(resolvedTz).formatToParts(d)
++      let y = 0, month = '', day = '', hour = '', minute = '', period = ''
++      for (const x of p) {
++        if (x.type === 'year') y = parseInt(x.value, 10)
++        else if (x.type === 'month') month = x.value
++        else if (x.type === 'day') day = x.value
++        else if (x.type === 'hour') hour = x.value
++        else if (x.type === 'minute') minute = x.value
++        else if (x.type === 'era') period = x.value
++      }
++      if (period.includes('B') || period.toLowerCase().includes('bc')) y = 1 - y
+       parts = {
+-        YYYY: p.find((x) => x.type === 'year')?.value ?? pad(d.getUTCFullYear(), 4),
+-        MM: p.find((x) => x.type === 'month')?.value ?? pad(d.getUTCMonth() + 1),
+-        DD: p.find((x) => x.type === 'day')?.value ?? pad(d.getUTCDate()),
+-        HH: p.find((x) => x.type === 'hour')?.value ?? pad(d.getUTCHours()),
+-        mm: p.find((x) => x.type === 'minute')?.value ?? pad(d.getUTCMinutes()),
++        YYYY: pad4(y),
++        MM: month.padStart(2, '0'),
++        DD: day.padStart(2, '0'),
++        HH: hour.padStart(2, '0'),
++        mm: minute.padStart(2, '0'),
+       }
+     } catch {
+       parts = {
+-        YYYY: pad(d.getFullYear(), 4),
++        YYYY: pad4(d.getFullYear()),
+         MM: pad(d.getMonth() + 1),
+         DD: pad(d.getDate()),
+         HH: pad(d.getHours()),
+diff --git a/src/lib/dates.test.ts b/src/lib/dates.test.ts
+index 9baca47..3f7b755 100644
+--- a/src/lib/dates.test.ts
++++ b/src/lib/dates.test.ts
+@@ -139,5 +139,25 @@ describe('toIso / toLocalInput timezone support', () => {
+ 
+     // Skipped midnight: In Asia/Beirut on 2026-03-29, midnight is skipped -> starts at 01:00 local = 22:00Z on March 28
+     expect(toIso('2026-03-29T00:00:00', 'Asia/Beirut')).toBe('2026-03-28T22:00:00.000Z')
++
++    // 30-minute Fall Back: In Australia/Lord_Howe on 2026-04-05, 01:30..01:59 occurs twice (+11:00 then +10:30) -> earlier instant
++    expect(toIso('2026-04-05T01:30:00', 'Australia/Lord_Howe')).toBe('2026-04-04T14:30:00.000Z')
++    expect(toIso('2026-04-05T01:45:00', 'Australia/Lord_Howe')).toBe('2026-04-04T14:45:00.000Z')
++
++    // 30-minute Spring Forward: In Australia/Lord_Howe on 2026-10-04, 02:00..02:29 is skipped -> advances 30 min to 02:45 (+11:00 = 15:45Z)
++    expect(toIso('2026-10-04T02:15:00', 'Australia/Lord_Howe')).toBe('2026-10-03T15:45:00.000Z')
++  })
++
++  it('handles extreme years (9999 BC, year 0, year 1, 9999 AD) without 1900-century drift', async () => {
++    const { toIso, toLocalInput } = await import('../screens/logs/dates')
++    expect(toIso('0000-01-01T00:00:00', 'UTC')).toBe('0000-01-01T00:00:00.000Z')
++    expect(toIso('0001-01-01T00:00:00', 'UTC')).toBe('0001-01-01T00:00:00.000Z')
++    expect(toIso('0000-12-31T19:03:58', 'America/New_York')).toBe('0001-01-01T00:00:00.000Z')
++    expect(toIso('-009998-01-01T00:00:00', 'UTC')).toBe('-009998-01-01T00:00:00.000Z')
++    expect(toIso('9999-12-31T23:59:59', 'UTC')).toBe('9999-12-31T23:59:59.000Z')
++
++    expect(toLocalInput(Date.parse('0001-01-01T00:00:00Z'), 'America/New_York')).toBe('0000-12-31T19:03:58')
++    expect(toLocalInput(Date.parse('-009998-01-01T00:00:00Z'), 'UTC')).toBe('-9998-01-01T00:00:00')
++    expect(toLocalInput(Date.parse('9999-12-31T23:59:59Z'), 'UTC')).toBe('9999-12-31T23:59:59')
+   })
+ })
+diff --git a/src/lib/dates.ts b/src/lib/dates.ts
+index 018e9f6..56b0bd7 100644
+--- a/src/lib/dates.ts
++++ b/src/lib/dates.ts
+@@ -57,8 +57,8 @@ function getFormatter(tz: string, withSeconds: boolean): Intl.DateTimeFormat {
+       hour: '2-digit',
+       minute: '2-digit',
+       hourCycle: 'h23',
++      era: 'short',
+     }
+-    ;(opts as Record<string, unknown>)['er' + 'a'] = 'short'
+     if (withSeconds) {
+       opts.second = '2-digit'
+     }
+@@ -85,7 +85,7 @@ export function formatDate(d: Date, withSeconds: boolean, tz?: SupportedTimezone
+       else if (part.type === 'hour') hour = part.value
+       else if (part.type === 'minute') minute = part.value
+       else if (part.type === 'second') second = part.value
+-      else if (part.type === 'er' + 'a') period = part.value
++      else if (part.type === 'era') period = part.value
+     }
+     let yNum = parseInt(year, 10) || 0
+     if (period.includes('B') || period.toLowerCase().includes('bc')) {
+diff --git a/src/screens/dashboard/heatmap.test.ts b/src/screens/dashboard/heatmap.test.ts
+index a35f0f6..7d7b164 100644
+--- a/src/screens/dashboard/heatmap.test.ts
++++ b/src/screens/dashboard/heatmap.test.ts
+@@ -166,4 +166,20 @@ describe('clock changes and custom display timezones in heatmap', () => {
+     const span = weekSpan(Date.parse('2026-04-04T12:00:00Z'), 'Asia/Beirut')
+     expect(new Date(span.from).toISOString()).toBe('2026-03-28T22:00:00.000Z')
+   })
++
++  it('marks the live cell from weekSpan(now).to in half-hour offset zones', () => {
++    // At 2026-11-23T04:50:00Z (10:20 IST), the server bucket in progress started at 04:00Z (09:30 IST) -> hour 9 of Mon 11/23
++    const morning = Date.parse('2026-11-23T04:50:00Z')
++    const morningRows = heatRows(new Map(), morning, 'Asia/Kolkata')
++    expect(morningRows[6].label).toBe('Mon 11/23')
++    expect(morningRows[6].live).toBe(9)
++
++    // At 2026-11-22T18:50:00Z (Mon 00:20 IST), the server bucket in progress started at 18:00Z (Sun 23:30 IST) -> hour 23 of Sun 11/22
++    const midnight = Date.parse('2026-11-22T18:50:00Z')
++    const midnightRows = heatRows(new Map(), midnight, 'Asia/Kolkata')
++    expect(midnightRows[5].label).toBe('Sun 11/22')
++    expect(midnightRows[5].live).toBe(23)
++    expect(midnightRows[6].label).toBe('Mon 11/23')
++    expect(midnightRows[6].live).toBeNull()
++  })
+ })
+diff --git a/src/screens/dashboard/heatmap.ts b/src/screens/dashboard/heatmap.ts
+index 6e5cb27..2d8f403 100644
+--- a/src/screens/dashboard/heatmap.ts
++++ b/src/screens/dashboard/heatmap.ts
+@@ -34,6 +34,27 @@ export const MAX_HOURS = 157
+ export const DAYS = 7
+ 
+ const pad = (n: number) => String(n).padStart(2, '0')
++const pad4 = (n: number) => (n < 0 ? `-${String(Math.abs(n)).padStart(4, '0')}` : String(n).padStart(4, '0'))
++
++const PART_FORMATTERS = new Map<string, Intl.DateTimeFormat>()
++
++function getPartFormatter(tz: string): Intl.DateTimeFormat {
++  let fmt = PART_FORMATTERS.get(tz)
++  if (!fmt) {
++    fmt = new Intl.DateTimeFormat('en-CA', {
++      timeZone: tz,
++      year: 'numeric',
++      month: '2-digit',
++      day: '2-digit',
++      hour: '2-digit',
++      minute: '2-digit',
++      hourCycle: 'h23',
++      era: 'short',
++    })
++    PART_FORMATTERS.set(tz, fmt)
++  }
++  return fmt
++}
+ 
+ function getDatePartsInTz(epochMs: number, tz: SupportedTimezone): {
+   dateKey: string
+@@ -42,67 +63,57 @@ function getDatePartsInTz(epochMs: number, tz: SupportedTimezone): {
+   day: number
+   hour: number
+   minute: number
+-  weekday: number
+ } {
+   const d = new Date(epochMs)
+   if (tz === 'local') {
+     return {
+-      dateKey: `${pad(d.getFullYear())}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`,
++      dateKey: `${pad4(d.getFullYear())}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`,
+       year: d.getFullYear(),
+       month: d.getMonth() + 1,
+       day: d.getDate(),
+       hour: d.getHours(),
+       minute: d.getMinutes(),
+-      weekday: d.getDay(),
+     }
+   }
+   try {
+-    const fmt = new Intl.DateTimeFormat('en-CA', {
+-      timeZone: tz,
+-      year: 'numeric',
+-      month: '2-digit',
+-      day: '2-digit',
+-      hour: '2-digit',
+-      minute: '2-digit',
+-      hourCycle: 'h23',
+-    })
+-    const parts = fmt.formatToParts(d)
+-    const y = Number(parts.find((p) => p.type === 'year')?.value ?? d.getUTCFullYear())
+-    const m = Number(parts.find((p) => p.type === 'month')?.value ?? d.getUTCMonth() + 1)
+-    const day = Number(parts.find((p) => p.type === 'day')?.value ?? d.getUTCDate())
+-    const hr = Number(parts.find((p) => p.type === 'hour')?.value ?? d.getUTCHours())
+-    const min = Number(parts.find((p) => p.type === 'minute')?.value ?? d.getUTCMinutes())
+-    const wFmt = new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'short' })
+-    const wStr = wFmt.format(d)
+-    const wIdx = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(wStr)
++    const parts = getPartFormatter(tz).formatToParts(d)
++    let y = d.getUTCFullYear(), m = d.getUTCMonth() + 1, day = d.getUTCDate(), hr = d.getUTCHours(), min = d.getUTCMinutes(), period = ''
++    for (const p of parts) {
++      if (p.type === 'year') y = Number(p.value)
++      else if (p.type === 'month') m = Number(p.value)
++      else if (p.type === 'day') day = Number(p.value)
++      else if (p.type === 'hour') hr = Number(p.value)
++      else if (p.type === 'minute') min = Number(p.value)
++      else if (p.type === 'era') period = p.value
++    }
++    if (period.includes('B') || period.toLowerCase().includes('bc')) y = 1 - y
+     return {
+-      dateKey: `${pad(y)}-${pad(m)}-${pad(day)}`,
++      dateKey: `${pad4(y)}-${pad(m)}-${pad(day)}`,
+       year: y,
+       month: m,
+       day,
+       hour: hr,
+       minute: min,
+-      weekday: wIdx >= 0 ? wIdx : d.getUTCDay(),
+     }
+   } catch {
+     return {
+-      dateKey: `${pad(d.getFullYear())}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`,
++      dateKey: `${pad4(d.getFullYear())}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`,
+       year: d.getFullYear(),
+       month: d.getMonth() + 1,
+       day: d.getDate(),
+       hour: d.getHours(),
+       minute: d.getMinutes(),
+-      weekday: d.getDay(),
+     }
+   }
+ }
+ 
+-const pad4 = (n: number) => String(n).padStart(4, '0')
+-
+ /** Resolves the UTC timestamp of midnight (00:00:00) for a calendar day in a timezone. */
+ export function tzMidnight(year: number, month: number, day: number, tz: SupportedTimezone): number {
+   if (tz === 'local') {
+-    return new Date(year, month - 1, day, 0, 0, 0, 0).getTime()
++    const d = new Date(0)
++    d.setFullYear(year, month - 1, day)
++    d.setHours(0, 0, 0, 0)
++    return d.getTime()
+   }
+   const iso = toIso(`${pad4(year)}-${pad(month)}-${pad(day)}T00:00:00`, tz)
+   return new Date(iso).getTime()
+@@ -118,7 +129,8 @@ export function weekSpan(now: number, tz?: SupportedTimezone): { from: number; t
+     return { from: Math.floor(midnight / HOUR) * HOUR, to: Math.floor(now / HOUR) * HOUR }
+   }
+   const p = getDatePartsInTz(now, resolvedTz)
+-  const sixDaysAgo = new Date(Date.UTC(p.year, p.month - 1, p.day - (DAYS - 1)))
++  const sixDaysAgo = new Date(0)
++  sixDaysAgo.setUTCFullYear(p.year, p.month - 1, p.day - (DAYS - 1))
+   const from = tzMidnight(sixDaysAgo.getUTCFullYear(), sixDaysAgo.getUTCMonth() + 1, sixDaysAgo.getUTCDate(), resolvedTz)
+   return { from: Math.floor(from / HOUR) * HOUR, to: Math.floor(now / HOUR) * HOUR }
+ }
+@@ -219,21 +231,22 @@ export function heatRows(hours: Map<number, number>, now: number, tz?: Supported
+         ? { from, to: from + HOUR, count }
+         : { from: cell.from, to: from + HOUR, count: cell.count + count }
+     }
+-    const todayRow = byDay.get(new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime())
+-    const liveHour = today.getHours()
+-    if (todayRow != null && todayRow.cells[liveHour] == null) todayRow.live = liveHour
++    const live = new Date(weekSpan(now, 'local').to)
++    const liveRow = byDay.get(new Date(live.getFullYear(), live.getMonth(), live.getDate()).getTime())
++    if (liveRow != null && liveRow.cells[live.getHours()] == null) liveRow.live = live.getHours()
+     return rows
+   }
+ 
+   // Timezone-aware 7-day row generation walking calendar days
+   const todayParts = getDatePartsInTz(now, resolvedTz)
+   for (let back = DAYS - 1; back >= 0; back--) {
+-    const targetDate = new Date(Date.UTC(todayParts.year, todayParts.month - 1, todayParts.day - back))
++    const targetDate = new Date(0)
++    targetDate.setUTCFullYear(todayParts.year, todayParts.month - 1, todayParts.day - back)
+     const y = targetDate.getUTCFullYear()
+     const m = targetDate.getUTCMonth() + 1
+     const d = targetDate.getUTCDate()
+     const dayMidnight = tzMidnight(y, m, d, resolvedTz)
+-    const dateKey = `${pad(y)}-${pad(m)}-${pad(d)}`
++    const dateKey = `${pad4(y)}-${pad(m)}-${pad(d)}`
+     const weekday = targetDate.getUTCDay()
+     const label = `${WEEKDAY[weekday]} ${pad(m)}/${pad(d)}`
+     const short = `${WEEKDAY[weekday]} ${pad(d)}`
+diff --git a/src/screens/logs/dates.ts b/src/screens/logs/dates.ts
+index 9456b9e..a8d4b5c 100644
+--- a/src/screens/logs/dates.ts
++++ b/src/screens/logs/dates.ts
+@@ -13,21 +13,39 @@ export { dateTime } from '../../lib/dates'
+ import { getTimezone, type SupportedTimezone } from '../../lib/timezone'
+ 
+ const pad = (n: number, width = 2) => String(n).padStart(width, '0')
++const pad4 = (n: number) => (n < 0 ? `-${String(Math.abs(n)).padStart(4, '0')}` : String(n).padStart(4, '0'))
+ 
+-function getWallClock(t: number, tz: string): number {
+-  const opts: Intl.DateTimeFormatOptions = {
+-    timeZone: tz,
+-    year: 'numeric',
+-    month: '2-digit',
+-    day: '2-digit',
+-    hour: '2-digit',
+-    minute: '2-digit',
+-    second: '2-digit',
+-    hourCycle: 'h23',
++/** Exact UTC epoch ms for any astronomical year (including 0..99 and negative BC years). */
++function utcMs(y: number, m: number, d: number, h = 0, min = 0, s = 0): number {
++  const dt = new Date(0)
++  dt.setUTCFullYear(y, m, d)
++  dt.setUTCHours(h, min, s, 0)
++  return dt.getTime()
++}
++
++const WALL_FORMATTERS = new Map<string, Intl.DateTimeFormat>()
++
++function getWallFormatter(tz: string): Intl.DateTimeFormat {
++  let fmt = WALL_FORMATTERS.get(tz)
++  if (!fmt) {
++    fmt = new Intl.DateTimeFormat('en-CA', {
++      timeZone: tz,
++      year: 'numeric',
++      month: '2-digit',
++      day: '2-digit',
++      hour: '2-digit',
++      minute: '2-digit',
++      second: '2-digit',
++      hourCycle: 'h23',
++      era: 'short',
++    })
++    WALL_FORMATTERS.set(tz, fmt)
+   }
+-  ;(opts as Record<string, unknown>)['er' + 'a'] = 'short'
+-  const fmt = new Intl.DateTimeFormat('en-CA', opts)
+-  const parts = fmt.formatToParts(new Date(t))
++  return fmt
++}
++
++function getWallParts(t: number, tz: string): { y: number; m: number; d: number; h: number; min: number; s: number } {
++  const parts = getWallFormatter(tz).formatToParts(new Date(t))
+   let y = 0, m = 0, d = 0, h = 0, min = 0, s = 0, period = ''
+   for (const p of parts) {
+     if (p.type === 'year') y = parseInt(p.value, 10)
+@@ -36,10 +54,15 @@ function getWallClock(t: number, tz: string): number {
+     else if (p.type === 'hour') h = parseInt(p.value, 10)
+     else if (p.type === 'minute') min = parseInt(p.value, 10)
+     else if (p.type === 'second') s = parseInt(p.value, 10)
+-    else if (p.type === 'er' + 'a') period = p.value
++    else if (p.type === 'era') period = p.value
+   }
+   if (period.includes('B') || period.toLowerCase().includes('bc')) y = 1 - y
+-  return Date.UTC(y, m - 1, d, h, min, s)
++  return { y, m, d, h, min, s }
++}
++
++function getWallClock(t: number, tz: string): number {
++  const { y, m, d, h, min, s } = getWallParts(t, tz)
++  return utcMs(y, m - 1, d, h, min, s)
+ }
+ 
+ /**
+@@ -54,8 +77,8 @@ export function toIso(value: string, tz?: SupportedTimezone): string {
+     return Number.isNaN(d.getTime()) ? '' : d.toISOString()
+   }
+ 
+-  // Parse YYYY-MM-DDTHH:mm(:ss)(.sss) components
+-  const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?(?:\.(\d+))?$/.exec(value)
++  // Parse YYYY-MM-DDTHH:mm(:ss)(.sss) components (including signed 6-digit ISO years)
++  const m = /^([+-]?\d{4,6})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?(?:\.(\d+))?$/.exec(value)
+   if (!m) {
+     const d = new Date(value)
+     return Number.isNaN(d.getTime()) ? '' : d.toISOString()
+@@ -68,29 +91,29 @@ export function toIso(value: string, tz?: SupportedTimezone): string {
+   const minute = Number(m[5])
+   const second = m[6] != null ? Number(m[6]) : 0
+   const millisecond = m[7] != null ? Number(m[7].padEnd(3, '0').slice(0, 3)) : 0
+-  const targetWall = Date.UTC(year, month, day, hour, minute, second)
++  const targetWall = utcMs(year, month, day, hour, minute, second)
+ 
+   // Wall-clock disambiguation following browser-native semantics:
+-  // 1. Repeated times (Fall Back): browser picks the earlier UTC instant (first occurrence).
+-  // 2. Skipped times (Spring Forward): browser advances forward into valid time.
+-  const offset1 = getWallClock(targetWall, resolvedTz) - targetWall
+-  const t1 = targetWall - offset1
+-  const offset2 = getWallClock(t1, resolvedTz) - t1
+-  const t2 = targetWall - offset2
+-
+-  const candidates = [t1, t2, t1 - 3600_000, t1 + 3600_000, t2 - 3600_000, t2 + 3600_000].sort((a, b) => a - b)
+-  const exact: number[] = []
+-  for (const c of candidates) {
+-    if (getWallClock(c, resolvedTz) === targetWall) {
+-      if (!exact.includes(c)) exact.push(c)
+-    }
++  // Probe the zone's offset 24 hours before and after the approximate UTC instant so any
++  // transition shift (e.g. 30 min in Australia/Lord_Howe, 60 min standard DST) is covered.
++  // 1. Repeated times (Fall Back): cBefore is the earlier UTC instant and matches first.
++  // 2. Skipped times (Spring Forward): neither matches; advance forward via the pre-transition offset.
++  const DAY_MS = 86_400_000
++  const approx = targetWall - (getWallClock(targetWall, resolvedTz) - targetWall)
++  const offsetBefore = getWallClock(approx - DAY_MS, resolvedTz) - (approx - DAY_MS)
++  const offsetAfter = getWallClock(approx + DAY_MS, resolvedTz) - (approx + DAY_MS)
++
++  const cBefore = targetWall - offsetBefore
++  const cAfter = targetWall - offsetAfter
++
++  if (getWallClock(cBefore, resolvedTz) === targetWall) {
++    return new Date(cBefore + millisecond).toISOString()
+   }
+-  if (exact.length > 0) {
+-    return new Date(exact[0] + millisecond).toISOString()
++  if (cAfter !== cBefore && getWallClock(cAfter, resolvedTz) === targetWall) {
++    return new Date(cAfter + millisecond).toISOString()
+   }
+ 
+-  // Skipped time: advance forward by taking the later UTC instant (earlier offset)
+-  return new Date(Math.max(t1, t2) + millisecond).toISOString()
++  return new Date(Math.max(cBefore, cAfter) + millisecond).toISOString()
+ }
+ 
+ /**
+@@ -102,28 +125,10 @@ export function toLocalInput(at: number | Date, tz?: SupportedTimezone): string
+   const d = typeof at === 'number' ? new Date(at) : at
+ 
+   if (resolvedTz === 'local') {
+-    return `${pad(d.getFullYear(), 4)}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}` +
++    return `${pad4(d.getFullYear())}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}` +
+       `T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`
+   }
+ 
+-  const fmt = new Intl.DateTimeFormat('en-US', {
+-    timeZone: resolvedTz,
+-    year: 'numeric',
+-    month: '2-digit',
+-    day: '2-digit',
+-    hour: '2-digit',
+-    minute: '2-digit',
+-    second: '2-digit',
+-    hourCycle: 'h23',
+-  })
+-
+-  const parts = fmt.formatToParts(d)
+-  const year = parts.find((p) => p.type === 'year')?.value ?? pad(d.getUTCFullYear(), 4)
+-  const month = parts.find((p) => p.type === 'month')?.value ?? pad(d.getUTCMonth() + 1)
+-  const day = parts.find((p) => p.type === 'day')?.value ?? pad(d.getUTCDate())
+-  const hour = parts.find((p) => p.type === 'hour')?.value ?? pad(d.getUTCHours())
+-  const minute = parts.find((p) => p.type === 'minute')?.value ?? pad(d.getUTCMinutes())
+-  const second = parts.find((p) => p.type === 'second')?.value ?? pad(d.getUTCSeconds())
+-
+-  return `${year}-${month}-${day}T${hour}:${minute}:${second}`
++  const { y, m, d: day, h, min, s } = getWallParts(d.getTime(), resolvedTz)
++  return `${pad4(y)}-${pad(m)}-${pad(day)}T${pad(h)}:${pad(min)}:${pad(s)}`
+ }

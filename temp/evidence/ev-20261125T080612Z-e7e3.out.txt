@@ -1,0 +1,36 @@
+$ npx vitest run src/lib/dates.test.ts src/screens/dashboard/heatmap.test.ts$ src/api/chart-labels.test.ts src/screens/dashboard/custom-range.test.ts src/screens/blocking/blocking-state.test.tsx src/lib/timezone.test.ts src/screens/modals/ChangeTimezone.test.tsx
+[cwd] D:\SentinelLabs\Technitium-WebUI
+[stdout]
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90mD:/SentinelLabs/Technitium-WebUI[39m
+
+ [32m✓[39m src/api/chart-labels.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/lib/timezone.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/lib/dates.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/screens/dashboard/custom-range.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/screens/blocking/blocking-state.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[32m 166[2mms[22m[39m
+ [32m✓[39m src/screens/modals/ChangeTimezone.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 1268[2mms[22m[39m
+     [33m[2m✓[22m[39m renders title, group label, and timezone options [33m 460[2mms[22m[39m
+     [33m[2m✓[22m[39m clicking a timezone radio updates active selection and localStorage [33m 331[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m6 passed[39m[22m[90m (6)[39m
+[2m      Tests [22m [1m[32m62 passed[39m[22m[90m (62)[39m
+[2m   Start at [22m 08:06:15
+[2m   Duration [22m 5.48s[2m (transform 938ms, setup 3.16s, import 1.68s, tests 1.50s, environment 15.06s)[22m
+
+
+[stderr]
+(node:34124) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10664) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:35808) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33144) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:33444) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29620) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[exit code] 0

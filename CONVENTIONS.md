@@ -527,6 +527,18 @@ Write down here whatever you find. What is already known:
 
 ## Tests
 
+- **A test earns its place by catching a regression someone would notice.** It stays when
+  breaking the code it covers would change what the person at the console or the server sees:
+  a body or parameter sent, an alert text, the validation order, how a response is read, a
+  branch of logic with real edge cases (dates, sorting, names, the limits of a deviation), or a
+  bug that already happened once. It goes when it cannot fail for a reason that matters: it
+  restates the implementation (a constant checked against itself, markup or class names, a mock
+  returning what it was told to), checks that React, the browser or a library works, repeats
+  what another test already proves, pins a count or a list that every new feature changes
+  without anyone caring, or covers a tool nobody runs any more.
+- **Name the regression before writing the test.** If there is none, the test is not written.
+  A change that makes a test pointless deletes it in the same commit, and a flaky test is fixed
+  or deleted, never retried until it passes.
 - `npm test`: vitest. **Do not run `npm run build`** if someone else is
   working in the same checkout: it writes into `dist/` and you would step on each other.
 - Every screen needs tests for: **the literal alert texts**, the **validation
@@ -2337,6 +2349,18 @@ contract and SECURITY.md.
     - **without Modify and Delete, or with nothing selectable, nothing is drawn**: no column and no
       verbs, and the screen is the one it was. Each verb follows its row's permission.
     Its words, OURS, are declared in the header comment of `ZoneRecords.tsx`.
+
+55. **A display time zone of the browser's choosing** (Adrián's decision, 2026-11-19, PR #38;
+    `lib/timezone.ts`, `screens/modals/ChangeTimezone.tsx`). Upstream draws every date in the
+    browser's own zone. `Display Timezone`, in the account menu and in Ctrl K, picks another: UTC
+    or any IANA zone. Dates, chart labels, the heatmap, Query Logs' From and To, the Dashboard's
+    custom range and the blocking pill follow it. Its limits, and crossing one is a bug:
+    - **the default is upstream.** Until a zone is picked, `Browser Local Time` is in force and
+      every screen is the one it was;
+    - **it is this browser's, never the server's.** It is kept in `localStorage`
+      (`display_timezone`), sends no call and changes no setting;
+    - **the instants sent are the same.** A From or To typed in the chosen zone is sent as the
+      instant it names in that zone, so the server is asked for the span that was read on screen.
 
 ## Four constraints the server imposes
 
