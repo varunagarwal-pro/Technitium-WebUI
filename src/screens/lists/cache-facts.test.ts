@@ -40,6 +40,12 @@ describe('the records of a node', () => {
 })
 
 describe('the time left', () => {
+  it('names the first record to leave and the longest time left, leaving the stale ones out', () => {
+    const left = ttlLeft(records)
+    expect(left?.next.record.type).toBe('AAAA')
+    expect(left?.next.human).toBe('2m 5s')
+    expect(left?.longest).toBe('21m 24s')
+  })
 
   it('has nothing to say when every record is stale, or when there are none', () => {
     expect(ttlLeft(records.filter(isStale))).toBeNull()
