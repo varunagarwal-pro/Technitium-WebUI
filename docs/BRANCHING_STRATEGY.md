@@ -5,7 +5,7 @@
 [![Fleet](https://img.shields.io/badge/Fleet-Mumbai%20%7C%20Phoenix%20%7C%20Oregon-emerald?style=for-the-badge&logo=linux)](https://github.com/varunagarwal-pro)
 
 > **📌 Target Repository:** `varunagarwal-pro/Technitium-WebUI`  
-> **📅 Version:** 2.0.0 (Unified 5-Role Branch Standard — Tier C)  
+> **📅 Version:** 2.0.0 (Unified 5-Role Branch Standard: Tier C)  
 > **👤 Lead Maintainer:** Varun Agarwal (Sentinel Labs)
 
 ---
@@ -32,18 +32,18 @@ flowchart TD
 
 ## 🗂️ 2. Active Branches
 
-### 🔵 `upstream-mirror` — Pristine Upstream Mirror
+### 🔵 `upstream-mirror`: Pristine Upstream Mirror
 - **Role:** Read-only upstream tracking branch (`byGarcia/technitium-console`).
 - **Invariants:** Strictly zero local commits; maintained by SentinelOrbit `fleet-upstream-sync`.
 
-### 🛡️ `custom` — Sovereign Customizations
+### 🛡️ `custom`: Sovereign Customizations
 - **Role:** Rebased cleanly on `upstream-mirror`; holds **only** Sentinel-specific enhancements not intended for upstream:
   - **Sovereign Themes:** Dark Grey, Amber (phosphor amber & gold), and Glassmorphism (frosted acrylic sky glow) with `>= 4.5:1` WCAG AA contrast compliance and `ThemeChoice.tsx` selector support.
   - **Footer Attribution:** `byVarun` custom theme attribution in `src/app/footer.ts` and `src/ui/FooterLinks.tsx`.
   - **Duration Spacing:** Human-readable spacing in TTL displays (`24d 6h`, `15m 32s`) in `src/screens/lists/record.ts`.
   - **Cross-Platform Tooling & Governance:** `fileURLToPath` Windows build/test fixes, `.coderabbit.yaml`, `.github/workflows/upstream-gate.yml`, `Tasks.md`, and `docs/BRANCHING_STRATEGY.md`.
 
-### 🚀 `main` — Integrated Production Branch
+### 🚀 `main`: Integrated Production Branch
 - **Role:** Combines `upstream-mirror` + `custom` (and any new approved branches).
 - **Target Directory:** Compiled `dist/` bundle deployed to `/opt/technitium/technitium-console` via `/etc/systemd/system/dns.service.d/console.conf` (leaving stock `/opt/technitium/dns/www` untouched).
 
